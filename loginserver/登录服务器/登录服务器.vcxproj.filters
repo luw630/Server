@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{a42dd523-24d7-4ab3-a4ee-3a021f8ae2c5}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{d4ceb422-dc5e-490b-822e-5512c658b2fa}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{f9544cf2-cd61-4873-9f16-994f3f218d76}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+    <Filter Include="pub">
+      <UniqueIdentifier>{f2b129ed-d547-43df-8020-96a0e95beba2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AccountModuleManage.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DBCenterBaseModule.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DBCenterModule.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DMainApp.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Globals.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="NetAccountCheckModule.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="NetDBModule.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="NetGMModule.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerManager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ServerManager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="登录服务器.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\PUB\GBK_VisibleTest.cpp">
+      <Filter>pub</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\PUB\MemCheck.cpp">
+      <Filter>pub</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\PUB\SMCacheEx.cpp">
+      <Filter>pub</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\PUB\traceinfo.cpp">
+      <Filter>pub</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\区域服务器\区域服务器\CenterModule.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DBCenterBaseModule.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="AccountModuleManage.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DBCenterModule.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DMainApp.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Globals.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="NetAccountCheckModule.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="NetDBModule.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="NetGMModule.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerManager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerManager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\pub\dwt.h">
+      <Filter>pub</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\PUB\GBK_VisibleTest.h">
+      <Filter>pub</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\PUB\LiteInterop.h">
+      <Filter>pub</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\PUB\rpcop.h">
+      <Filter>pub</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\PUB\SMCacheEx.h">
+      <Filter>pub</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\PUB\traceinfo.h">
+      <Filter>pub</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\区域服务器\区域服务器\CenterModule.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\New_net\crc32.lib" />
+    <Library Include="..\..\New_net\desdec.lib" />
+    <Library Include="..\..\New_net\desenc.lib" />
+    <Library Include="..\..\New_net\DirectNetClient.lib" />
+    <Library Include="..\..\New_net\DirectNetServer.lib" />
+    <Library Include="..\..\New_net\MD5Lib.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+</Project>
