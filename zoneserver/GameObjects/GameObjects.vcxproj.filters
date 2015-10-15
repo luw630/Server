@@ -1,0 +1,987 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="ActiveObject.cpp" />
+    <ClCompile Include="ArenaMap.cpp" />
+    <ClCompile Include="SanguoCode\DuplicateMoudle\DuplicateAstrict.cpp" />
+    <ClCompile Include="SanguoCode\DuplicateMoudle\DuplicateDataManager.cpp" />
+    <ClCompile Include="SanguoCode\AchievementMoudle\AchievementDataManager.cpp" />
+    <ClCompile Include="SanguoCode\AchievementMoudle\AchievementManager.cpp" />
+    <ClCompile Include="SanguoCode\ArenaMoudel\ArenaDataMgr.cpp" />
+    <ClCompile Include="SanguoCode\ArenaMoudel\ArenaMoudel.cpp" />
+    <ClCompile Include="SanguoCode\DuplicateMoudle\TollgateDrop.cpp" />
+    <ClCompile Include="SanguoCode\MallMoudle\ArenaShopManager.cpp" />
+    <ClCompile Include="SanguoCode\HeroMoudle\HeroUpgradeMoudle.cpp" />
+    <ClCompile Include="SanguoCode\Common\ConfigManager.cpp" />
+    <ClCompile Include="SanguoCode\BlessMoudle\BlessRandomPrize.cpp" />
+    <ClCompile Include="SanguoCode\BlessMoudle\BlessDataMgr.cpp" />
+    <ClCompile Include="SanguoCode\BaseDataManager.cpp" />
+    <ClCompile Include="CGloryAndTitleServer.cpp" />
+    <ClCompile Include="CMystring.cpp" />
+    <ClCompile Include="CooldownMgr.cpp" />
+    <ClCompile Include="Count.cpp" />
+    <ClCompile Include="DynamicArena.cpp" />
+    <ClCompile Include="DynamicDailyArea.cpp" />
+    <ClCompile Include="DynamicScene.cpp" />
+    <ClCompile Include="ExchangeGoods.cpp" />
+    <ClCompile Include="FightObject.cpp" />
+    <ClCompile Include="GamingHouse.cpp" />
+    <ClCompile Include="ItemUser.cpp" />
+    <ClCompile Include="MapBase.cpp" />
+    <ClCompile Include="MapServer.cpp" />
+    <ClCompile Include="memory_object.cpp" />
+    <ClCompile Include="Mounts.cpp" />
+    <ClCompile Include="NameCard.cpp" />
+    <ClCompile Include="PlayerData.cpp" />
+    <ClCompile Include="poker.cpp" />
+    <ClCompile Include="PubRoom.cpp" />
+    <ClCompile Include="QuestCardPointModify.cpp" />
+    <ClCompile Include="RandomSys.cpp" />
+    <ClCompile Include="Relation.cpp" />
+    <ClCompile Include="SanguoCode\BlessMoudle\BlessMoudle.cpp" />
+    <ClCompile Include="SanguoCode\ExpeditionMoudle\ExpeditionDataManager.cpp" />
+    <ClCompile Include="SanguoCode\ExpeditionMoudle\ExpeditionManager.cpp" />
+    <ClCompile Include="SanguoCode\HeroMoudle\HeroDataManager.cpp" />
+    <ClCompile Include="SanguoCode\MailMoudle\MailMoudle.cpp" />
+    <ClCompile Include="SanguoCode\MallMoudle\ExpeditionShopManager.cpp" />
+    <ClCompile Include="SanguoCode\MallMoudle\MallManager.cpp" />
+    <ClCompile Include="SanguoCode\MallMoudle\MallsMoudle.cpp" />
+    <ClCompile Include="SanguoCode\MallMoudle\VarietyShopManager.cpp" />
+    <ClCompile Include="SanguoCode\MissionMoudle\MissionDataManager.cpp" />
+    <ClCompile Include="SanguoCode\MissionMoudle\MissionManager.cpp" />
+    <ClCompile Include="SanguoCode\SanguoPlayerBase.cpp" />
+    <ClCompile Include="SanguoCode\Common\TabReader.cpp" />
+    <ClCompile Include="SanguoCode\ScriptMoudle\ScriptMoudle.cpp" />
+    <ClCompile Include="SceneMap.cpp" />
+    <ClCompile Include="ScriptObject.cpp" />
+    <ClCompile Include="SendMail.cpp" />
+    <ClCompile Include="SFuncManager.cpp" />
+    <ClCompile Include="StackWalker.cpp" />
+    <ClCompile Include="SanguoCode\StorageMoudle\StorageManager.cpp" />
+    <ClCompile Include="Transformers.cpp" />
+    <ClCompile Include="TransportConf.cpp" />
+    <ClCompile Include="TreasureShop.cpp" />
+    <ClCompile Include="Trigger.cpp" />
+    <ClCompile Include="AIMonster.cpp" />
+    <ClCompile Include="Area.cpp" />
+    <ClCompile Include="BiGuanArea.cpp" />
+    <ClCompile Include="Building.cpp" />
+    <ClCompile Include="CBuffService.cpp" />
+    <ClCompile Include="CFightPetService.cpp" />
+    <ClCompile Include="CFriendService.cpp" />
+    <ClCompile Include="CItemDropService.cpp" />
+    <ClCompile Include="CItemService.cpp" />
+    <ClCompile Include="CJingMaiService.cpp" />
+    <ClCompile Include="CMakeTeamQuestService.cpp" />
+    <ClCompile Include="CMonsterService.cpp" />
+    <ClCompile Include="CMountService.cpp" />
+    <ClCompile Include="CPlayerService.cpp" />
+    <ClCompile Include="CSkillService.cpp" />
+    <ClCompile Include="CTiZhiService.cpp" />
+    <ClCompile Include="DynamicRegion.cpp" />
+    <ClCompile Include="EventBase.cpp" />
+    <ClCompile Include="EventMgr.cpp" />
+    <ClCompile Include="EventRegion.cpp" />
+    <ClCompile Include="FactionRegion.cpp" />
+    <ClCompile Include="FightArena.cpp" />
+    <ClCompile Include="GroundItemWinner.cpp" />
+    <ClCompile Include="Item.cpp" />
+    <ClCompile Include="ItemData.cpp" />
+    <ClCompile Include="ItemUseEvent.cpp" />
+    <ClCompile Include="Monster.cpp" />
+    <ClCompile Include="Monster2.cpp" />
+    <ClCompile Include="Npc.cpp" />
+    <ClCompile Include="NpcSaleMgr.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="plugingame.cpp" />
+    <ClCompile Include="plugingame_happy10_5.cpp" />
+    <ClCompile Include="Prison.cpp" />
+    <ClCompile Include="PrisonEx.cpp" />
+    <ClCompile Include="Region.cpp" />
+    <ClCompile Include="SingleItem.cpp" />
+    <ClCompile Include="Stall.cpp" />
+    <ClCompile Include="WareHouse.cpp" />
+    <ClCompile Include="EquipStrengthen.cpp" />
+    <ClCompile Include="EventHandle\BatchReadyEvent.cpp" />
+    <ClCompile Include="UnionManage.cpp" />
+    <ClCompile Include="BuffSys.cpp" />
+    <ClCompile Include="BulletManager_s.cpp" />
+    <ClCompile Include="BulletMgr.cpp" />
+    <ClCompile Include="CDManager.cpp" />
+    <ClCompile Include="CoolDownSys.cpp" />
+    <ClCompile Include="DChatManager.cpp" />
+    <ClCompile Include="FactionManager.cpp" />
+    <ClCompile Include="FightListener.cpp" />
+    <ClCompile Include="FlyDataTable.cpp" />
+    <ClCompile Include="GameWorld.cpp" />
+    <ClCompile Include="Pet.cpp" />
+    <ClCompile Include="PlayerManager.cpp" />
+    <ClCompile Include="ProtectedDataTable.cpp" />
+    <ClCompile Include="Random.cpp" />
+    <ClCompile Include="RankList.cpp" />
+    <ClCompile Include="RegionManager.cpp" />
+    <ClCompile Include="RoleLevelUpTbl.cpp" />
+    <ClCompile Include="RoomManager.cpp" />
+    <ClCompile Include="ScriptManager.cpp" />
+    <ClCompile Include="SkillDataTable.cpp" />
+    <ClCompile Include="SportsArea.cpp" />
+    <ClCompile Include="TeamManager.cpp" />
+    <ClCompile Include="UpgradeSys.cpp" />
+    <ClCompile Include="extraScriptFunctions\EventRegionScriptFunctions.cpp" />
+    <ClCompile Include="extraScriptFunctions\ExtraScriptFunctions.cpp" />
+    <ClCompile Include="extraScriptFunctions\ExtraScriptFunctions1.cpp" />
+    <ClCompile Include="BuffEntityManager.cpp" />
+    <ClCompile Include="BuffFPBase.cpp" />
+    <ClCompile Include="BuffManager.cpp" />
+    <ClCompile Include="EventHPModify.cpp" />
+    <ClCompile Include="EventManager.cpp" />
+    <ClCompile Include="EventMPModify.cpp" />
+    <ClCompile Include="EventSPModify.cpp" />
+    <ClCompile Include="BuffAbsoluteParry.cpp" />
+    <ClCompile Include="BuffAddAgile.cpp" />
+    <ClCompile Include="BuffJump.cpp" />
+    <ClCompile Include="BuffReduceCD.cpp" />
+    <ClCompile Include="BuffReduceDelay.cpp" />
+    <ClCompile Include="BuffUpSpeed.cpp" />
+    <ClCompile Include="BuffCounterAttackRate.cpp" />
+    <ClCompile Include="BuffInnerDefense.cpp" />
+    <ClCompile Include="BuffOutDefense.cpp" />
+    <ClCompile Include="BuffReduceAbsoluteHurt.cpp" />
+    <ClCompile Include="BuffReduceHurtRate.cpp" />
+    <ClCompile Include="BuffUpHPLimit.cpp" />
+    <ClCompile Include="BaseObject.cpp" />
+    <ClCompile Include="..\..\pathfind\pathserver.cpp" />
+    <ClCompile Include="BuffBaseData.cpp" />
+    <ClCompile Include="DBaseIntList.cpp" />
+    <ClCompile Include="DFightData.cpp" />
+    <ClCompile Include="..\..\Xydclient\Extraframework\DGameScript.cpp" />
+    <ClCompile Include="DSpcialItemData.cpp" />
+    <ClCompile Include="DSpecialPlayerRcd.cpp" />
+    <ClCompile Include="DTelergyData.cpp" />
+    <ClCompile Include="GlobalSetting.cpp" />
+    <ClCompile Include="GoatMutateData.cpp" />
+    <ClCompile Include="VenapointData.cpp" />
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="SanguoCode\TimerEvent_SG\TimerEvent_SG.cpp" />
+    <ClCompile Include="SanguoCode\ForgingMoudle\ForgingManager.cpp" />
+    <ClCompile Include="SanguoCode\Common\RobotNameConfig.cpp" />
+    <ClCompile Include="SanguoCode\SkillUpgradeMoudle\SkillUpgradeManager.cpp" />
+    <ClCompile Include="SanguoCode\SkillUpgradeMoudle\SkillUpgradeMoudle.cpp" />
+    <ClCompile Include="DSkillStudyTable.cpp" />
+    <ClCompile Include="SanguoCode\DuplicateMoudle\DuplicateBaseManager.cpp" />
+    <ClCompile Include="SanguoCode\DuplicateMoudle\StoryDulicateManager.cpp" />
+    <ClCompile Include="SanguoCode\DuplicateMoudle\EliteDuplicateManager.cpp" />
+    <ClCompile Include="SanguoCode\DuplicateMoudle\LeagueOfLegendDuplicateMananger.cpp" />
+    <ClCompile Include="SanguoCode\DuplicateMoudle\TreasureHuntingDuplicateManager.cpp" />
+    <ClCompile Include="SanguoCode\DuplicateMoudle\Duplicate.cpp" />
+    <ClCompile Include="SanguoCode\DuplicateMoudle\Tollgate.cpp" />
+    <ClCompile Include="SanguoCode\GmToolMoudle\GmToolMoudle.cpp" />
+    <ClCompile Include="SanguoCode\ExchangeMoudle\ExchangeEndurance.cpp" />
+    <ClCompile Include="SanguoCode\ExchangeMoudle\ExchangeGoldProcess.cpp" />
+    <ClCompile Include="SanguoCode\ExchangeMoudle\DiamondExchangeModule.cpp" />
+    <ClCompile Include="SanguoCode\MallMoudle\MiracleMerchantManager.cpp" />
+    <ClCompile Include="SanguoCode\MallMoudle\GemMerchantManager.cpp" />
+    <ClCompile Include="SanguoCode\MallMoudle\LegionShopManager.cpp" />
+    <ClCompile Include="SanguoCode\EnduranceManager.cpp" />
+    <ClCompile Include="SanguoCode\AchievementMoudle\RandomAchieveManager.cpp" />
+    <ClCompile Include="SanguoCode\AchievementMoudle\RandomAchieveDataManager.cpp" />
+    <ClCompile Include="LuckyTimeSystem.cpp" />
+    <ClCompile Include="SanguoCode\LuckyTimeMoudle\ChaseThiefDataManager.cpp" />
+    <ClCompile Include="SanguoCode\LuckyTimeMoudle\ChaseThiefTollgateManager.cpp" />
+    <ClCompile Include="SanguoCode\LuckyTimeMoudle\ChaseThiefTollgate.cpp" />
+    <ClCompile Include="SanguoCode\LuckyTimeMoudle\ChaseThiefMoudle.cpp" />
+    <ClCompile Include="SanguoCode\DessertMoudle\DessertSystem.cpp" />
+    <ClCompile Include="SanguoCode\GuideMoudle\GuideManager.cpp" />
+    <ClCompile Include="SanguoCode\HeroMoudle\HeroFateInterrogator.cpp" />
+    <ClCompile Include="SanguoCode\BattleVerification.cpp" />
+    <ClCompile Include="SanguoCode\HeroMoudle\HeroAttributeCalculator.cpp" />
+    <ClCompile Include="SanguoCode\HeroMoudle\HeroExtendsGameplayModel.cpp" />
+    <ClCompile Include="SanguoCode\HeroMoudle\HeroHungingHunting.cpp" />
+    <ClCompile Include="SanguoCode\HeroMoudle\HeroTraining.cpp" />
+    <ClCompile Include="SanguoCode\MallMoudle\SoulExchangeManager.cpp" />
+    <ClCompile Include="SanguoCode\MallMoudle\WarOfLeagueShopManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SanguoCode\AchievementMoudle\AchievementDataManager.h" />
+    <ClInclude Include="SanguoCode\AchievementMoudle\AchievementManager.h" />
+    <ClInclude Include="SanguoCode\ArenaMoudel\ArenaDataMgr.h" />
+    <ClInclude Include="SanguoCode\ArenaMoudel\ArenaMoudel.h" />
+    <ClInclude Include="SanguoCode\Common\PubTool.h" />
+    <ClInclude Include="SanguoCode\DuplicateMoudle\DuplicateAstrict.h" />
+    <ClInclude Include="SanguoCode\DuplicateMoudle\DuplicateDataManager.h" />
+    <ClInclude Include="SanguoCode\DuplicateMoudle\TollgateDrop.h" />
+    <ClInclude Include="SanguoCode\HeroMoudle\HeroUpgradeMoudle.h" />
+    <ClInclude Include="SanguoCode\Common\ConfigManager.h" />
+    <ClInclude Include="ActiveObject.h" />
+    <ClInclude Include="ArenaMap.h" />
+    <ClInclude Include="SanguoCode\BlessMoudle\BlessRandomPrize.h" />
+    <ClInclude Include="SanguoCode\BlessMoudle\BlessDataMgr.h" />
+    <ClInclude Include="SanguoCode\BaseDataManager.h" />
+    <ClInclude Include="CGloryAndTitleServer.h" />
+    <ClInclude Include="CGloryATitleBaseData.h" />
+    <ClInclude Include="CMountDefine.h" />
+    <ClInclude Include="CMystring.h" />
+    <ClInclude Include="CooldownMgr.h" />
+    <ClInclude Include="Count.h" />
+    <ClInclude Include="DynamicArena.h" />
+    <ClInclude Include="DynamicDailyArea.h" />
+    <ClInclude Include="DynamicScene.h" />
+    <ClInclude Include="EventTimer.h" />
+    <ClInclude Include="ExchangeGoods.h" />
+    <ClInclude Include="FightObject.h" />
+    <ClInclude Include="GamingHouse.h" />
+    <ClInclude Include="GlobalFunctions.h" />
+    <ClInclude Include="ItemUser.h" />
+    <ClInclude Include="MapBase.h" />
+    <ClInclude Include="MapServer.h" />
+    <ClInclude Include="memory_object.h" />
+    <ClInclude Include="Mounts.h" />
+    <ClInclude Include="NameCard.h" />
+    <ClInclude Include="PlayerData.h" />
+    <ClInclude Include="poker.h" />
+    <ClInclude Include="PubRoom.h" />
+    <ClInclude Include="QuestCardPointModify.h" />
+    <ClInclude Include="RandomSys.h" />
+    <ClInclude Include="Relation.h" />
+    <ClInclude Include="Release with debug info\SanguoCode\CSanguoSystem.h" />
+    <ClInclude Include="Release with debug info\SanguoCode\SanguoSystem.h" />
+    <ClInclude Include="SanguoCode\BlessMoudle\BlessMoudle.h" />
+    <ClInclude Include="SanguoCode\ExpeditionMoudle\ExpeditionDataManager.h" />
+    <ClInclude Include="SanguoCode\ExpeditionMoudle\ExpeditionManager.h" />
+    <ClInclude Include="SanguoCode\ExtendedDataManager.h" />
+    <ClInclude Include="SanguoCode\HeroMoudle\HeroDataManager.h" />
+    <ClInclude Include="SanguoCode\MailMoudle\MailMoudle.h" />
+    <ClInclude Include="SanguoCode\MallMoudle\ExpeditionShopManager.h" />
+    <ClInclude Include="SanguoCode\MallMoudle\MallManager.h" />
+    <ClInclude Include="SanguoCode\MissionMoudle\MissionDataManager.h" />
+    <ClInclude Include="SanguoCode\MissionMoudle\MissionManager.h" />
+    <ClInclude Include="SanguoCode\MallMoudle\MallsMoudle.h" />
+    <ClInclude Include="SanguoCode\MallMoudle\VarietyShopManager.h" />
+    <ClInclude Include="SanguoCode\Common\SanguoConfigTypeDef.h" />
+    <ClInclude Include="SanguoCode\SanguoPlayerBase.h" />
+    <ClInclude Include="SanguoCode\Common\TabReader.h" />
+    <ClInclude Include="SanguoCode\ScriptMoudle\ScriptMoudle.h" />
+    <ClInclude Include="SceneMap.h" />
+    <ClInclude Include="ScriptObject.h" />
+    <ClInclude Include="SendMail.h" />
+    <ClInclude Include="SFuncManager.h" />
+    <ClInclude Include="StackWalker.h" />
+    <ClInclude Include="SanguoCode\StorageMoudle\StorageManager.h" />
+    <ClInclude Include="Transformers.h" />
+    <ClInclude Include="TransportConf.h" />
+    <ClInclude Include="TreasureShop.h" />
+    <ClInclude Include="Trigger.h" />
+    <ClInclude Include="FactionRegion.h" />
+    <ClInclude Include="Area.h" />
+    <ClInclude Include="BiGuanArea.h" />
+    <ClInclude Include="Building.h" />
+    <ClInclude Include="CBuffDefine.h" />
+    <ClInclude Include="CBuffService.h" />
+    <ClInclude Include="CFightPetDefine.h" />
+    <ClInclude Include="CFightPetService.h" />
+    <ClInclude Include="CFriendService.h" />
+    <ClInclude Include="CItemDefine.h" />
+    <ClInclude Include="CItemDropDefine.h" />
+    <ClInclude Include="CItemDropService.h" />
+    <ClInclude Include="CItemService.h" />
+    <ClInclude Include="CJingMaiDefine.h" />
+    <ClInclude Include="CJingMaiService.h" />
+    <ClInclude Include="CKillTaskService.h" />
+    <ClInclude Include="CKylinArmService.h" />
+    <ClInclude Include="CMakeTeamQuestService.h" />
+    <ClInclude Include="CMonsterDefine.h" />
+    <ClInclude Include="CMonsterService.h" />
+    <ClInclude Include="CMountService.h" />
+    <ClInclude Include="CPlayerDefine.h" />
+    <ClInclude Include="CPlayerService.h" />
+    <ClInclude Include="CSkillDefine.h" />
+    <ClInclude Include="CSkillService.h" />
+    <ClInclude Include="CTiZhiService.h" />
+    <ClInclude Include="DynamicRegion.h" />
+    <ClInclude Include="EventBase.h" />
+    <ClInclude Include="EventMgr.h" />
+    <ClInclude Include="EventRegion.h" />
+    <ClInclude Include="EventUtility.h" />
+    <ClInclude Include="FightArena.h" />
+    <ClInclude Include="GroundItemWinner.h" />
+    <ClInclude Include="Item.h" />
+    <ClInclude Include="ItemData.h" />
+    <ClInclude Include="ItemUseEvent.h" />
+    <ClInclude Include="JingMaiShareExpEvent.h" />
+    <ClInclude Include="Monster.h" />
+    <ClInclude Include="MountEvent.h" />
+    <ClInclude Include="Npc.h" />
+    <ClInclude Include="NpcSaleMgr.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="plugingame.h" />
+    <ClInclude Include="plugingame_happy10_5.h" />
+    <ClInclude Include="Prison.h" />
+    <ClInclude Include="PrisonEx.h" />
+    <ClInclude Include="Region.h" />
+    <ClInclude Include="SingleItem.h" />
+    <ClInclude Include="Stall.h" />
+    <ClInclude Include="UpdatePropertyEx.h" />
+    <ClInclude Include="WareHouse.h" />
+    <ClInclude Include="EquipStrengthen\EquipStrengthen.h" />
+    <ClInclude Include="EventHandle\BatchReadyEvent.h" />
+    <ClInclude Include="..\..\Pub\Singleton.h" />
+    <ClInclude Include="UnionManage.h" />
+    <ClInclude Include="BuffManager.h" />
+    <ClInclude Include="BuffSys.h" />
+    <ClInclude Include="BulletManager_s.h" />
+    <ClInclude Include="BulletMgr.h" />
+    <ClInclude Include="CDManager.h" />
+    <ClInclude Include="CoolDownSys.h" />
+    <ClInclude Include="DChatManager.h" />
+    <ClInclude Include="FactionManager.h" />
+    <ClInclude Include="FightListener.h" />
+    <ClInclude Include="FlyDataTable.h" />
+    <ClInclude Include="GameWorld.h" />
+    <ClInclude Include="NetmsgPackager.h" />
+    <ClInclude Include="Pet.h" />
+    <ClInclude Include="PlayerManager.h" />
+    <ClInclude Include="ProtectedDataTable.h" />
+    <ClInclude Include="Random.h" />
+    <ClInclude Include="RankList.h" />
+    <ClInclude Include="RegionManager.h" />
+    <ClInclude Include="RoleLevelUpTbl.h" />
+    <ClInclude Include="RoomManager.h" />
+    <ClInclude Include="ScriptManager.h" />
+    <ClInclude Include="SkillDataTable.h" />
+    <ClInclude Include="SportsArea.h" />
+    <ClInclude Include="TeamManager.h" />
+    <ClInclude Include="UpgradeSys.h" />
+    <ClInclude Include="extraScriptFunctions\ExtraScriptFunctions.h" />
+    <ClInclude Include="extraScriptFunctions\lite_lualibrary.hpp" />
+    <ClInclude Include="BuffEntityManager.h" />
+    <ClInclude Include="BuffFPBase.h" />
+    <ClInclude Include="EventHPModify.h" />
+    <ClInclude Include="EventManager.h" />
+    <ClInclude Include="EventMPModify.h" />
+    <ClInclude Include="EventSPModify.h" />
+    <ClInclude Include="FPformula.h" />
+    <ClInclude Include="BuffAbsoluteParry.h" />
+    <ClInclude Include="BuffAddAgile.h" />
+    <ClInclude Include="BuffJump.h" />
+    <ClInclude Include="BuffReduceCD.h" />
+    <ClInclude Include="BuffReduceDelay.h" />
+    <ClInclude Include="BuffUpSpeed.h" />
+    <ClInclude Include="BuffCounterAttackRate.h" />
+    <ClInclude Include="BuffInnerDefense.h" />
+    <ClInclude Include="BuffOutDefense.h" />
+    <ClInclude Include="BuffReduceAbsoluteHurt.h" />
+    <ClInclude Include="BuffReduceHurtRate.h" />
+    <ClInclude Include="BuffUpHPLimit.h" />
+    <ClInclude Include="BaseObject.h" />
+    <ClInclude Include="..\..\pathfind\pathserver.h" />
+    <ClInclude Include="BuffBaseData.h" />
+    <ClInclude Include="DBaseIntList.h" />
+    <ClInclude Include="DFightData.h" />
+    <ClInclude Include="..\..\Xydclient\Extraframework\DGameScript.h" />
+    <ClInclude Include="DSpcialItemData.h" />
+    <ClInclude Include="DSpecialPlayerRcd.h" />
+    <ClInclude Include="DTelergyData.h" />
+    <ClInclude Include="GlobalSetting.h" />
+    <ClInclude Include="GoatMutateData.h" />
+    <ClInclude Include="VenapointData.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="SanguoCode\TimerEvent_SG\TimerEvent_SG.h" />
+    <ClInclude Include="SanguoCode\ForgingMoudle\ForgingManager.h" />
+    <ClInclude Include="SanguoCode\Common\RobotNameConfig.h" />
+    <ClInclude Include="SanguoCode\SkillUpgradeMoudle\SkillUpgradeManager.h" />
+    <ClInclude Include="SanguoCode\SkillUpgradeMoudle\SkillUpgradeMoudle.h" />
+    <ClInclude Include="DSkillStudyTable.h" />
+    <ClInclude Include="SanguoCode\DuplicateMoudle\DuplicateBaseManager.h" />
+    <ClInclude Include="SanguoCode\DuplicateMoudle\StoryDulicateManager.h" />
+    <ClInclude Include="SanguoCode\DuplicateMoudle\EliteDuplicateManager.h" />
+    <ClInclude Include="SanguoCode\DuplicateMoudle\LeagueOfLegendDuplicateMananger.h" />
+    <ClInclude Include="SanguoCode\DuplicateMoudle\TreasureHuntingDuplicateManager.h" />
+    <ClInclude Include="SanguoCode\DuplicateMoudle\Duplicate.h" />
+    <ClInclude Include="SanguoCode\DuplicateMoudle\Tollgate.h" />
+    <ClInclude Include="SanguoCode\GmToolMoudle\GmToolMoudle.h" />
+    <ClInclude Include="SanguoCode\MallMoudle\ArenaShopManager.h" />
+    <ClInclude Include="SanguoCode\MallMoudle\MiracleMerchantManager.h" />
+    <ClInclude Include="SanguoCode\MallMoudle\GemMerchantManager.h" />
+    <ClInclude Include="SanguoCode\MallMoudle\LegionShopManager.h" />
+    <ClInclude Include="SanguoCode\ExchangeMoudle\ExchangeEndurance.h" />
+    <ClInclude Include="SanguoCode\ExchangeMoudle\ExchangeGoldProcess.h" />
+    <ClInclude Include="SanguoCode\ExchangeMoudle\DiamondExchangeProcess.h" />
+    <ClInclude Include="SanguoCode\ExchangeMoudle\DiamondExchangeModule.h" />
+    <ClInclude Include="SanguoCode\EnduranceManager.h" />
+    <ClInclude Include="SanguoCode\AchievementMoudle\AchieveUpdate.h" />
+    <ClInclude Include="SanguoCode\AchievementMoudle\RandomAchieveUpdate.h" />
+    <ClInclude Include="SanguoCode\AchievementMoudle\RandomAchieveManager.h" />
+    <ClInclude Include="SanguoCode\AchievementMoudle\RandomAchieveDataManager.h" />
+    <ClInclude Include="LuckyTimeSystem.h" />
+    <ClInclude Include="SanguoCode\LuckyTimeMoudle\ChaseThiefDataManager.h" />
+    <ClInclude Include="SanguoCode\LuckyTimeMoudle\ChaseThiefTollgateManager.h" />
+    <ClInclude Include="SanguoCode\LuckyTimeMoudle\ChaseThiefTollgate.h" />
+    <ClInclude Include="SanguoCode\LuckyTimeMoudle\ChaseThiefMoudle.h" />
+    <ClInclude Include="SanguoCode\DessertMoudle\DessertSystem.h" />
+    <ClInclude Include="SanguoCode\GuideMoudle\GuideManager.h" />
+    <ClInclude Include="SanguoCode\MissionMoudle\CMissionUpdate.h" />
+    <ClInclude Include="SanguoCode\HeroMoudle\HeroFateInterrogator.h" />
+    <ClInclude Include="SanguoCode\BattleVerification.h" />
+    <ClInclude Include="SanguoCode\HeroMoudle\HeroAttributeCalculator.h" />
+    <ClInclude Include="SanguoCode\HeroMoudle\HeroExtendsGameplayModel.h" />
+    <ClInclude Include="SanguoCode\HeroMoudle\HeroHungingHunting.h" />
+    <ClInclude Include="SanguoCode\HeroMoudle\HeroTraining.h" />
+    <ClInclude Include="SanguoCode\MallMoudle\SoulExchangeManager.h" />
+    <ClInclude Include="SanguoCode\MallMoudle\WarOfLeagueShopManager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ActiveObject.h">
+      <Filter>对象类部分</Filter>
+    </ClInclude>
+    <ClInclude Include="CMountDefine.h">
+      <Filter>对象类部分</Filter>
+    </ClInclude>
+    <ClInclude Include="CooldownMgr.h">
+      <Filter>对象类部分</Filter>
+    </ClInclude>
+    <ClInclude Include="Count.h">
+      <Filter>对象类部分</Filter>
+    </ClInclude>
+    <ClInclude Include="EventTimer.h">
+      <Filter>对象类部分</Filter>
+    </ClInclude>
+    <ClInclude Include="ExchangeGoods.h">
+      <Filter>对象类部分</Filter>
+    </ClInclude>
+    <ClInclude Include="FightObject.h">
+      <Filter>对象类部分</Filter>
+    </ClInclude>
+    <ClInclude Include="GamingHouse.h">
+      <Filter>对象类部分</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalFunctions.h">
+      <Filter>对象类部分</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemUser.h">
+      <Filter>对象类部分</Filter>
+    </ClInclude>
+    <ClInclude Include="MapBase.h">
+      <Filter>对象类部分</Filter>
+    </ClInclude>
+    <ClInclude Include="MapServer.h">
+      <Filter>对象类部分</Filter>
+    </ClInclude>
+    <ClInclude Include="Mounts.h">
+      <Filter>对象类部分</Filter>
+    </ClInclude>
+    <ClInclude Include="NameCard.h">
+      <Filter>对象类部分</Filter>
+    </ClInclude>
+    <ClInclude Include="poker.h">
+      <Filter>对象类部分</Filter>
+    </ClInclude>
+    <ClInclude Include="PubRoom.h">
+      <Filter>对象类部分</Filter>
+    </ClInclude>
+    <ClInclude Include="QuestCardPointModify.h">
+      <Filter>对象类部分</Filter>
+    </ClInclude>
+    <ClInclude Include="RandomSys.h">
+      <Filter>对象类部分</Filter>
+    </ClInclude>
+    <ClInclude Include="Relation.h">
+      <Filter>对象类部分</Filter>
+    </ClInclude>
+    <ClInclude Include="ScriptObject.h">
+      <Filter>对象类部分</Filter>
+    </ClInclude>
+    <ClInclude Include="SendMail.h">
+      <Filter>对象类部分</Filter>
+    </ClInclude>
+    <ClInclude Include="SFuncManager.h">
+      <Filter>对象类部分</Filter>
+    </ClInclude>
+    <ClInclude Include="StackWalker.h">
+      <Filter>对象类部分</Filter>
+    </ClInclude>
+    <ClInclude Include="TransportConf.h">
+      <Filter>对象类部分</Filter>
+    </ClInclude>
+    <ClInclude Include="TreasureShop.h">
+      <Filter>对象类部分</Filter>
+    </ClInclude>
+    <ClInclude Include="Trigger.h">
+      <Filter>对象类部分</Filter>
+    </ClInclude>
+    <ClInclude Include="FactionRegion.h">
+      <Filter>对象类部分\源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Area.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="BiGuanArea.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Building.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CBuffDefine.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CBuffService.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CFightPetDefine.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CFightPetService.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CFriendService.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CItemDefine.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CItemDropDefine.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CItemDropService.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CItemService.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CJingMaiDefine.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CJingMaiService.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CKillTaskService.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CKylinArmService.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CMakeTeamQuestService.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CMonsterDefine.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CMonsterService.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CMountService.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayerDefine.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayerService.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CSkillDefine.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CSkillService.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CTiZhiService.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicRegion.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="EventBase.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="EventMgr.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="EventRegion.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="EventUtility.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="FightArena.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="GroundItemWinner.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemData.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemUseEvent.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="JingMaiShareExpEvent.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MountEvent.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Npc.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="NpcSaleMgr.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="plugingame.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="plugingame_happy10_5.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Prison.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="PrisonEx.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Region.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SingleItem.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Stall.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="UpdatePropertyEx.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="WareHouse.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="EquipStrengthen\EquipStrengthen.h">
+      <Filter>对象类部分\EquipStrengthen</Filter>
+    </ClInclude>
+    <ClInclude Include="EventHandle\BatchReadyEvent.h">
+      <Filter>对象类部分\EventHandle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Pub\Singleton.h">
+      <Filter>功能管理部分</Filter>
+    </ClInclude>
+    <ClInclude Include="UnionManage.h">
+      <Filter>功能管理部分</Filter>
+    </ClInclude>
+    <ClInclude Include="BuffManager.h">
+      <Filter>功能管理部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="BuffSys.h">
+      <Filter>功能管理部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletManager_s.h">
+      <Filter>功能管理部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletMgr.h">
+      <Filter>功能管理部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CDManager.h">
+      <Filter>功能管理部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CoolDownSys.h">
+      <Filter>功能管理部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DChatManager.h">
+      <Filter>功能管理部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="FactionManager.h">
+      <Filter>功能管理部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="FightListener.h">
+      <Filter>功能管理部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="FlyDataTable.h">
+      <Filter>功能管理部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="GameWorld.h">
+      <Filter>功能管理部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="NetmsgPackager.h">
+      <Filter>功能管理部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Pet.h">
+      <Filter>功能管理部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerManager.h">
+      <Filter>功能管理部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ProtectedDataTable.h">
+      <Filter>功能管理部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Random.h">
+      <Filter>功能管理部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RankList.h">
+      <Filter>功能管理部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RegionManager.h">
+      <Filter>功能管理部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RoleLevelUpTbl.h">
+      <Filter>功能管理部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RoomManager.h">
+      <Filter>功能管理部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ScriptManager.h">
+      <Filter>功能管理部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SkillDataTable.h">
+      <Filter>功能管理部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SportsArea.h">
+      <Filter>功能管理部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="TeamManager.h">
+      <Filter>功能管理部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="UpgradeSys.h">
+      <Filter>功能管理部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="extraScriptFunctions\ExtraScriptFunctions.h">
+      <Filter>功能管理部分\ExtraScriptFunctions</Filter>
+    </ClInclude>
+    <ClInclude Include="extraScriptFunctions\lite_lualibrary.hpp">
+      <Filter>功能管理部分\ExtraScriptFunctions</Filter>
+    </ClInclude>
+    <ClInclude Include="BuffEntityManager.h">
+      <Filter>功能管理部分\事件处理</Filter>
+    </ClInclude>
+    <ClInclude Include="BuffFPBase.h">
+      <Filter>功能管理部分\事件处理</Filter>
+    </ClInclude>
+    <ClInclude Include="EventHPModify.h">
+      <Filter>功能管理部分\事件处理</Filter>
+    </ClInclude>
+    <ClInclude Include="EventManager.h">
+      <Filter>功能管理部分\事件处理</Filter>
+    </ClInclude>
+    <ClInclude Include="EventMPModify.h">
+      <Filter>功能管理部分\事件处理</Filter>
+    </ClInclude>
+    <ClInclude Include="EventSPModify.h">
+      <Filter>功能管理部分\事件处理</Filter>
+    </ClInclude>
+    <ClInclude Include="FPformula.h">
+      <Filter>功能管理部分\事件处理</Filter>
+    </ClInclude>
+    <ClInclude Include="BuffAbsoluteParry.h">
+      <Filter>功能管理部分\事件处理\轻功</Filter>
+    </ClInclude>
+    <ClInclude Include="BuffAddAgile.h">
+      <Filter>功能管理部分\事件处理\轻功</Filter>
+    </ClInclude>
+    <ClInclude Include="BuffJump.h">
+      <Filter>功能管理部分\事件处理\轻功</Filter>
+    </ClInclude>
+    <ClInclude Include="BuffReduceCD.h">
+      <Filter>功能管理部分\事件处理\轻功</Filter>
+    </ClInclude>
+    <ClInclude Include="BuffReduceDelay.h">
+      <Filter>功能管理部分\事件处理\轻功</Filter>
+    </ClInclude>
+    <ClInclude Include="BuffUpSpeed.h">
+      <Filter>功能管理部分\事件处理\轻功</Filter>
+    </ClInclude>
+    <ClInclude Include="BuffCounterAttackRate.h">
+      <Filter>功能管理部分\事件处理\护体</Filter>
+    </ClInclude>
+    <ClInclude Include="BuffInnerDefense.h">
+      <Filter>功能管理部分\事件处理\护体</Filter>
+    </ClInclude>
+    <ClInclude Include="BuffOutDefense.h">
+      <Filter>功能管理部分\事件处理\护体</Filter>
+    </ClInclude>
+    <ClInclude Include="BuffReduceAbsoluteHurt.h">
+      <Filter>功能管理部分\事件处理\护体</Filter>
+    </ClInclude>
+    <ClInclude Include="BuffReduceHurtRate.h">
+      <Filter>功能管理部分\事件处理\护体</Filter>
+    </ClInclude>
+    <ClInclude Include="BuffUpHPLimit.h">
+      <Filter>功能管理部分\事件处理\护体</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseObject.h">
+      <Filter>资源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\pathfind\pathserver.h">
+      <Filter>资源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="BuffBaseData.h">
+      <Filter>数据对象</Filter>
+    </ClInclude>
+    <ClInclude Include="DBaseIntList.h">
+      <Filter>数据对象</Filter>
+    </ClInclude>
+    <ClInclude Include="DFightData.h">
+      <Filter>数据对象</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Xydclient\Extraframework\DGameScript.h">
+      <Filter>数据对象</Filter>
+    </ClInclude>
+    <ClInclude Include="DSpcialItemData.h">
+      <Filter>数据对象</Filter>
+    </ClInclude>
+    <ClInclude Include="DSpecialPlayerRcd.h">
+      <Filter>数据对象</Filter>
+    </ClInclude>
+    <ClInclude Include="DTelergyData.h">
+      <Filter>数据对象</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalSetting.h">
+      <Filter>数据对象</Filter>
+    </ClInclude>
+    <ClInclude Include="GoatMutateData.h">
+      <Filter>数据对象</Filter>
+    </ClInclude>
+    <ClInclude Include="VenapointData.h">
+      <Filter>数据对象</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CMystring.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneMap.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicScene.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerData.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Transformers.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="memory_object.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CGloryAndTitleServer.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CGloryATitleBaseData.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ArenaMap.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicArena.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicDailyArea.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Release with debug info\SanguoCode\SanguoSystem.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Release with debug info\SanguoCode\CSanguoSystem.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SanguoCode\Common\TabReader.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SanguoCode\SanguoPlayerBase.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SanguoCode\BaseDataManager.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SanguoCode\BlessMoudle\BlessDataMgr.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SanguoCode\BlessMoudle\BlessMoudle.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SanguoCode\BlessMoudle\BlessRandomPrize.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SanguoCode\Common\ConfigManager.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SanguoCode\ExtendedDataManager.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SanguoCode\HeroMoudle\HeroDataManager.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SanguoCode\StorageMoudle\StorageManager.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SanguoCode\HeroMoudle\HeroUpgradeMoudle.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SanguoCode\MailMoudle\MailMoudle.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SanguoCode\ExpeditionMoudle\ExpeditionDataManager.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SanguoCode\ExpeditionMoudle\ExpeditionManager.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SanguoCode\HeroMoudle\HeroUpgradeMoudle.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SanguoCode\MallMoudle\MallManager.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SanguoCode\MallMoudle\VarietyShopManager.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SanguoCode\MissionMoudle\MissionManager.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SanguoCode\MissionMoudle\MissionDataManager.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SanguoCode\MallMoudle\ExpeditionShopManager.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SanguoCode\MallMoudle\MallsMoudle.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SanguoCode\Common\PubTool.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SanguoCode\AchievementMoudle\AchievementManager.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SanguoCode\AchievementMoudle\AchievementDataManager.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SanguoCode\ArenaMoudel\ArenaDataMgr.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SanguoCode\ArenaMoudel\ArenaMoudel.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SanguoCode\DuplicateMoudle\DuplicateDataManager.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SanguoCode\Common\SanguoConfigTypeDef.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SanguoCode\DuplicateMoudle\DuplicateAstrict.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SanguoCode\DuplicateMoudle\TollgateDrop.h">
+      <Filter>对象类部分\头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="VTune\GameObjects.vpj" />
+    <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
+</Project>

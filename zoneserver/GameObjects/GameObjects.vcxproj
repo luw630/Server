@@ -1,0 +1,706 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release with debug info|Win32">
+      <Configuration>Release with debug info</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release with debug(Visual Studio 2010)|Win32">
+      <Configuration>Release with debug(Visual Studio 2010)</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release with network test|Win32">
+      <Configuration>Release with network test</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{6F8CDF26-9327-4D01-8678-A142C02B0260}</ProjectGuid>
+    <SccProjectName />
+    <SccAuxPath />
+    <SccLocalPath />
+    <SccProvider />
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release with network test|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release with debug info|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release with debug(Visual Studio 2010)|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v100</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <CLRSupport>false</CLRSupport>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release with network test|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release with debug info|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release with debug(Visual Studio 2010)|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Debug\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Release\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release with debug info|Win32'">$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release with debug(Visual Studio 2010)|Win32'">$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release with debug info|Win32'">$(Configuration)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release with debug(Visual Studio 2010)|Win32'">$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release with network test|Win32'">$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release with network test|Win32'">$(Configuration)\</IntDir>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release with debug info|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release with debug(Visual Studio 2010)|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release with debug info|Win32'" />
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release with debug(Visual Studio 2010)|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release with debug info|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release with debug(Visual Studio 2010)|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release with network test|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release with network test|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release with network test|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release with debug info|Win32'">
+    <IncludePath>.\..\..\Include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
+      <AdditionalIncludeDirectories>..\..\DirectX9\Include;..\..\boost_1_47_0;C:\Program Files\Microsoft DirectX SDK (March 2009)\Include;./..;./../..;.\..\..\enginelibs\3dx\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>true</MinimalRebuild>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)GameObjects.lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>Full</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>false</OmitFramePointers>
+      <AdditionalIncludeDirectories>./..;./../..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;_XYDRELEASE_;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>true</MinimalRebuild>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)GameObjects.lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release with debug info|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
+      <OmitFramePointers>false</OmitFramePointers>
+      <AdditionalIncludeDirectories>./..;./../..;.\..\..\DirectX9\Include;.\..\..\enginelibs\3dx\include;.\..\..\boost_1_58_0\;.\..\..\区域服务器\GameObjects;..\..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;NEW_TEAM;NEW_SKILL;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>true</MinimalRebuild>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)GameObjects.lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release with debug(Visual Studio 2010)|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
+      <OmitFramePointers>false</OmitFramePointers>
+      <AdditionalIncludeDirectories>./..;./../..;.\..\..\DirectX9\Include;.\..\..\enginelibs\3dx\include;.\..\..\boost_1_47_0\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;NEW_TEAM;NEW_SKILL;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>true</MinimalRebuild>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)GameObjects.lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release with network test|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
+      <OmitFramePointers>false</OmitFramePointers>
+      <AdditionalIncludeDirectories>./..;./../..;.\..\..\enginelibs\3dx\include;.\..\..\boost_1_47_0\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;NEW_TEAM;NEW_SKILL;_CRT_SECURE_NO_DEPRECATE;_NET_TEST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>true</MinimalRebuild>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)GameObjects.lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="ActiveObject.cpp" />
+    <ClCompile Include="ArenaMap.cpp" />
+    <ClCompile Include="DSkillStudyTable.cpp" />
+    <ClCompile Include="LuckyTimeSystem.cpp" />
+    <ClCompile Include="SanguoCode\AchievementMoudle\RandomAchieveDataManager.cpp" />
+    <ClCompile Include="SanguoCode\AchievementMoudle\RandomAchieveManager.cpp" />
+    <ClCompile Include="SanguoCode\BattleVerification.cpp" />
+    <ClCompile Include="SanguoCode\Common\RobotNameConfig.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release with debug info|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="SanguoCode\DessertMoudle\DessertSystem.cpp" />
+    <ClCompile Include="SanguoCode\DuplicateMoudle\Duplicate.cpp" />
+    <ClCompile Include="SanguoCode\DuplicateMoudle\DuplicateAstrict.cpp" />
+    <ClCompile Include="SanguoCode\DuplicateMoudle\DuplicateBaseManager.cpp" />
+    <ClCompile Include="SanguoCode\DuplicateMoudle\DuplicateDataManager.cpp" />
+    <ClCompile Include="SanguoCode\AchievementMoudle\AchievementDataManager.cpp" />
+    <ClCompile Include="SanguoCode\AchievementMoudle\AchievementManager.cpp" />
+    <ClCompile Include="SanguoCode\ArenaMoudel\ArenaDataMgr.cpp" />
+    <ClCompile Include="SanguoCode\ArenaMoudel\ArenaMoudel.cpp" />
+    <ClCompile Include="SanguoCode\DuplicateMoudle\EliteDuplicateManager.cpp" />
+    <ClCompile Include="SanguoCode\DuplicateMoudle\LeagueOfLegendDuplicateMananger.cpp" />
+    <ClCompile Include="SanguoCode\DuplicateMoudle\StoryDulicateManager.cpp" />
+    <ClCompile Include="SanguoCode\DuplicateMoudle\Tollgate.cpp" />
+    <ClCompile Include="SanguoCode\DuplicateMoudle\TollgateDrop.cpp" />
+    <ClCompile Include="SanguoCode\DuplicateMoudle\TreasureHuntingDuplicateManager.cpp" />
+    <ClCompile Include="SanguoCode\EnduranceManager.cpp" />
+    <ClCompile Include="SanguoCode\ExchangeMoudle\DiamondExchangeModule.cpp" />
+    <ClCompile Include="SanguoCode\ForgingMoudle\ForgingManager.cpp" />
+    <ClCompile Include="SanguoCode\GmToolMoudle\GmToolMoudle.cpp" />
+    <ClCompile Include="SanguoCode\GuideMoudle\GuideManager.cpp" />
+    <ClCompile Include="SanguoCode\HeroMoudle\HeroAttributeCalculator.cpp" />
+    <ClCompile Include="SanguoCode\HeroMoudle\HeroExtendsGameplayModel.cpp" />
+    <ClCompile Include="SanguoCode\HeroMoudle\HeroFateInterrogator.cpp" />
+    <ClCompile Include="SanguoCode\HeroMoudle\HeroHungingHunting.cpp" />
+    <ClCompile Include="SanguoCode\HeroMoudle\HeroTraining.cpp" />
+    <ClCompile Include="SanguoCode\LuckyTimeMoudle\ChaseThiefDataManager.cpp" />
+    <ClCompile Include="SanguoCode\LuckyTimeMoudle\ChaseThiefMoudle.cpp" />
+    <ClCompile Include="SanguoCode\LuckyTimeMoudle\ChaseThiefTollgate.cpp" />
+    <ClCompile Include="SanguoCode\LuckyTimeMoudle\ChaseThiefTollgateManager.cpp" />
+    <ClCompile Include="SanguoCode\MallMoudle\ArenaShopManager.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release with debug info|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="SanguoCode\HeroMoudle\HeroUpgradeMoudle.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release with debug info|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="SanguoCode\Common\ConfigManager.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release with debug info|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="SanguoCode\BlessMoudle\BlessRandomPrize.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release with debug info|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="SanguoCode\BlessMoudle\BlessDataMgr.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release with debug info|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="SanguoCode\BaseDataManager.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release with debug info|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="CGloryAndTitleServer.cpp" />
+    <ClCompile Include="CMystring.cpp" />
+    <ClCompile Include="CooldownMgr.cpp" />
+    <ClCompile Include="Count.cpp" />
+    <ClCompile Include="DynamicArena.cpp" />
+    <ClCompile Include="DynamicDailyArea.cpp" />
+    <ClCompile Include="DynamicScene.cpp" />
+    <ClCompile Include="ExchangeGoods.cpp" />
+    <ClCompile Include="FightObject.cpp" />
+    <ClCompile Include="GamingHouse.cpp" />
+    <ClCompile Include="ItemUser.cpp" />
+    <ClCompile Include="MapBase.cpp" />
+    <ClCompile Include="MapServer.cpp" />
+    <ClCompile Include="memory_object.cpp" />
+    <ClCompile Include="Mounts.cpp" />
+    <ClCompile Include="NameCard.cpp" />
+    <ClCompile Include="PlayerData.cpp" />
+    <ClCompile Include="poker.cpp" />
+    <ClCompile Include="PubRoom.cpp" />
+    <ClCompile Include="QuestCardPointModify.cpp" />
+    <ClCompile Include="RandomSys.cpp" />
+    <ClCompile Include="Relation.cpp" />
+    <ClCompile Include="SanguoCode\BlessMoudle\BlessMoudle.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release with debug info|Win32'">Use</PrecompiledHeader>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release with debug info|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="SanguoCode\ExpeditionMoudle\ExpeditionDataManager.cpp" />
+    <ClCompile Include="SanguoCode\ExpeditionMoudle\ExpeditionManager.cpp" />
+    <ClCompile Include="SanguoCode\HeroMoudle\HeroDataManager.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release with debug info|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="SanguoCode\MailMoudle\MailMoudle.cpp" />
+    <ClCompile Include="SanguoCode\MallMoudle\ExpeditionShopManager.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release with debug info|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="SanguoCode\MallMoudle\GemMerchantManager.cpp" />
+    <ClCompile Include="SanguoCode\MallMoudle\LegionShopManager.cpp" />
+    <ClCompile Include="SanguoCode\MallMoudle\MallManager.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release with debug info|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="SanguoCode\MallMoudle\MallsMoudle.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release with debug info|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="SanguoCode\MallMoudle\MiracleMerchantManager.cpp" />
+    <ClCompile Include="SanguoCode\MallMoudle\SoulExchangeManager.cpp" />
+    <ClCompile Include="SanguoCode\MallMoudle\VarietyShopManager.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release with debug info|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="SanguoCode\MallMoudle\WarOfLeagueShopManager.cpp" />
+    <ClCompile Include="SanguoCode\MissionMoudle\MissionDataManager.cpp" />
+    <ClCompile Include="SanguoCode\MissionMoudle\MissionManager.cpp" />
+    <ClCompile Include="SanguoCode\SanguoPlayerBase.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release with debug info|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="SanguoCode\Common\TabReader.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release with debug info|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="SanguoCode\ScriptMoudle\ScriptMoudle.cpp" />
+    <ClCompile Include="SanguoCode\SkillUpgradeMoudle\SkillUpgradeManager.cpp" />
+    <ClCompile Include="SanguoCode\SkillUpgradeMoudle\SkillUpgradeMoudle.cpp" />
+    <ClCompile Include="SanguoCode\ExchangeMoudle\ExchangeEndurance.cpp" />
+    <ClCompile Include="SanguoCode\ExchangeMoudle\ExchangeGoldProcess.cpp" />
+    <ClCompile Include="SanguoCode\TimerEvent_SG\TimerEvent_SG.cpp" />
+    <ClCompile Include="SceneMap.cpp" />
+    <ClCompile Include="ScriptObject.cpp" />
+    <ClCompile Include="SendMail.cpp" />
+    <ClCompile Include="SFuncManager.cpp" />
+    <ClCompile Include="StackWalker.cpp" />
+    <ClCompile Include="SanguoCode\StorageMoudle\StorageManager.cpp" />
+    <ClCompile Include="Transformers.cpp" />
+    <ClCompile Include="TransportConf.cpp" />
+    <ClCompile Include="TreasureShop.cpp" />
+    <ClCompile Include="Trigger.cpp" />
+    <ClCompile Include="AIMonster.cpp" />
+    <ClCompile Include="Area.cpp" />
+    <ClCompile Include="BiGuanArea.cpp" />
+    <ClCompile Include="Building.cpp" />
+    <ClCompile Include="CBuffService.cpp" />
+    <ClCompile Include="CFightPetService.cpp" />
+    <ClCompile Include="CFriendService.cpp" />
+    <ClCompile Include="CItemDropService.cpp" />
+    <ClCompile Include="CItemService.cpp" />
+    <ClCompile Include="CJingMaiService.cpp" />
+    <ClCompile Include="CMakeTeamQuestService.cpp" />
+    <ClCompile Include="CMonsterService.cpp" />
+    <ClCompile Include="CMountService.cpp" />
+    <ClCompile Include="CPlayerService.cpp" />
+    <ClCompile Include="CSkillService.cpp" />
+    <ClCompile Include="CTiZhiService.cpp" />
+    <ClCompile Include="DynamicRegion.cpp" />
+    <ClCompile Include="EventBase.cpp" />
+    <ClCompile Include="EventMgr.cpp" />
+    <ClCompile Include="EventRegion.cpp" />
+    <ClCompile Include="FactionRegion.cpp" />
+    <ClCompile Include="FightArena.cpp" />
+    <ClCompile Include="GroundItemWinner.cpp" />
+    <ClCompile Include="Item.cpp" />
+    <ClCompile Include="ItemData.cpp" />
+    <ClCompile Include="ItemUseEvent.cpp" />
+    <ClCompile Include="Monster.cpp" />
+    <ClCompile Include="Monster2.cpp" />
+    <ClCompile Include="Npc.cpp" />
+    <ClCompile Include="NpcSaleMgr.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="plugingame.cpp" />
+    <ClCompile Include="plugingame_happy10_5.cpp" />
+    <ClCompile Include="Prison.cpp" />
+    <ClCompile Include="PrisonEx.cpp" />
+    <ClCompile Include="Region.cpp" />
+    <ClCompile Include="SingleItem.cpp" />
+    <ClCompile Include="Stall.cpp" />
+    <ClCompile Include="WareHouse.cpp" />
+    <ClCompile Include="EquipStrengthen.cpp" />
+    <ClCompile Include="EventHandle\BatchReadyEvent.cpp" />
+    <ClCompile Include="UnionManage.cpp" />
+    <ClCompile Include="BuffSys.cpp" />
+    <ClCompile Include="BulletManager_s.cpp" />
+    <ClCompile Include="BulletMgr.cpp" />
+    <ClCompile Include="CDManager.cpp" />
+    <ClCompile Include="CoolDownSys.cpp" />
+    <ClCompile Include="DChatManager.cpp" />
+    <ClCompile Include="FactionManager.cpp" />
+    <ClCompile Include="FightListener.cpp" />
+    <ClCompile Include="FlyDataTable.cpp" />
+    <ClCompile Include="GameWorld.cpp">
+      <MinimalRebuild Condition="'$(Configuration)|$(Platform)'=='Release with debug info|Win32'">true</MinimalRebuild>
+      <MinimalRebuild Condition="'$(Configuration)|$(Platform)'=='Release with debug(Visual Studio 2010)|Win32'">true</MinimalRebuild>
+      <MinimalRebuild Condition="'$(Configuration)|$(Platform)'=='Release with network test|Win32'">true</MinimalRebuild>
+      <MinimalRebuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</MinimalRebuild>
+    </ClCompile>
+    <ClCompile Include="Pet.cpp" />
+    <ClCompile Include="PlayerManager.cpp" />
+    <ClCompile Include="ProtectedDataTable.cpp" />
+    <ClCompile Include="Random.cpp" />
+    <ClCompile Include="RankList.cpp" />
+    <ClCompile Include="RegionManager.cpp" />
+    <ClCompile Include="RoleLevelUpTbl.cpp" />
+    <ClCompile Include="RoomManager.cpp" />
+    <ClCompile Include="ScriptManager.cpp" />
+    <ClCompile Include="SkillDataTable.cpp" />
+    <ClCompile Include="SportsArea.cpp" />
+    <ClCompile Include="TeamManager.cpp" />
+    <ClCompile Include="UpgradeSys.cpp" />
+    <ClCompile Include="extraScriptFunctions\EventRegionScriptFunctions.cpp" />
+    <ClCompile Include="extraScriptFunctions\ExtraScriptFunctions.cpp" />
+    <ClCompile Include="extraScriptFunctions\ExtraScriptFunctions1.cpp" />
+    <ClCompile Include="BuffEntityManager.cpp" />
+    <ClCompile Include="BuffFPBase.cpp" />
+    <ClCompile Include="BuffManager.cpp" />
+    <ClCompile Include="EventHPModify.cpp" />
+    <ClCompile Include="EventManager.cpp" />
+    <ClCompile Include="EventMPModify.cpp" />
+    <ClCompile Include="EventSPModify.cpp" />
+    <ClCompile Include="BuffAbsoluteParry.cpp" />
+    <ClCompile Include="BuffAddAgile.cpp" />
+    <ClCompile Include="BuffJump.cpp" />
+    <ClCompile Include="BuffReduceCD.cpp" />
+    <ClCompile Include="BuffReduceDelay.cpp" />
+    <ClCompile Include="BuffUpSpeed.cpp" />
+    <ClCompile Include="BuffCounterAttackRate.cpp" />
+    <ClCompile Include="BuffInnerDefense.cpp" />
+    <ClCompile Include="BuffOutDefense.cpp" />
+    <ClCompile Include="BuffReduceAbsoluteHurt.cpp" />
+    <ClCompile Include="BuffReduceHurtRate.cpp" />
+    <ClCompile Include="BuffUpHPLimit.cpp" />
+    <ClCompile Include="BaseObject.cpp" />
+    <ClCompile Include="..\..\pathfind\pathserver.cpp" />
+    <ClCompile Include="BuffBaseData.cpp" />
+    <ClCompile Include="DBaseIntList.cpp" />
+    <ClCompile Include="DFightData.cpp" />
+    <ClCompile Include="..\..\Xydclient\Extraframework\DGameScript.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release with debug info|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release with debug(Visual Studio 2010)|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release with network test|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="DSpcialItemData.cpp" />
+    <ClCompile Include="DSpecialPlayerRcd.cpp" />
+    <ClCompile Include="DTelergyData.cpp" />
+    <ClCompile Include="GlobalSetting.cpp" />
+    <ClCompile Include="GoatMutateData.cpp" />
+    <ClCompile Include="VenapointData.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release with debug info|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release with debug(Visual Studio 2010)|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release with network test|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DSkillStudyTable.h" />
+    <ClInclude Include="LuckyTimeSystem.h" />
+    <ClInclude Include="SanguoCode\AchievementMoudle\AchievementDataManager.h" />
+    <ClInclude Include="SanguoCode\AchievementMoudle\AchievementManager.h" />
+    <ClInclude Include="SanguoCode\AchievementMoudle\AchieveUpdate.h" />
+    <ClInclude Include="SanguoCode\AchievementMoudle\RandomAchieveDataManager.h" />
+    <ClInclude Include="SanguoCode\AchievementMoudle\RandomAchieveManager.h" />
+    <ClInclude Include="SanguoCode\AchievementMoudle\RandomAchieveUpdate.h" />
+    <ClInclude Include="SanguoCode\ArenaMoudel\ArenaDataMgr.h" />
+    <ClInclude Include="SanguoCode\ArenaMoudel\ArenaMoudel.h" />
+    <ClInclude Include="SanguoCode\BattleVerification.h" />
+    <ClInclude Include="SanguoCode\Common\PubTool.h" />
+    <ClInclude Include="SanguoCode\Common\RobotNameConfig.h" />
+    <ClInclude Include="SanguoCode\DessertMoudle\DessertSystem.h" />
+    <ClInclude Include="SanguoCode\DuplicateMoudle\Duplicate.h" />
+    <ClInclude Include="SanguoCode\DuplicateMoudle\DuplicateAstrict.h" />
+    <ClInclude Include="SanguoCode\DuplicateMoudle\DuplicateBaseManager.h" />
+    <ClInclude Include="SanguoCode\DuplicateMoudle\DuplicateDataManager.h" />
+    <ClInclude Include="SanguoCode\DuplicateMoudle\EliteDuplicateManager.h" />
+    <ClInclude Include="SanguoCode\DuplicateMoudle\LeagueOfLegendDuplicateMananger.h" />
+    <ClInclude Include="SanguoCode\DuplicateMoudle\StoryDulicateManager.h" />
+    <ClInclude Include="SanguoCode\DuplicateMoudle\Tollgate.h" />
+    <ClInclude Include="SanguoCode\DuplicateMoudle\TollgateDrop.h" />
+    <ClInclude Include="SanguoCode\DuplicateMoudle\TreasureHuntingDuplicateManager.h" />
+    <ClInclude Include="SanguoCode\EnduranceManager.h" />
+    <ClInclude Include="SanguoCode\ExchangeMoudle\DiamondExchangeModule.h" />
+    <ClInclude Include="SanguoCode\ExchangeMoudle\DiamondExchangeProcess.h" />
+    <ClInclude Include="SanguoCode\ForgingMoudle\ForgingManager.h" />
+    <ClInclude Include="SanguoCode\GmToolMoudle\GmToolMoudle.h" />
+    <ClInclude Include="SanguoCode\GuideMoudle\GuideManager.h" />
+    <ClInclude Include="SanguoCode\HeroMoudle\HeroAttributeCalculator.h" />
+    <ClInclude Include="SanguoCode\HeroMoudle\HeroExtendsGameplayModel.h" />
+    <ClInclude Include="SanguoCode\HeroMoudle\HeroFateInterrogator.h" />
+    <ClInclude Include="SanguoCode\HeroMoudle\HeroHungingHunting.h" />
+    <ClInclude Include="SanguoCode\HeroMoudle\HeroTraining.h" />
+    <ClInclude Include="SanguoCode\HeroMoudle\HeroUpgradeMoudle.h" />
+    <ClInclude Include="SanguoCode\Common\ConfigManager.h" />
+    <ClInclude Include="ActiveObject.h" />
+    <ClInclude Include="ArenaMap.h" />
+    <ClInclude Include="SanguoCode\BlessMoudle\BlessRandomPrize.h" />
+    <ClInclude Include="SanguoCode\BlessMoudle\BlessDataMgr.h" />
+    <ClInclude Include="SanguoCode\BaseDataManager.h" />
+    <ClInclude Include="CGloryAndTitleServer.h" />
+    <ClInclude Include="CGloryATitleBaseData.h" />
+    <ClInclude Include="CMountDefine.h" />
+    <ClInclude Include="CMystring.h" />
+    <ClInclude Include="CooldownMgr.h" />
+    <ClInclude Include="Count.h" />
+    <ClInclude Include="DynamicArena.h" />
+    <ClInclude Include="DynamicDailyArea.h" />
+    <ClInclude Include="DynamicScene.h" />
+    <ClInclude Include="EventTimer.h" />
+    <ClInclude Include="ExchangeGoods.h" />
+    <ClInclude Include="FightObject.h" />
+    <ClInclude Include="GamingHouse.h" />
+    <ClInclude Include="GlobalFunctions.h" />
+    <ClInclude Include="ItemUser.h" />
+    <ClInclude Include="MapBase.h" />
+    <ClInclude Include="MapServer.h" />
+    <ClInclude Include="memory_object.h" />
+    <ClInclude Include="Mounts.h" />
+    <ClInclude Include="NameCard.h" />
+    <ClInclude Include="PlayerData.h" />
+    <ClInclude Include="poker.h" />
+    <ClInclude Include="PubRoom.h" />
+    <ClInclude Include="QuestCardPointModify.h" />
+    <ClInclude Include="RandomSys.h" />
+    <ClInclude Include="Relation.h" />
+    <ClInclude Include="Release with debug info\SanguoCode\CSanguoSystem.h" />
+    <ClInclude Include="Release with debug info\SanguoCode\SanguoSystem.h" />
+    <ClInclude Include="SanguoCode\BlessMoudle\BlessMoudle.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release with debug info|Win32'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="SanguoCode\ExpeditionMoudle\ExpeditionDataManager.h" />
+    <ClInclude Include="SanguoCode\ExpeditionMoudle\ExpeditionManager.h" />
+    <ClInclude Include="SanguoCode\ExtendedDataManager.h" />
+    <ClInclude Include="SanguoCode\HeroMoudle\HeroDataManager.h" />
+    <ClInclude Include="SanguoCode\LuckyTimeMoudle\ChaseThiefDataManager.h" />
+    <ClInclude Include="SanguoCode\LuckyTimeMoudle\ChaseThiefMoudle.h" />
+    <ClInclude Include="SanguoCode\LuckyTimeMoudle\ChaseThiefTollgate.h" />
+    <ClInclude Include="SanguoCode\LuckyTimeMoudle\ChaseThiefTollgateManager.h" />
+    <ClInclude Include="SanguoCode\MailMoudle\MailMoudle.h" />
+    <ClInclude Include="SanguoCode\MallMoudle\ArenaShopManager.h" />
+    <ClInclude Include="SanguoCode\MallMoudle\ExpeditionShopManager.h" />
+    <ClInclude Include="SanguoCode\MallMoudle\GemMerchantManager.h" />
+    <ClInclude Include="SanguoCode\MallMoudle\LegionShopManager.h" />
+    <ClInclude Include="SanguoCode\MallMoudle\MallManager.h" />
+    <ClInclude Include="SanguoCode\MallMoudle\MiracleMerchantManager.h" />
+    <ClInclude Include="SanguoCode\MallMoudle\SoulExchangeManager.h" />
+    <ClInclude Include="SanguoCode\MallMoudle\WarOfLeagueShopManager.h" />
+    <ClInclude Include="SanguoCode\MissionMoudle\CMissionUpdate.h" />
+    <ClInclude Include="SanguoCode\MissionMoudle\MissionDataManager.h" />
+    <ClInclude Include="SanguoCode\MissionMoudle\MissionManager.h" />
+    <ClInclude Include="SanguoCode\MallMoudle\MallsMoudle.h" />
+    <ClInclude Include="SanguoCode\MallMoudle\VarietyShopManager.h" />
+    <ClInclude Include="SanguoCode\Common\SanguoConfigTypeDef.h" />
+    <ClInclude Include="SanguoCode\SanguoPlayerBase.h" />
+    <ClInclude Include="SanguoCode\Common\TabReader.h" />
+    <ClInclude Include="SanguoCode\ScriptMoudle\ScriptMoudle.h" />
+    <ClInclude Include="SanguoCode\SkillUpgradeMoudle\SkillUpgradeManager.h" />
+    <ClInclude Include="SanguoCode\SkillUpgradeMoudle\SkillUpgradeMoudle.h" />
+    <ClInclude Include="SanguoCode\ExchangeMoudle\ExchangeEndurance.h" />
+    <ClInclude Include="SanguoCode\ExchangeMoudle\ExchangeGoldProcess.h" />
+    <ClInclude Include="SanguoCode\TimerEvent_SG\TimerEvent_SG.h" />
+    <ClInclude Include="SceneMap.h" />
+    <ClInclude Include="ScriptObject.h" />
+    <ClInclude Include="SendMail.h" />
+    <ClInclude Include="SFuncManager.h" />
+    <ClInclude Include="StackWalker.h" />
+    <ClInclude Include="SanguoCode\StorageMoudle\StorageManager.h" />
+    <ClInclude Include="Transformers.h" />
+    <ClInclude Include="TransportConf.h" />
+    <ClInclude Include="TreasureShop.h" />
+    <ClInclude Include="Trigger.h" />
+    <ClInclude Include="FactionRegion.h" />
+    <ClInclude Include="Area.h" />
+    <ClInclude Include="BiGuanArea.h" />
+    <ClInclude Include="Building.h" />
+    <ClInclude Include="CBuffDefine.h" />
+    <ClInclude Include="CBuffService.h" />
+    <ClInclude Include="CFightPetDefine.h" />
+    <ClInclude Include="CFightPetService.h" />
+    <ClInclude Include="CFriendService.h" />
+    <ClInclude Include="CItemDefine.h" />
+    <ClInclude Include="CItemDropDefine.h" />
+    <ClInclude Include="CItemDropService.h" />
+    <ClInclude Include="CItemService.h" />
+    <ClInclude Include="CJingMaiDefine.h" />
+    <ClInclude Include="CJingMaiService.h" />
+    <ClInclude Include="CKillTaskService.h" />
+    <ClInclude Include="CKylinArmService.h" />
+    <ClInclude Include="CMakeTeamQuestService.h" />
+    <ClInclude Include="CMonsterDefine.h" />
+    <ClInclude Include="CMonsterService.h" />
+    <ClInclude Include="CMountService.h" />
+    <ClInclude Include="CPlayerDefine.h" />
+    <ClInclude Include="CPlayerService.h" />
+    <ClInclude Include="CSkillDefine.h" />
+    <ClInclude Include="CSkillService.h" />
+    <ClInclude Include="CTiZhiService.h" />
+    <ClInclude Include="DynamicRegion.h" />
+    <ClInclude Include="EventBase.h" />
+    <ClInclude Include="EventMgr.h" />
+    <ClInclude Include="EventRegion.h" />
+    <ClInclude Include="EventUtility.h" />
+    <ClInclude Include="FightArena.h" />
+    <ClInclude Include="GroundItemWinner.h" />
+    <ClInclude Include="Item.h" />
+    <ClInclude Include="ItemData.h" />
+    <ClInclude Include="ItemUseEvent.h" />
+    <ClInclude Include="JingMaiShareExpEvent.h" />
+    <ClInclude Include="Monster.h" />
+    <ClInclude Include="MountEvent.h" />
+    <ClInclude Include="Npc.h" />
+    <ClInclude Include="NpcSaleMgr.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="plugingame.h" />
+    <ClInclude Include="plugingame_happy10_5.h" />
+    <ClInclude Include="Prison.h" />
+    <ClInclude Include="PrisonEx.h" />
+    <ClInclude Include="Region.h" />
+    <ClInclude Include="SingleItem.h" />
+    <ClInclude Include="Stall.h" />
+    <ClInclude Include="UpdatePropertyEx.h" />
+    <ClInclude Include="WareHouse.h" />
+    <ClInclude Include="EquipStrengthen\EquipStrengthen.h" />
+    <ClInclude Include="EventHandle\BatchReadyEvent.h" />
+    <ClInclude Include="..\..\Pub\Singleton.h" />
+    <ClInclude Include="UnionManage.h" />
+    <ClInclude Include="BuffManager.h" />
+    <ClInclude Include="BuffSys.h" />
+    <ClInclude Include="BulletManager_s.h" />
+    <ClInclude Include="BulletMgr.h" />
+    <ClInclude Include="CDManager.h" />
+    <ClInclude Include="CoolDownSys.h" />
+    <ClInclude Include="DChatManager.h" />
+    <ClInclude Include="FactionManager.h" />
+    <ClInclude Include="FightListener.h" />
+    <ClInclude Include="FlyDataTable.h" />
+    <ClInclude Include="GameWorld.h" />
+    <ClInclude Include="NetmsgPackager.h" />
+    <ClInclude Include="Pet.h" />
+    <ClInclude Include="PlayerManager.h" />
+    <ClInclude Include="ProtectedDataTable.h" />
+    <ClInclude Include="Random.h" />
+    <ClInclude Include="RankList.h" />
+    <ClInclude Include="RegionManager.h" />
+    <ClInclude Include="RoleLevelUpTbl.h" />
+    <ClInclude Include="RoomManager.h" />
+    <ClInclude Include="ScriptManager.h" />
+    <ClInclude Include="SkillDataTable.h" />
+    <ClInclude Include="SportsArea.h" />
+    <ClInclude Include="TeamManager.h" />
+    <ClInclude Include="UpgradeSys.h" />
+    <ClInclude Include="extraScriptFunctions\ExtraScriptFunctions.h" />
+    <ClInclude Include="extraScriptFunctions\lite_lualibrary.hpp" />
+    <ClInclude Include="BuffEntityManager.h" />
+    <ClInclude Include="BuffFPBase.h" />
+    <ClInclude Include="EventHPModify.h" />
+    <ClInclude Include="EventManager.h" />
+    <ClInclude Include="EventMPModify.h" />
+    <ClInclude Include="EventSPModify.h" />
+    <ClInclude Include="FPformula.h" />
+    <ClInclude Include="BuffAbsoluteParry.h" />
+    <ClInclude Include="BuffAddAgile.h" />
+    <ClInclude Include="BuffJump.h" />
+    <ClInclude Include="BuffReduceCD.h" />
+    <ClInclude Include="BuffReduceDelay.h" />
+    <ClInclude Include="BuffUpSpeed.h" />
+    <ClInclude Include="BuffCounterAttackRate.h" />
+    <ClInclude Include="BuffInnerDefense.h" />
+    <ClInclude Include="BuffOutDefense.h" />
+    <ClInclude Include="BuffReduceAbsoluteHurt.h" />
+    <ClInclude Include="BuffReduceHurtRate.h" />
+    <ClInclude Include="BuffUpHPLimit.h" />
+    <ClInclude Include="BaseObject.h" />
+    <ClInclude Include="..\..\pathfind\pathserver.h" />
+    <ClInclude Include="BuffBaseData.h" />
+    <ClInclude Include="DBaseIntList.h" />
+    <ClInclude Include="DFightData.h" />
+    <ClInclude Include="..\..\Xydclient\Extraframework\DGameScript.h" />
+    <ClInclude Include="DSpcialItemData.h" />
+    <ClInclude Include="DSpecialPlayerRcd.h" />
+    <ClInclude Include="DTelergyData.h" />
+    <ClInclude Include="GlobalSetting.h" />
+    <ClInclude Include="GoatMutateData.h" />
+    <ClInclude Include="VenapointData.h" />
+    <ClInclude Include="stdafx.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="VTune\GameObjects.vpj" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
