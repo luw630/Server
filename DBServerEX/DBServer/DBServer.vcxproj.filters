@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{2f981290-a4de-48a2-9d96-d1c4836b9ba8}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{b578718e-12f9-4b36-a88a-ac1b3c82b926}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{9b29b764-6ff7-4b59-a2c7-1233b519e03b}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+    <Filter Include="pub">
+      <UniqueIdentifier>{4586f2b4-b46c-4c3e-972b-d3a2d807a84f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="persistent">
+      <UniqueIdentifier>{1c91bcbe-e7c4-4ab3-acc9-dd6f2d0d2d67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="query">
+      <UniqueIdentifier>{af3d9670-dc60-476e-b304-db51a30565fd}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="DBServer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DMainApp.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreadWrapper.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Pub\path.cpp">
+      <Filter>pub</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\PUB\traceinfo.cpp">
+      <Filter>pub</Filter>
+    </ClCompile>
+    <ClCompile Include="persistent\dpl.cpp">
+      <Filter>persistent</Filter>
+    </ClCompile>
+    <ClCompile Include="MysqlDBProcess.cpp">
+      <Filter>query</Filter>
+    </ClCompile>
+    <ClCompile Include="NetDBModuleEx.cpp">
+      <Filter>query</Filter>
+    </ClCompile>
+    <ClCompile Include="Procedure.cpp">
+      <Filter>query</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\区域服务器\区域服务器\CenterModule.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DBServer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DMainApp.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SQLTextDefine.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ThreadWrapper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\PUB\DBProcessor.h">
+      <Filter>pub</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Pub\path.h">
+      <Filter>pub</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\PUB\traceinfo.h">
+      <Filter>pub</Filter>
+    </ClInclude>
+    <ClInclude Include="persistent\dpl.h">
+      <Filter>persistent</Filter>
+    </ClInclude>
+    <ClInclude Include="MysqlDBProcess.h">
+      <Filter>query</Filter>
+    </ClInclude>
+    <ClInclude Include="NetDBModuleEx.h">
+      <Filter>query</Filter>
+    </ClInclude>
+    <ClInclude Include="Procedure.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\PUB\minidump.h">
+      <Filter>pub</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\PUB\minihelp.h">
+      <Filter>pub</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\区域服务器\区域服务器\CenterModule.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\New_net\crc32.lib" />
+    <Library Include="..\..\New_net\DirectNetServer.lib" />
+    <Library Include="..\..\NETWORKMODULE\NetConsumerModule\Release with debug info\NetConsumerModule.lib" />
+    <Library Include="..\..\NEW_NET\desenc.lib" />
+    <Library Include="..\..\NEW_NET\DirectNetClient.lib" />
+    <Library Include="..\..\NEW_NET\desdec.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+</Project>

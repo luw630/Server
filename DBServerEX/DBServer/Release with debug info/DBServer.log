@@ -1,0 +1,163 @@
+﻿  DBServer.cpp
+d:\work\serverprojects\networkmodule\SanguoPlayerMsg.h(232): warning C4200: 使用了非标准扩展 : 结构/联合中的零大小数组
+          当 UDT 包含大小为零的数组时，无法生成复制构造函数或副本赋值运算符
+d:\work\serverprojects\networkmodule\SanguoPlayerMsg.h(604): warning C4200: 使用了非标准扩展 : 结构/联合中的零大小数组
+          当 UDT 包含大小为零的数组时，无法生成复制构造函数或副本赋值运算符
+d:\work\serverprojects\networkmodule\SanguoPlayerMsg.h(857): warning C4200: 使用了非标准扩展 : 结构/联合中的零大小数组
+          当 UDT 包含大小为零的数组时，无法生成复制构造函数或副本赋值运算符
+d:\work\serverprojects\networkmodule\SanguoPlayerMsg.h(1057): warning C4200: 使用了非标准扩展 : 结构/联合中的零大小数组
+          当 UDT 包含大小为零的数组时，无法生成复制构造函数或副本赋值运算符
+d:\work\serverprojects\pub\minidump.h(19): warning C4996: '_wsplitpath': This function or variable may be unsafe. Consider using _wsplitpath_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdlib.h(896) : 参见“_wsplitpath”的声明
+d:\work\serverprojects\pub\minidump.h(21): warning C4996: 'wcsicmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _wcsicmp. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\string.h(413) : 参见“wcsicmp”的声明
+D:\work\ServerProjects\pub/minihelp.h(19): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : 参见“fopen”的声明
+D:\work\ServerProjects\pub/minihelp.h(21): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : 参见“sprintf”的声明
+D:\work\ServerProjects\pub/minihelp.h(26): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : 参见“sprintf”的声明
+DBServer.cpp(86): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\string.h(112) : 参见“strcpy”的声明
+DBServer.cpp(87): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\string.h(112) : 参见“strcpy”的声明
+  正在生成代码...
+  正在编译...
+  dpl.cpp
+d:\work\serverprojects\networkmodule\SanguoPlayerMsg.h(232): warning C4200: 使用了非标准扩展 : 结构/联合中的零大小数组
+          当 UDT 包含大小为零的数组时，无法生成复制构造函数或副本赋值运算符
+d:\work\serverprojects\networkmodule\SanguoPlayerMsg.h(604): warning C4200: 使用了非标准扩展 : 结构/联合中的零大小数组
+          当 UDT 包含大小为零的数组时，无法生成复制构造函数或副本赋值运算符
+d:\work\serverprojects\networkmodule\SanguoPlayerMsg.h(857): warning C4200: 使用了非标准扩展 : 结构/联合中的零大小数组
+          当 UDT 包含大小为零的数组时，无法生成复制构造函数或副本赋值运算符
+d:\work\serverprojects\networkmodule\SanguoPlayerMsg.h(1057): warning C4200: 使用了非标准扩展 : 结构/联合中的零大小数组
+          当 UDT 包含大小为零的数组时，无法生成复制构造函数或副本赋值运算符
+D:\work\ServerProjects\networkmodule/SectionMsgs.h(136): warning C4244: “=”: 从“DWORD”转换到“WORD”，可能丢失数据
+persistent\dpl.cpp(51): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : 参见“sprintf”的声明
+persistent\dpl.cpp(1059): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : 参见“sprintf”的声明
+  Procedure.cpp
+d:\work\serverprojects\networkmodule\SanguoPlayerMsg.h(232): warning C4200: 使用了非标准扩展 : 结构/联合中的零大小数组
+          当 UDT 包含大小为零的数组时，无法生成复制构造函数或副本赋值运算符
+d:\work\serverprojects\networkmodule\SanguoPlayerMsg.h(604): warning C4200: 使用了非标准扩展 : 结构/联合中的零大小数组
+          当 UDT 包含大小为零的数组时，无法生成复制构造函数或副本赋值运算符
+d:\work\serverprojects\networkmodule\SanguoPlayerMsg.h(857): warning C4200: 使用了非标准扩展 : 结构/联合中的零大小数组
+          当 UDT 包含大小为零的数组时，无法生成复制构造函数或副本赋值运算符
+d:\work\serverprojects\networkmodule\SanguoPlayerMsg.h(1057): warning C4200: 使用了非标准扩展 : 结构/联合中的零大小数组
+          当 UDT 包含大小为零的数组时，无法生成复制构造函数或副本赋值运算符
+Procedure.cpp(256): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _itoa. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdlib.h(937) : 参见“itoa”的声明
+Procedure.cpp(285): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _itoa. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdlib.h(937) : 参见“itoa”的声明
+  NetDBModuleEx.cpp
+d:\work\serverprojects\networkmodule\SanguoPlayerMsg.h(232): warning C4200: 使用了非标准扩展 : 结构/联合中的零大小数组
+          当 UDT 包含大小为零的数组时，无法生成复制构造函数或副本赋值运算符
+d:\work\serverprojects\networkmodule\SanguoPlayerMsg.h(604): warning C4200: 使用了非标准扩展 : 结构/联合中的零大小数组
+          当 UDT 包含大小为零的数组时，无法生成复制构造函数或副本赋值运算符
+d:\work\serverprojects\networkmodule\SanguoPlayerMsg.h(857): warning C4200: 使用了非标准扩展 : 结构/联合中的零大小数组
+          当 UDT 包含大小为零的数组时，无法生成复制构造函数或副本赋值运算符
+d:\work\serverprojects\networkmodule\SanguoPlayerMsg.h(1057): warning C4200: 使用了非标准扩展 : 结构/联合中的零大小数组
+          当 UDT 包含大小为零的数组时，无法生成复制构造函数或副本赋值运算符
+NetDBModuleEx.cpp(106): warning C4996: '_snprintf': This function or variable may be unsafe. Consider using _snprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdio.h(346) : 参见“_snprintf”的声明
+NetDBModuleEx.cpp(132): warning C4996: '_snprintf': This function or variable may be unsafe. Consider using _snprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdio.h(346) : 参见“_snprintf”的声明
+NetDBModuleEx.cpp(143): warning C4996: '_snprintf': This function or variable may be unsafe. Consider using _snprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdio.h(346) : 参见“_snprintf”的声明
+NetDBModuleEx.cpp(237): warning C4996: '_snprintf': This function or variable may be unsafe. Consider using _snprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdio.h(346) : 参见“_snprintf”的声明
+NetDBModuleEx.cpp(250): warning C4996: '_snprintf': This function or variable may be unsafe. Consider using _snprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdio.h(346) : 参见“_snprintf”的声明
+NetDBModuleEx.cpp(309): warning C4244: “=”: 从“time_t”转换到“DWORD”，可能丢失数据
+NetDBModuleEx.cpp(310): warning C4244: “=”: 从“time_t”转换到“DWORD”，可能丢失数据
+NetDBModuleEx.cpp(392): warning C4996: '_snprintf': This function or variable may be unsafe. Consider using _snprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdio.h(346) : 参见“_snprintf”的声明
+NetDBModuleEx.cpp(539): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\string.h(195) : 参见“strncpy”的声明
+NetDBModuleEx.cpp(544): warning C4996: '_snprintf': This function or variable may be unsafe. Consider using _snprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdio.h(346) : 参见“_snprintf”的声明
+NetDBModuleEx.cpp(555): warning C4996: '_snprintf': This function or variable may be unsafe. Consider using _snprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdio.h(346) : 参见“_snprintf”的声明
+NetDBModuleEx.cpp(630): warning C4244: “初始化”: 从“QWORD”转换到“DOUBLE”，可能丢失数据
+NetDBModuleEx.cpp(635): warning C4244: “初始化”: 从“QWORD”转换到“DOUBLE”，可能丢失数据
+NetDBModuleEx.cpp(645): warning C4244: “初始化”: 从“QWORD”转换到“DOUBLE”，可能丢失数据
+NetDBModuleEx.cpp(657): warning C4244: “初始化”: 从“INT64”转换到“DOUBLE”，可能丢失数据
+NetDBModuleEx.cpp(659): warning C4244: “初始化”: 从“INT64”转换到“DOUBLE”，可能丢失数据
+NetDBModuleEx.cpp(714): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : 参见“sprintf”的声明
+NetDBModuleEx.cpp(880): warning C4996: '_snprintf': This function or variable may be unsafe. Consider using _snprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdio.h(346) : 参见“_snprintf”的声明
+NetDBModuleEx.cpp(903): warning C4996: '_snprintf': This function or variable may be unsafe. Consider using _snprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdio.h(346) : 参见“_snprintf”的声明
+NetDBModuleEx.cpp(920): warning C4996: '_snprintf': This function or variable may be unsafe. Consider using _snprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdio.h(346) : 参见“_snprintf”的声明
+NetDBModuleEx.cpp(944): warning C4996: '_snprintf': This function or variable may be unsafe. Consider using _snprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdio.h(346) : 参见“_snprintf”的声明
+NetDBModuleEx.cpp(945): warning C4996: '_snprintf': This function or variable may be unsafe. Consider using _snprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdio.h(346) : 参见“_snprintf”的声明
+NetDBModuleEx.cpp(1306): warning C4996: '_snprintf': This function or variable may be unsafe. Consider using _snprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdio.h(346) : 参见“_snprintf”的声明
+NetDBModuleEx.cpp(1462): warning C4996: '_snprintf': This function or variable may be unsafe. Consider using _snprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdio.h(346) : 参见“_snprintf”的声明
+NetDBModuleEx.cpp(1681): warning C4996: '_snprintf': This function or variable may be unsafe. Consider using _snprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdio.h(346) : 参见“_snprintf”的声明
+NetDBModuleEx.cpp(1691): warning C4996: '_snprintf': This function or variable may be unsafe. Consider using _snprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdio.h(346) : 参见“_snprintf”的声明
+NetDBModuleEx.cpp(1736): warning C4996: '_snprintf': This function or variable may be unsafe. Consider using _snprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdio.h(346) : 参见“_snprintf”的声明
+NetDBModuleEx.cpp(1760): warning C4996: '_snprintf': This function or variable may be unsafe. Consider using _snprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdio.h(346) : 参见“_snprintf”的声明
+NetDBModuleEx.cpp(1764): warning C4996: '_snprintf': This function or variable may be unsafe. Consider using _snprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdio.h(346) : 参见“_snprintf”的声明
+NetDBModuleEx.cpp(1786): warning C4996: '_snprintf': This function or variable may be unsafe. Consider using _snprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdio.h(346) : 参见“_snprintf”的声明
+NetDBModuleEx.cpp(1794): warning C4996: '_snprintf': This function or variable may be unsafe. Consider using _snprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdio.h(346) : 参见“_snprintf”的声明
+NetDBModuleEx.cpp(1839): warning C4996: '_snprintf': This function or variable may be unsafe. Consider using _snprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdio.h(346) : 参见“_snprintf”的声明
+NetDBModuleEx.cpp(1871): warning C4996: '_snprintf': This function or variable may be unsafe. Consider using _snprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdio.h(346) : 参见“_snprintf”的声明
+NetDBModuleEx.cpp(1889): warning C4996: '_snprintf': This function or variable may be unsafe. Consider using _snprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdio.h(346) : 参见“_snprintf”的声明
+NetDBModuleEx.cpp(1899): warning C4996: '_snprintf': This function or variable may be unsafe. Consider using _snprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdio.h(346) : 参见“_snprintf”的声明
+NetDBModuleEx.cpp(1913): warning C4996: '_snprintf': This function or variable may be unsafe. Consider using _snprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdio.h(346) : 参见“_snprintf”的声明
+NetDBModuleEx.cpp(1961): warning C4996: '_snprintf': This function or variable may be unsafe. Consider using _snprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdio.h(346) : 参见“_snprintf”的声明
+NetDBModuleEx.cpp(2031): warning C4018: “<”: 有符号/无符号不匹配
+NetDBModuleEx.cpp(2037): warning C4018: “<”: 有符号/无符号不匹配
+NetDBModuleEx.cpp(2082): warning C4996: '_snprintf': This function or variable may be unsafe. Consider using _snprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdio.h(346) : 参见“_snprintf”的声明
+NetDBModuleEx.cpp(2120): warning C4996: '_snprintf': This function or variable may be unsafe. Consider using _snprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdio.h(346) : 参见“_snprintf”的声明
+NetDBModuleEx.cpp(2171): warning C4996: '_snprintf': This function or variable may be unsafe. Consider using _snprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdio.h(346) : 参见“_snprintf”的声明
+  DMainApp.cpp
+d:\work\serverprojects\networkmodule\SanguoPlayerMsg.h(232): warning C4200: 使用了非标准扩展 : 结构/联合中的零大小数组
+          当 UDT 包含大小为零的数组时，无法生成复制构造函数或副本赋值运算符
+d:\work\serverprojects\networkmodule\SanguoPlayerMsg.h(604): warning C4200: 使用了非标准扩展 : 结构/联合中的零大小数组
+          当 UDT 包含大小为零的数组时，无法生成复制构造函数或副本赋值运算符
+d:\work\serverprojects\networkmodule\SanguoPlayerMsg.h(857): warning C4200: 使用了非标准扩展 : 结构/联合中的零大小数组
+          当 UDT 包含大小为零的数组时，无法生成复制构造函数或副本赋值运算符
+d:\work\serverprojects\networkmodule\SanguoPlayerMsg.h(1057): warning C4200: 使用了非标准扩展 : 结构/联合中的零大小数组
+          当 UDT 包含大小为零的数组时，无法生成复制构造函数或副本赋值运算符
+D:\work\ServerProjects\networkmodule/SectionMsgs.h(136): warning C4244: “=”: 从“DWORD”转换到“WORD”，可能丢失数据
+DMainApp.cpp(46): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : 参见“sprintf”的声明
+DMainApp.cpp(49): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : 参见“sprintf”的声明
+DMainApp.cpp(52): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : 参见“sprintf”的声明
+DMainApp.cpp(159): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : 参见“sprintf”的声明
+DMainApp.cpp(212): warning C4996: '_snprintf': This function or variable may be unsafe. Consider using _snprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\stdio.h(346) : 参见“_snprintf”的声明
+DMainApp.cpp(245): warning C4996: 'inet_addr': Use inet_pton() or InetPton() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+          C:\Program Files (x86)\Windows Kits\8.1\Include\um\winsock2.h(1850) : 参见“inet_addr”的声明
+  正在生成代码...
+d:\work\serverprojects\dbserverex\dbserver\netdbmoduleex.cpp(1296): warning C4715: “CNetDBModuleEx::SaveFaction”: 不是所有的控件路径都返回值
+  DBServer.vcxproj -> D:\work\ServerProjects\DBServerEX\DBServer\Release with debug info\DBServer.exe
+  已复制         1 个文件。
+  已复制         1 个文件。
