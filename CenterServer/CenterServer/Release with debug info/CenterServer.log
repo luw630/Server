@@ -1,0 +1,6 @@
+﻿  PlayerManager.cpp
+D:\work\ServerProjects\pub/dwt.h(125): warning C4996: 'strncat': This function or variable may be unsafe. Consider using strncat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          D:\Microsoft Visual Studio 12.0\VC\include\string.h(186) : 参见“strncat”的声明
+  CenterServer.vcxproj -> D:\work\ServerProjects\CenterServer\CenterServer\Release with debug info\CenterServer.exe
+  已复制         1 个文件。
+  已复制         1 个文件。

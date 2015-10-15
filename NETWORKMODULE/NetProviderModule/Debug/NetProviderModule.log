@@ -1,0 +1,60 @@
+﻿生成启动时间为 2015/6/8 16:50:57。
+     1>项目“D:\work\ServerProjects\NetWorkModule\NetProviderModule\NetProviderModule.vcxproj”在节点 3 上(Build 个目标)。
+     1>ClCompile:
+         D:\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I.\.. /I.\..\.. /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /D _MBCS /GF /Gm /EHsc /RTC1 /MTd /GS /arch:SSE2 /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt NetProviderModule.cpp NetProviderModuleAdv.cpp
+         NetProviderModuleAdv.cpp
+     1>d:\work\serverprojects\new_net\netserveradv.cpp(566): warning C4509: 使用了非标准扩展: “CNetServerAdv::OnReceivePacket”使用 SEH，并且“it”有析构函数
+                 d:\work\serverprojects\new_net\netserveradv.cpp(563) : 参见“it”的声明
+     1>d:\work\serverprojects\new_net\netserveradv.cpp(580): warning C4509: 使用了非标准扩展: “CNetServerAdv::OnReceivePacket”使用 SEH，并且“it”有析构函数
+                 d:\work\serverprojects\new_net\netserveradv.cpp(521) : 参见“it”的声明
+     1>d:\work\serverprojects\new_net\netserveradv.cpp(631): error C2712: 无法在要求对象展开的函数中使用 __try
+     1>d:\work\serverprojects\new_net\netserveradv.cpp(672): warning C4509: 使用了非标准扩展: “CNetServerAdv::OnDeletePlayer”使用 SEH，并且“it”有析构函数
+                 d:\work\serverprojects\new_net\netserveradv.cpp(654) : 参见“it”的声明
+     1>d:\work\serverprojects\new_net\netserveradv.cpp(746): warning C4509: 使用了非标准扩展: “CNetServerAdv::GetLinkStatus”使用 SEH，并且“it”有析构函数
+                 d:\work\serverprojects\new_net\netserveradv.cpp(742) : 参见“it”的声明
+     1>d:\work\serverprojects\new_net\netserveradv.cpp(769): warning C4509: 使用了非标准扩展: “CNetServerAdv::SetLinkStatus”使用 SEH，并且“it”有析构函数
+                 d:\work\serverprojects\new_net\netserveradv.cpp(764) : 参见“it”的声明
+     1>d:\work\serverprojects\new_net\netserveradv.cpp(771): warning C4509: 使用了非标准扩展: “CNetServerAdv::SetLinkStatus”使用 SEH，并且“it”有析构函数
+                 d:\work\serverprojects\new_net\netserveradv.cpp(764) : 参见“it”的声明
+     1>d:\work\serverprojects\new_net\netserveradv.cpp(791): warning C4509: 使用了非标准扩展: “CNetServerAdv::SetLinkForceTimeOutTime”使用 SEH，并且“it”有析构函数
+                 d:\work\serverprojects\new_net\netserveradv.cpp(786) : 参见“it”的声明
+     1>d:\work\serverprojects\new_net\netserveradv.cpp(793): warning C4509: 使用了非标准扩展: “CNetServerAdv::SetLinkForceTimeOutTime”使用 SEH，并且“it”有析构函数
+                 d:\work\serverprojects\new_net\netserveradv.cpp(786) : 参见“it”的声明
+     1>d:\work\serverprojects\new_net\netserveradv.cpp(834): warning C4509: 使用了非标准扩展: “CNetServerAdv::GetLinkContext”使用 SEH，并且“it”有析构函数
+                 d:\work\serverprojects\new_net\netserveradv.cpp(830) : 参见“it”的声明
+     1>d:\work\serverprojects\new_net\netserveradv.cpp(856): warning C4509: 使用了非标准扩展: “CNetServerAdv::SetLinkContext”使用 SEH，并且“it”有析构函数
+                 d:\work\serverprojects\new_net\netserveradv.cpp(852) : 参见“it”的声明
+     1>d:\work\serverprojects\new_net\netserveradv.cpp(937): warning C4509: 使用了非标准扩展: “CNetServerAdv::CheckAlive”使用 SEH，并且“it”有析构函数
+                 d:\work\serverprojects\new_net\netserveradv.cpp(912) : 参见“it”的声明
+     1>d:\work\serverprojects\new_net\netserveradv.cpp(1040): warning C4509: 使用了非标准扩展: “CNetServerAdv::GetLinkByFlags”使用 SEH，并且“it”有析构函数
+                 d:\work\serverprojects\new_net\netserveradv.cpp(1035) : 参见“it”的声明
+     1>d:\work\serverprojects\new_net\netserveradv.cpp(1061): warning C4509: 使用了非标准扩展: “CNetServerAdv::GetLinkByMac”使用 SEH，并且“it”有析构函数
+                 d:\work\serverprojects\new_net\netserveradv.cpp(1056) : 参见“it”的声明
+     1>d:\work\serverprojects\new_net\netserveradv.cpp(1078): warning C4509: 使用了非标准扩展: “CNetServerAdv::GetLinkMac”使用 SEH，并且“it”有析构函数
+                 d:\work\serverprojects\new_net\netserveradv.cpp(1076) : 参见“it”的声明
+     1>d:\work\serverprojects\new_net\netserveradv.cpp(1079): warning C4509: 使用了非标准扩展: “CNetServerAdv::GetLinkMac”使用 SEH，并且“it”有析构函数
+                 d:\work\serverprojects\new_net\netserveradv.cpp(1076) : 参见“it”的声明
+     1>d:\work\serverprojects\new_net\netserveradv.cpp(1080): warning C4509: 使用了非标准扩展: “CNetServerAdv::GetLinkMac”使用 SEH，并且“it”有析构函数
+                 d:\work\serverprojects\new_net\netserveradv.cpp(1076) : 参见“it”的声明
+         NetProviderModule.cpp
+     1>d:\work\serverprojects\new_net\netserverex.cpp(459): error C2712: 无法在要求对象展开的函数中使用 __try
+     1>d:\work\serverprojects\new_net\netserverex.cpp(496): warning C4509: 使用了非标准扩展: “CNetServerEx::GetLinkStatus”使用 SEH，并且“it”有析构函数
+                 d:\work\serverprojects\new_net\netserverex.cpp(492) : 参见“it”的声明
+     1>d:\work\serverprojects\new_net\netserverex.cpp(519): warning C4509: 使用了非标准扩展: “CNetServerEx::SetLinkStatus”使用 SEH，并且“it”有析构函数
+                 d:\work\serverprojects\new_net\netserverex.cpp(514) : 参见“it”的声明
+     1>d:\work\serverprojects\new_net\netserverex.cpp(521): warning C4509: 使用了非标准扩展: “CNetServerEx::SetLinkStatus”使用 SEH，并且“it”有析构函数
+                 d:\work\serverprojects\new_net\netserverex.cpp(514) : 参见“it”的声明
+     1>d:\work\serverprojects\new_net\netserverex.cpp(541): warning C4509: 使用了非标准扩展: “CNetServerEx::SetLinkForceTimeOutTime”使用 SEH，并且“it”有析构函数
+                 d:\work\serverprojects\new_net\netserverex.cpp(536) : 参见“it”的声明
+     1>d:\work\serverprojects\new_net\netserverex.cpp(543): warning C4509: 使用了非标准扩展: “CNetServerEx::SetLinkForceTimeOutTime”使用 SEH，并且“it”有析构函数
+                 d:\work\serverprojects\new_net\netserverex.cpp(536) : 参见“it”的声明
+     1>d:\work\serverprojects\new_net\netserverex.cpp(604): warning C4509: 使用了非标准扩展: “CNetServerEx::CheckAlive”使用 SEH，并且“it”有析构函数
+                 d:\work\serverprojects\new_net\netserverex.cpp(590) : 参见“it”的声明
+     1>d:\work\serverprojects\new_net\netserverex.cpp(662): warning C4509: 使用了非标准扩展: “CNetServerEx::GetLinkByFlags”使用 SEH，并且“it”有析构函数
+                 d:\work\serverprojects\new_net\netserverex.cpp(657) : 参见“it”的声明
+         正在生成代码...
+     1>已完成生成项目“D:\work\ServerProjects\NetWorkModule\NetProviderModule\NetProviderModule.vcxproj”(Build 个目标)的操作 - 失败。
+
+生成失败。
+
+已用时间 00:00:01.88

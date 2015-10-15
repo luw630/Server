@@ -1,0 +1,103 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CenterServer", "CenterServer\CenterServer.vcproj", "{66AAC7A5-ABE5-49A5-9E8B-6B86B4569AE4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{11BBDE0A-301B-476F-A694-AE44A9DBA1D7} = {11BBDE0A-301B-476F-A694-AE44A9DBA1D7}
+		{1E747D50-79C4-434D-ABCC-889F11EE259F} = {1E747D50-79C4-434D-ABCC-889F11EE259F}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NetProviderModule", "..\NETWORKMODULE\NetProviderModule\NetProviderModule.vcproj", "{11BBDE0A-301B-476F-A694-AE44A9DBA1D7}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NetConsumerModule", "..\NETWORKMODULE\NetConsumerModule\NetConsumerModule.vcproj", "{1E747D50-79C4-434D-ABCC-889F11EE259F}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NetModule", "..\NETWORKMODULE\NetModule.vcproj", "{C737D662-A7AE-4FCC-B32F-998309936E40}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		full release = full release
+		non intel = non intel
+		non intel released = non intel released
+		Release = Release
+		Release with debug info = Release with debug info
+		Release with network test = Release with network test
+		staticLink = staticLink
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{66AAC7A5-ABE5-49A5-9E8B-6B86B4569AE4}.Debug.ActiveCfg = Debug|Win32
+		{66AAC7A5-ABE5-49A5-9E8B-6B86B4569AE4}.Debug.Build.0 = Debug|Win32
+		{66AAC7A5-ABE5-49A5-9E8B-6B86B4569AE4}.full release.ActiveCfg = Release with debug info|Win32
+		{66AAC7A5-ABE5-49A5-9E8B-6B86B4569AE4}.full release.Build.0 = Release with debug info|Win32
+		{66AAC7A5-ABE5-49A5-9E8B-6B86B4569AE4}.non intel.ActiveCfg = Release with debug info|Win32
+		{66AAC7A5-ABE5-49A5-9E8B-6B86B4569AE4}.non intel.Build.0 = Release with debug info|Win32
+		{66AAC7A5-ABE5-49A5-9E8B-6B86B4569AE4}.non intel released.ActiveCfg = Release with debug info|Win32
+		{66AAC7A5-ABE5-49A5-9E8B-6B86B4569AE4}.non intel released.Build.0 = Release with debug info|Win32
+		{66AAC7A5-ABE5-49A5-9E8B-6B86B4569AE4}.Release.ActiveCfg = Release|Win32
+		{66AAC7A5-ABE5-49A5-9E8B-6B86B4569AE4}.Release.Build.0 = Release|Win32
+		{66AAC7A5-ABE5-49A5-9E8B-6B86B4569AE4}.Release with debug info.ActiveCfg = Release with debug info|Win32
+		{66AAC7A5-ABE5-49A5-9E8B-6B86B4569AE4}.Release with debug info.Build.0 = Release with debug info|Win32
+		{66AAC7A5-ABE5-49A5-9E8B-6B86B4569AE4}.Release with network test.ActiveCfg = Release with debug info|Win32
+		{66AAC7A5-ABE5-49A5-9E8B-6B86B4569AE4}.Release with network test.Build.0 = Release with debug info|Win32
+		{66AAC7A5-ABE5-49A5-9E8B-6B86B4569AE4}.staticLink.ActiveCfg = Release with debug info|Win32
+		{66AAC7A5-ABE5-49A5-9E8B-6B86B4569AE4}.staticLink.Build.0 = Release with debug info|Win32
+		{11BBDE0A-301B-476F-A694-AE44A9DBA1D7}.Debug.ActiveCfg = Debug|Win32
+		{11BBDE0A-301B-476F-A694-AE44A9DBA1D7}.Debug.Build.0 = Debug|Win32
+		{11BBDE0A-301B-476F-A694-AE44A9DBA1D7}.full release.ActiveCfg = Release with network test|Win32
+		{11BBDE0A-301B-476F-A694-AE44A9DBA1D7}.full release.Build.0 = Release with network test|Win32
+		{11BBDE0A-301B-476F-A694-AE44A9DBA1D7}.non intel.ActiveCfg = Release with network test|Win32
+		{11BBDE0A-301B-476F-A694-AE44A9DBA1D7}.non intel.Build.0 = Release with network test|Win32
+		{11BBDE0A-301B-476F-A694-AE44A9DBA1D7}.non intel released.ActiveCfg = Release with network test|Win32
+		{11BBDE0A-301B-476F-A694-AE44A9DBA1D7}.non intel released.Build.0 = Release with network test|Win32
+		{11BBDE0A-301B-476F-A694-AE44A9DBA1D7}.Release.ActiveCfg = Release|Win32
+		{11BBDE0A-301B-476F-A694-AE44A9DBA1D7}.Release.Build.0 = Release|Win32
+		{11BBDE0A-301B-476F-A694-AE44A9DBA1D7}.Release with debug info.ActiveCfg = Release with debug info|Win32
+		{11BBDE0A-301B-476F-A694-AE44A9DBA1D7}.Release with debug info.Build.0 = Release with debug info|Win32
+		{11BBDE0A-301B-476F-A694-AE44A9DBA1D7}.Release with network test.ActiveCfg = Release with network test|Win32
+		{11BBDE0A-301B-476F-A694-AE44A9DBA1D7}.Release with network test.Build.0 = Release with network test|Win32
+		{11BBDE0A-301B-476F-A694-AE44A9DBA1D7}.staticLink.ActiveCfg = Release with network test|Win32
+		{11BBDE0A-301B-476F-A694-AE44A9DBA1D7}.staticLink.Build.0 = Release with network test|Win32
+		{1E747D50-79C4-434D-ABCC-889F11EE259F}.Debug.ActiveCfg = Debug|Win32
+		{1E747D50-79C4-434D-ABCC-889F11EE259F}.Debug.Build.0 = Debug|Win32
+		{1E747D50-79C4-434D-ABCC-889F11EE259F}.full release.ActiveCfg = Release with network test|Win32
+		{1E747D50-79C4-434D-ABCC-889F11EE259F}.full release.Build.0 = Release with network test|Win32
+		{1E747D50-79C4-434D-ABCC-889F11EE259F}.non intel.ActiveCfg = Release with network test|Win32
+		{1E747D50-79C4-434D-ABCC-889F11EE259F}.non intel.Build.0 = Release with network test|Win32
+		{1E747D50-79C4-434D-ABCC-889F11EE259F}.non intel released.ActiveCfg = Release with network test|Win32
+		{1E747D50-79C4-434D-ABCC-889F11EE259F}.non intel released.Build.0 = Release with network test|Win32
+		{1E747D50-79C4-434D-ABCC-889F11EE259F}.Release.ActiveCfg = Release|Win32
+		{1E747D50-79C4-434D-ABCC-889F11EE259F}.Release.Build.0 = Release|Win32
+		{1E747D50-79C4-434D-ABCC-889F11EE259F}.Release with debug info.ActiveCfg = Release with debug info|Win32
+		{1E747D50-79C4-434D-ABCC-889F11EE259F}.Release with debug info.Build.0 = Release with debug info|Win32
+		{1E747D50-79C4-434D-ABCC-889F11EE259F}.Release with network test.ActiveCfg = Release with network test|Win32
+		{1E747D50-79C4-434D-ABCC-889F11EE259F}.Release with network test.Build.0 = Release with network test|Win32
+		{1E747D50-79C4-434D-ABCC-889F11EE259F}.staticLink.ActiveCfg = Release with network test|Win32
+		{1E747D50-79C4-434D-ABCC-889F11EE259F}.staticLink.Build.0 = Release with network test|Win32
+		{C737D662-A7AE-4FCC-B32F-998309936E40}.Debug.ActiveCfg = Debug|Win32
+		{C737D662-A7AE-4FCC-B32F-998309936E40}.Debug.Build.0 = Debug|Win32
+		{C737D662-A7AE-4FCC-B32F-998309936E40}.full release.ActiveCfg = full release|Win32
+		{C737D662-A7AE-4FCC-B32F-998309936E40}.full release.Build.0 = full release|Win32
+		{C737D662-A7AE-4FCC-B32F-998309936E40}.non intel.ActiveCfg = non intel|Win32
+		{C737D662-A7AE-4FCC-B32F-998309936E40}.non intel.Build.0 = non intel|Win32
+		{C737D662-A7AE-4FCC-B32F-998309936E40}.non intel released.ActiveCfg = non intel released|Win32
+		{C737D662-A7AE-4FCC-B32F-998309936E40}.non intel released.Build.0 = non intel released|Win32
+		{C737D662-A7AE-4FCC-B32F-998309936E40}.Release.ActiveCfg = Release|Win32
+		{C737D662-A7AE-4FCC-B32F-998309936E40}.Release.Build.0 = Release|Win32
+		{C737D662-A7AE-4FCC-B32F-998309936E40}.Release with debug info.ActiveCfg = Release with debug info|Win32
+		{C737D662-A7AE-4FCC-B32F-998309936E40}.Release with debug info.Build.0 = Release with debug info|Win32
+		{C737D662-A7AE-4FCC-B32F-998309936E40}.Release with network test.ActiveCfg = Release with network test|Win32
+		{C737D662-A7AE-4FCC-B32F-998309936E40}.Release with network test.Build.0 = Release with network test|Win32
+		{C737D662-A7AE-4FCC-B32F-998309936E40}.staticLink.ActiveCfg = staticLink|Win32
+		{C737D662-A7AE-4FCC-B32F-998309936E40}.staticLink.Build.0 = staticLink|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
