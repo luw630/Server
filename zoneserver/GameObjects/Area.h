@@ -1,10 +1,10 @@
 #pragma once
 
 #include "BaseObject.h"
+  
+ const __int32 IID_AREA = 0x110304ce; 
 
-const __int32 IID_AREA = 0x110304ce; 
-
-#define _AreaW	400
+#define _AreaW		400
 #define _AreaH		400
 
 class CRegion;
