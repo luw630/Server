@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{14442ef1-6866-400b-8a5b-0427ab951718}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{f584d3a1-f3a2-4958-88a9-fbe0f0fe834a}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{ca09d25f-cc53-4bf5-8a48-72ec3a2ebde9}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+    <Filter Include="pub">
+      <UniqueIdentifier>{3411fcb6-3161-49d3-9c66-d9d89f0fdff9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CenterModule.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DMainApp.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="NetGMModule.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="NetLoginServerModule.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="区域服务器.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Environment.cpp">
+      <Filter>资源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\PUB\GBK_VisibleTest.cpp">
+      <Filter>pub</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\PUB\MemCheck.cpp">
+      <Filter>pub</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\PUB\SMCache.cpp">
+      <Filter>pub</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\PUB\SMCacheEx.cpp">
+      <Filter>pub</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\PUB\traceinfo.cpp">
+      <Filter>pub</Filter>
+    </ClCompile>
+    <ClCompile Include="GMServer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SocketAdnThreadObj.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Recharge.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CenterModule.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DMainApp.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="NetGMModule.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="NetLoginServerModule.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="区域服务器.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Environment.h">
+      <Filter>资源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\PUB\GBK_VisibleTest.h">
+      <Filter>pub</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\PUB\SMCache.h">
+      <Filter>pub</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\PUB\SMCacheEx.h">
+      <Filter>pub</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\PUB\traceinfo.h">
+      <Filter>pub</Filter>
+    </ClInclude>
+    <ClInclude Include="GMServer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SocketAndThreadObj.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\PUB\minidump.h">
+      <Filter>pub</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\PUB\minihelp.h">
+      <Filter>pub</Filter>
+    </ClInclude>
+    <ClInclude Include="Recharge.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\New_net\crc32.lib" />
+    <Library Include="..\..\New_net\desdec.lib" />
+    <Library Include="..\..\New_net\desenc.lib" />
+    <Library Include="..\..\New_net\DirectNetClient.lib" />
+    <Library Include="..\..\New_net\DirectNetServer.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+</Project>
