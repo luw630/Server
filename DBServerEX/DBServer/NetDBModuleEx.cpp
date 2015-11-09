@@ -2204,11 +2204,11 @@ int CNetDBModuleEx::GetFactions_Data(const DNID dwSID, const __int32 nServerID)
 		size_t dataSize = sizeof(SaveFactionData_Lua);
 
 		// 数据大小对不上！
-		if (unpakSize != dataSize)
-		{
-			TraceInfo_C("faction.txt", "读取帮派【%d】，解压失败！", idx);
-			continue;
-		}
+// 		if (unpakSize != dataSize)
+// 		{
+// 			TraceInfo_C("faction.txt", "读取帮派【%d】，解压失败！", idx);
+// 			continue;
+// 		}
 
 		// 如果不是解压数据，则需要将数据拷贝到目标slot里边
 		if (!ck)

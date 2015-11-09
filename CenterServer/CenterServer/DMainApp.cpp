@@ -27,7 +27,7 @@ extern LPCSTR GetStringTime();
 static class CDAppMain *ptheApp = NULL;
 static int nRPCThreadCount      = 5;
 DWORD dwNetRunLimit     = 100;
-
+boost::filesystem::ofstream g_ofstr("connect.txt", std::ofstream::app);
 #define LogErrorMsg( str ) TraceInfoDirectly( "debugCenterServer.txt", str )
 
 BOOL CreateApp()
@@ -179,6 +179,7 @@ BOOL CDAppMain::LoopServer()
 //---------------------------------------------------------------------------
 BOOL CDAppMain::ExitServer()
 {
+	g_ofstr.close();
     return TRUE;
 }
 
@@ -226,11 +227,11 @@ void CDAppMain::LoadWhiteList()
 
 void CDAppMain::SaveConnectNumString(const char *strConnect)
 {
-	boost::filesystem::ofstream ofstr("connect.txt",std::ofstream::app);
-	if (ofstr.is_open())
+
+	if (g_ofstr.is_open())
 	{
-		ofstr << strConnect;
-		ofstr.close();
+		g_ofstr << strConnect;
+		g_ofstr.flush();
 	}
 }
 
