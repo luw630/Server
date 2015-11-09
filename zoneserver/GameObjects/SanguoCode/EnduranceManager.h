@@ -14,13 +14,17 @@ class CEnduranceManager
 public:
 	CEnduranceManager();
 	~CEnduranceManager();
-	/**@brief 初始化体力数据计算玩家上线后需要回复的体力
+	/**@brief 初始化体力数据
 	@param [in] 体力数据
 	@param [in] bGMMark GM玩家标志
+	*/
+	void Init(SEnduranceData* pData, bool bGMMark);
+	/**@brief 计算体力上线后的体力数据
 	@param [in] newPlayer 新玩家标志
 	@param [in] playerLevel 玩家等级
+	@param [in] sid 玩家SID
 	*/
-	void Init(SEnduranceData* pData, bool bGMMark, bool newPlayer, const int32_t playerLevel);
+	void InitEnduranceData(bool newPlayer, const int32_t playerLevel, const DWORD sid);
 	/**@brief 添加体力值
 	@param [in] value 添加的体力值 可为负数 为负则体力取与0比较的最大值
 	@param [in] playerLevel 玩家等级
@@ -43,6 +47,11 @@ public:
 	@param [in] globalLimit 是否为全局上限
 	*/
 	int32_t GetEnduranceLimit(const int32_t playerLevel, bool globalLimit) const;
+	/**@升级VIP时更新体力上限值
+	@param [in] sid 玩家SID
+	@param [in] playerLevel 玩家君主等级
+	*/
+	void UpdateEnduranceForVIP(const DWORD sid, const int32_t playerLevel);
 private:
 	/**@brief 计算此时距离上次计算所需回复的体力值
 	@return 计算后可回复的体力值
@@ -55,7 +64,8 @@ private:
 	int32_t m_iRecoverSeconds;			///<体力回复所需秒数/
 	int32_t m_iRecoverPoint;			///<当前回复的体力点/
 	int32_t m_iEnduranceLimit;			///<体力上限/
+	int32_t m_iExEnduranceLimit;		///<VIP扩展体力上限
 	bool m_bGMMark;						///<GM玩家标志/
-	bool m_bInitFinished;				///<初始化完成标志/
+	//bool m_bInitFinished;				///<初始化完成标志/
 };
 

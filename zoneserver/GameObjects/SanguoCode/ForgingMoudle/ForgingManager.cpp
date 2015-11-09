@@ -193,7 +193,7 @@ void CForgingManager::AskToDiamondForging(const SQAskToForging *pMsg, SAForgingP
 	int increasedExp = m_ptrBaseDataManager->IncreaseHeroEquipmentForgingExp(pMsg->heroID, pMsg->forgingEquipID, findResult->first, equipStarLevel);
 	if (increasedExp != -1)
 	{
-		int diamondCost = increasedExp / 10;///暂时写死除以10
+		int diamondCost = increasedExp * CConfigManager::getSingleton()->globalConfig.ForgeDiamondCostScale;///暂时写死元宝消耗为乘以3
 		if (m_ptrBaseDataManager->CheckGoods_SG(GoodsType::diamond,0, diamondCost))
 		{
 			///减掉对应的消耗

@@ -19,13 +19,15 @@ public:
 	CEliteDuplicateManager(CExtendedDataManager& dataMgr);
 	virtual ~CEliteDuplicateManager();
 
-	virtual void InitMgr();
-
 protected:
+	///@brief 特异化的初始化逻辑
+	virtual void SpecificInitialization();
 	///@brief 处理客户端发来的消息
 	virtual void DispatchMsg(const SDuplicateMsg* pMsg) final;
 	///@brief 当客户端申请挑战某一个关卡的时候，子类会做的一些操作
 	virtual void OnAskToEnterTollgate();
+	///@brief 副本相关的活动在副本结算时要做的操作
+	virtual void ActivityClearingProgress();
 	///@brief 激活本副本，让玩家可以挑战
 	void Activate();
 	///@brief "重置某一个关卡的挑战次数"功能的元宝花费获取

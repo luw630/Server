@@ -92,9 +92,14 @@ public:
 	SHeroData* GetCurHostileCharacterInfor();
 	///@brief 检测某一个英雄ID是否是玩家刚刚选择了的
 	bool IsHeroSelected(DWORD heroID);
+	///@brief 获取当前的VIP等级对应的效益提升比例
+	void CacheCurProceedsRiseState();
 	///@brief 获得当前的会获得的金钱收益
 	///@return 成功返回对应的值，失败放回-1
 	int GetCurExpectedMoneyProceeds();
+	///@brief 获得当前的会获得金钱收益
+	///@return 成功返回对应的值，失败放回-1
+	int GetCurExpectedExploitProceeds();
 
 	///@brief 用来刷新远征关卡的票数
 	///@param sendMsgFlag 为0代表不发消息， 非0代表发消息
@@ -105,6 +110,7 @@ private:
 
 	bool m_bPermissionGot;
 	bool m_bEnemyMarching;
+	int m_iProceedsRiseState; ///<最终获得收益提成的比例
 	int m_dwCurMaxAvaliableTickets; ///<当前最多能重置多少次远征
 	DWORD m_dwAvaliableHostileCharacterNum;
 	SExpeditionData* m_ptrData;

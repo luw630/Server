@@ -20,6 +20,7 @@ CExpeditionDataManager::CExpeditionDataManager(CBaseDataManager& baseDataMgr)
 	m_dwAvaliableHostileCharacterNum = g_iExpeditionCharacterLimit;
 	m_ptrData = nullptr;
 	m_dwCurMaxAvaliableTickets = 0;
+	m_iProceedsRiseState = 0;
 	m_selectedHeroID.clear();
 }
 
@@ -376,27 +377,45 @@ bool CExpeditionDataManager::IsHeroSelected(DWORD heroID)
 	return false;
 }
 
-int CExpeditionDataManager::GetCurExpectedMoneyProceeds()
+void CExpeditionDataManager::CacheCurProceedsRiseState()
 {
 	if (!_checkExpeditionDataAvaliable())
-		return -1;
+		return;
 
-	const ExpeditionInstanceInfor* m_ptrCurLevelInstanceInfor = CConfigManager::getSingleton()->GetSpecifyExpeditionInstanceConfig(m_pBaseDataMgr.GetMasterLevel(), m_ptrData->curExpeditionInstanceID);
-	if (m_ptrCurLevelInstanceInfor == nullptr)
-		return -1;
-
+	m_iProceedsRiseState = 0;
 	CPlayer* pPlayer = (CPlayer *)GetPlayerBySID(m_pBaseDataMgr.GetSID())->DynamicCast(IID_PLAYER);
-	int proceedsRiseState = 0;
 	if (pPlayer != nullptr)
 	{
 		g_Script.SetCondition(0, pPlayer, 0);
 		lite::Variant ret;//从lua获取是否提升远征奖励的标志
 		LuaFunctor(g_Script, "SI_vip_getDetail")[g_Script.m_pPlayer->GetSID()][VipLevelFactor::VF_KillPassAdd_Num](&ret);
-		proceedsRiseState = (int)ret;
+		m_iProceedsRiseState = (int)ret;
 		g_Script.CleanCondition();
 	}
 	else
 		rfalse("获取不到CPlayer的指针");
+}
 
-	return m_ptrCurLevelInstanceInfor->moneyProceeds * proceedsRiseState / 100;
+int CExpeditionDataManager::GetCurExpectedMoneyProceeds()
+{
+	if (!_checkExpeditionDataAvaliable())
+		return -1;
+
+	const ExpeditionInstanceInfor* ptrCurLevelInstanceInfor = CConfigManager::getSingleton()->GetSpecifyExpeditionInstanceConfig(m_pBaseDataMgr.GetMasterLevel(), m_ptrData->curExpeditionInstanceID);
+	if (ptrCurLevelInstanceInfor == nullptr)
+		return -1;
+
+	return ptrCurLevelInstanceInfor->moneyProceeds * m_iProceedsRiseState / 100;
+}
+
+int CExpeditionDataManager::GetCurExpectedExploitProceeds()
+{
+	if (!_checkExpeditionDataAvaliable())
+		return -1;
+
+	const ExpeditionInstanceInfor* ptrCurLevelInstanceInfor = CConfigManager::getSingleton()->GetSpecifyExpeditionInstanceConfig(m_pBaseDataMgr.GetMasterLevel(), m_ptrData->curExpeditionInstanceID);
+	if (ptrCurLevelInstanceInfor == nullptr)
+		return -1;
+
+	return ptrCurLevelInstanceInfor->exploitProceeds * m_iProceedsRiseState / 100;
 }

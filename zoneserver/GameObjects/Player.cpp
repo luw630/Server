@@ -17105,6 +17105,69 @@ void CPlayer::OnSendFcEmailToAll(struct SQFcEmailToAll *pMsg)
 	g_Script.CleanPlayer();
 }
 
+void CPlayer::OnShowRequestEquipt(struct SQShowEquipt *pMsg)
+{
+	if (!pMsg)
+	{
+		return;
+	}
+	g_Script.SetPlayer(this);
+	if (g_Script.PrepareFunction("ShowSceneEquipment"))
+	{
+		g_Script.PushParameter(this->GetSID());
+		g_Script.Execute();
+	}
+	g_Script.CleanPlayer();
+}
+
+void CPlayer::OnRequestEquipt(struct SQRequestEquipt *pMsg)
+{
+	if (!pMsg)
+	{
+		return;
+	}
+	g_Script.SetPlayer(this);
+	if (g_Script.PrepareFunction("RequestSceneEquipment"))
+	{
+		g_Script.PushParameter(this->GetSID());
+		g_Script.PushParameter(pMsg->blevle);
+		g_Script.PushParameter(pMsg->bIndex);
+		g_Script.Execute();
+	}
+	g_Script.CleanPlayer();
+}
+
+void CPlayer::OnRequestStatus(struct SQRequestStatus *pMsg)
+{
+	if (!pMsg)
+	{
+		return;
+	}
+	g_Script.SetPlayer(this);
+	if (g_Script.PrepareFunction("ShowRequestRank"))
+	{
+		g_Script.PushParameter(this->GetSID());
+		g_Script.PushParameter(pMsg->bCanceled);
+		g_Script.Execute();
+	}
+	g_Script.CleanPlayer();
+}
+
+void CPlayer::OnCanceledQuest(struct SQCanceledQuest *pMsg)
+{
+	if (!pMsg)
+	{
+		return;
+	}
+	g_Script.SetPlayer(this);
+	if (g_Script.PrepareFunction("PlayerCanceledQuest"))
+	{
+		g_Script.PushParameter(this->GetSID());
+		g_Script.Execute();
+	}
+	g_Script.CleanPlayer();
+}
+
 void CPlayer::OnGetGiftCode(struct SQGiftcodeActivity *pMsg)
 {
 	if (!pMsg)

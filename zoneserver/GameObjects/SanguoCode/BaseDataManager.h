@@ -26,6 +26,8 @@ public:
 	~CBaseDataManager();
 
 	void Init(bool bGMFlag);
+	/**@brief 在玩家数据发给客户端之前，进行一些数据的初始化，现在主要用于跟lua交互的部分的数据的初始化*/
+	void InitDataOfLogin();
 	///@brief 设置成就的更新逻辑模块
 	void SetAchievementUpdator(CAchieveUpdate* pAchievement);
 	///@brief 设置随机成就的更新逻辑模块
@@ -186,7 +188,8 @@ public:
 	
 	///@brief 获取iconID
 	DWORD GetIconID();
-
+	///@brief VIP等级提升式更新相关数据
+	void UpdateDateForVIP(int vipLevel);
 protected:
 	///计算了战斗力之后会做的事
 	virtual void ProcessAfterCombatPowerCalculated(int heroID, int combatPower);

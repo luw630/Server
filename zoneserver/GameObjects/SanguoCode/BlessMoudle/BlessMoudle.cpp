@@ -72,52 +72,45 @@ int32_t BlessMoudle::_FirstDiamondBless()
 void BlessMoudle::_ProcessFreeMoneyBless(CBlessDataMgr *pBlessDataMgr)
 {
 	CBaseDataManager& baseDataMgr = pBlessDataMgr->GetBaseDataMgr(); //获取基础数据管理类
-	if (pBlessDataMgr->IsFirstMonyBless()) //第一次祈福
-	{
-		pBlessDataMgr->DiaFirstMoneyBless();
-		SASingleRequstBless singleMsg(SASingleRequstBless::MONEY_FREE_BLESS);
-		singleMsg.m_dwProperty = baseDataMgr.GetMoney();
-		singleMsg.m_dwPrizeID = globalConfig.FristBlessHero;
-		pBlessDataMgr->SetMoneyFreeBlessCount(pBlessDataMgr->GetMoneyFreeBlessCount() - 1);
-		pBlessDataMgr->SetLastFreeMoneyDate(time(nullptr));
-		g_StoreMessage(baseDataMgr.GetDNID(), &singleMsg, sizeof(SASingleRequstBless));
-		baseDataMgr.AddGoods_SG(GoodsType::hero, singleMsg.m_dwPrizeID, 1, GoodsWay::bless, false);
-		/// 首次金钱祈福 引导管理类通知客户端前往下一步指引
-		baseDataMgr.ProcessOperationOfGuide(FunctionMoudleType::Function_Bless);
-		return;
-	}
-
 	if (pBlessDataMgr->GetMoneyFreeBlessCount() > 0 //剩余的祈福次数
 		&& time(nullptr) - pBlessDataMgr->GetLastFreeMoneyBlessDate() >= globalConfig.BlessFreeTimeForMoney) //如果上次免费祈福时间大于5MIN
 	{
+		int32_t prizeID = -1;
+		if (pBlessDataMgr->IsFirstMonyBless()) //首次免费祈福
+		{
+			pBlessDataMgr->DiaFirstMoneyBless();
+			prizeID = globalConfig.FristBlessHero;
+			baseDataMgr.ProcessOperationOfGuide(FunctionMoudleType::Function_Bless);
+			baseDataMgr.AddGoods_SG(GoodsType::hero, prizeID, 1, GoodsWay::bless, false);
+		}
+		else //普通祈福
+		{
+			BlessObjectType objectType = BlessObjectType::None;
+			objectType = m_upRandomObject->MoneyBless(pBlessDataMgr->GetMoneyBlessCount(), prizeID); //调用祈福随机获取物品接口
+			pBlessDataMgr->AddUpMoneyBlessCount(); //祈福次数累加
+			if (objectType == BlessObjectType::Blue_Equip || objectType == BlessObjectType::Purple_Equip || objectType == BlessObjectType::Hero)
+				pBlessDataMgr->ResetMoneyBlessCount(); //重置祈福次数
+			if (objectType == BlessObjectType::Hero)
+				baseDataMgr.AddGoods_SG(GoodsType::hero, prizeID, 1, GoodsWay::bless, false);
+			else
+				baseDataMgr.AddGoods_SG(GoodsType::item, prizeID, 1, GoodsWay::bless, false);
+			CRandomAchieveUpdate* m_ptrRandomAchievementUpdator = baseDataMgr.GetRandomAchievementUpdator();
+			CMissionUpdate* m_ptrMissionUpdator = baseDataMgr.GetMissionUpdator();
+			///更新相关的成就完成状态
+			if (m_ptrRandomAchievementUpdator != nullptr)
+				m_ptrRandomAchievementUpdator->UpdateBlessAchieve();
+			if (m_ptrMissionUpdator != nullptr)
+				m_ptrMissionUpdator->UpdateBlessingMission(1);
+		}
 		pBlessDataMgr->SetMoneyFreeBlessCount(pBlessDataMgr->GetMoneyFreeBlessCount() - 1);
 		pBlessDataMgr->SetLastFreeMoneyDate(time(nullptr));
+		SASingleRequstBless singleMsg(SASingleRequstBless::MONEY_FREE_BLESS);
+		singleMsg.m_dwProperty = baseDataMgr.GetMoney();
+		singleMsg.m_dwPrizeID = prizeID;
+		g_StoreMessage(baseDataMgr.GetDNID(), &singleMsg, sizeof(SASingleRequstBless));
+		_BlessOver(baseDataMgr.GetSID(), 11, 1);
 	}
-	else //单词祈福校验失败 直接返回
-	{
-		return;
-	}
-	int32_t prizeID = -1;
-	BlessObjectType objectType = BlessObjectType::None;
-	objectType = m_upRandomObject->MoneyBless(pBlessDataMgr->GetMoneyBlessCount(), prizeID); //调用祈福随机获取物品接口
-	pBlessDataMgr->AddUpMoneyBlessCount(); //祈福次数累加
-	if (objectType == BlessObjectType::Blue_Equip || objectType == BlessObjectType::Purple_Equip || objectType == BlessObjectType::Hero)
-		pBlessDataMgr->ResetMoneyBlessCount(); //重置祈福次数
-	if (objectType == BlessObjectType::Hero)
-		baseDataMgr.AddGoods_SG(GoodsType::hero, prizeID, 1, GoodsWay::bless, false);
-	else
-		baseDataMgr.AddGoods_SG(GoodsType::item, prizeID, 1, GoodsWay::bless, false);
-	SASingleRequstBless singleMsg(SASingleRequstBless::MONEY_FREE_BLESS);
-	singleMsg.m_dwProperty = baseDataMgr.GetMoney();
-	singleMsg.m_dwPrizeID = prizeID;
-	g_StoreMessage(baseDataMgr.GetDNID(), &singleMsg, sizeof(SASingleRequstBless));
-	CRandomAchieveUpdate* m_ptrRandomAchievementUpdator = baseDataMgr.GetRandomAchievementUpdator();
-	CMissionUpdate* m_ptrMissionUpdator = baseDataMgr.GetMissionUpdator();
-	///更新相关的成就完成状态
-	if (m_ptrRandomAchievementUpdator != nullptr)
-		m_ptrRandomAchievementUpdator->UpdateBlessAchieve();
-	if (m_ptrMissionUpdator != nullptr)
-		m_ptrMissionUpdator->UpdateBlessingMission(1);
+
 }
 
 
@@ -154,6 +147,7 @@ void BlessMoudle::_ProcessSingleMoneyBless(CBlessDataMgr *pBlessDataMgr)
 		m_ptrRandomAchievementUpdator->UpdateBlessAchieve();
 	if (m_ptrMissionUpdator != nullptr)
 		m_ptrMissionUpdator->UpdateBlessingMission(1);
+	_BlessOver(baseDataMgr.GetSID(), 12, 1);
 }
 
 void BlessMoudle::_ProcessMutipleMoneyBless(CBlessDataMgr *pBlessDataMgr)
@@ -194,61 +188,54 @@ void BlessMoudle::_ProcessMutipleMoneyBless(CBlessDataMgr *pBlessDataMgr)
 		m_ptrRandomAchievementUpdator->UpdateBlessAchieve(MUTIPL_BLEES);
 	if (m_ptrMissionUpdator != nullptr)
 		m_ptrMissionUpdator->UpdateBlessingMission(MUTIPL_BLEES);
+	_BlessOver(baseDataMgr.GetSID(), 12, 10);
 }
 
 
 void BlessMoudle::_ProcessFreeDiamondBless(CBlessDataMgr *pBlessDataMgr)
 {
 	CBaseDataManager& baseDataMgr = pBlessDataMgr->GetBaseDataMgr(); //获取基础数据管理类
-	if (pBlessDataMgr->IsFirstDiamondBless())
-	{
-		SASingleRequstBless singleMsg(SASingleRequstBless::DIAMOND_FREE_BLESS);
-		singleMsg.m_dwProperty = baseDataMgr.GetDiamond();
-		singleMsg.m_dwPrizeID = globalConfig.SecondBlessHero;
-		pBlessDataMgr->SetDiamondFreeBlessCount(pBlessDataMgr->GetDiamondFreeBlessCount() - 1);
-		pBlessDataMgr->SetLastFreeDiamondDate(time(nullptr));
-		pBlessDataMgr->DidFirstDiamondBless();
-		baseDataMgr.AddGoods_SG(GoodsType::hero, singleMsg.m_dwPrizeID, 1, GoodsWay::bless, false);
-		g_StoreMessage(baseDataMgr.GetDNID(), &singleMsg, sizeof(SASingleRequstBless));
-		/// 首次元宝祈福 引导管理类通知客户端前往下一步指引
-		baseDataMgr.ProcessOperationOfGuide(FunctionMoudleType::Function_Bless);
-		return;
-	}
-
 	if (time(nullptr) - pBlessDataMgr->GetLastFreeDiamondBlessDate() >= globalConfig.BlessFreeTime) //-免费时间是否满足
 	{
-		//pBlessDataMgr->SetDiamondFreeBlessCount(pBlessDataMgr->GetDiamondFreeBlessCount() - 1);
+		int32_t prizeID = -1;
+		if (pBlessDataMgr->IsFirstDiamondBless())
+		{
+			prizeID = globalConfig.SecondBlessHero;
+			pBlessDataMgr->DidFirstDiamondBless();
+			baseDataMgr.AddGoods_SG(GoodsType::hero, prizeID, 1, GoodsWay::bless, false);
+			/// 首次元宝祈福 引导管理类通知客户端前往下一步指引
+			baseDataMgr.ProcessOperationOfGuide(FunctionMoudleType::Function_Bless);
+		}
+		else
+		{
+			pBlessDataMgr->AddUpDiamondBlessCount(); //祈福次数累加
+			BlessObjectType objectType = BlessObjectType::None;
+			objectType = m_upRandomObject->DiamondBless(pBlessDataMgr->GetDiamondBlessCount(), prizeID); //调用祈福随机获取物品接口
+			if (objectType == BlessObjectType::Blue_Equip || objectType == BlessObjectType::Purple_Equip || objectType == BlessObjectType::Hero)
+				pBlessDataMgr->ResetDiamondBlessCount(); //重置祈福次数
+
+			if (objectType == BlessObjectType::Hero)
+				baseDataMgr.AddGoods_SG(GoodsType::hero, prizeID, 1, GoodsWay::bless, false);
+			else
+				baseDataMgr.AddGoods_SG(GoodsType::item, prizeID, 1, GoodsWay::bless, false);
+			CRandomAchieveUpdate* m_ptrRandomAchievementUpdator = baseDataMgr.GetRandomAchievementUpdator();
+			CMissionUpdate* m_ptrMissionUpdator = baseDataMgr.GetMissionUpdator();
+			///更新相关的成就完成状态
+			if (m_ptrRandomAchievementUpdator != nullptr)
+				m_ptrRandomAchievementUpdator->UpdateBlessAchieve();
+			if (m_ptrMissionUpdator != nullptr)
+				m_ptrMissionUpdator->UpdateBlessingMission(1);
+		}
+
 		pBlessDataMgr->SetLastFreeDiamondDate(time(nullptr));
+		SASingleRequstBless singleMsg(SASingleRequstBless::DIAMOND_FREE_BLESS);
+		singleMsg.m_dwProperty = baseDataMgr.GetDiamond();
+		singleMsg.m_dwPrizeID = prizeID;
+		g_StoreMessage(baseDataMgr.GetDNID(), &singleMsg, sizeof(SASingleRequstBless));
+		_BlessOver(baseDataMgr.GetSID(), 21, 1);
 	}
-	else  //不满足免费条件直接返回
-	{
-		return;
-	}
 
-	int32_t prizeID = -1;
-	BlessObjectType objectType = BlessObjectType::None;
-	objectType = m_upRandomObject->DiamondBless(pBlessDataMgr->GetDiamondBlessCount(), prizeID); //调用祈福随机获取物品接口
-	pBlessDataMgr->AddUpDiamondBlessCount(); //祈福次数累加
 
-	if (objectType == BlessObjectType::Blue_Equip || objectType == BlessObjectType::Purple_Equip || objectType == BlessObjectType::Hero)
-		pBlessDataMgr->ResetDiamondBlessCount(); //重置祈福次数
-
-	if (objectType == BlessObjectType::Hero)
-		baseDataMgr.AddGoods_SG(GoodsType::hero, prizeID, 1, GoodsWay::bless, false);
-	else
-		baseDataMgr.AddGoods_SG(GoodsType::item, prizeID, 1, GoodsWay::bless, false);
-
-	SASingleRequstBless singleMsg(SASingleRequstBless::DIAMOND_FREE_BLESS);
-	singleMsg.m_dwProperty = baseDataMgr.GetDiamond();
-	singleMsg.m_dwPrizeID = prizeID;
-	g_StoreMessage(baseDataMgr.GetDNID(), &singleMsg, sizeof(SASingleRequstBless));
-	CRandomAchieveUpdate* m_ptrRandomAchievementUpdator = baseDataMgr.GetRandomAchievementUpdator();
-	CMissionUpdate* m_ptrMissionUpdator = baseDataMgr.GetMissionUpdator();
-	///更新相关的成就完成状态
-	if (m_ptrRandomAchievementUpdator != nullptr)
-		m_ptrRandomAchievementUpdator->UpdateBlessAchieve();
-	if (m_ptrMissionUpdator != nullptr)
-		m_ptrMissionUpdator->UpdateBlessingMission(1);
 }
 
 void BlessMoudle::_ProcessSingleDiamondBless(CBlessDataMgr *pBlessDataMgr)
@@ -292,7 +279,7 @@ void BlessMoudle::_ProcessSingleDiamondBless(CBlessDataMgr *pBlessDataMgr)
 		m_ptrRandomAchievementUpdator->UpdateBlessAchieve();
 	if (m_ptrMissionUpdator != nullptr)
 		m_ptrMissionUpdator->UpdateBlessingMission(1);
-
+	_BlessOver(baseDataMgr.GetSID(), 22, 1);
 }
 
 void BlessMoudle::_ProcessMutipleDiamondBless(CBlessDataMgr *pBlessDataMgr)
@@ -329,7 +316,7 @@ void BlessMoudle::_ProcessMutipleDiamondBless(CBlessDataMgr *pBlessDataMgr)
 		if (objectType == BlessObjectType::Hero) //由于武将需要做特别处理，所以不马上把武将加到英雄背包中
 		{
 			pBlessDataMgr->ResetDiamondBlessCount(); //重置祈福累计次数
-			if (++heroNum >= 4)
+			if (++heroNum >= globalConfig.BlessHeroLimit)
 				cancelBlessHero = true;
 
 			if (allBlessCount <= conditionCount) //如果满足三星武将必出条件
@@ -370,6 +357,7 @@ void BlessMoudle::_ProcessMutipleDiamondBless(CBlessDataMgr *pBlessDataMgr)
 		m_ptrRandomAchievementUpdator->UpdateBlessAchieve(MUTIPL_BLEES);
 	if (m_ptrMissionUpdator != nullptr)
 		m_ptrMissionUpdator->UpdateBlessingMission(MUTIPL_BLEES);
+	_BlessOver(baseDataMgr.GetSID(), 22, 10);
 }
 
 
@@ -395,4 +383,19 @@ void BlessMoudle::_ProcessMutipleDiamondResult(DWORD *prizeArray) //这里奖品做了
 		prizeArray[i] = tempPrize;
 	}
 	
+}
+
+///@breif blesstype 11是免费金钱祈福， 12是金钱祈福，21免费元宝祈福 22元宝祈福 
+void BlessMoudle::_BlessOver(int sid, int blessType, int blessCount) 
+{
+	BOOL execResult = FALSE;
+	if (g_Script.PrepareFunction("OnBlessOver"))
+	{
+		g_Script.PushParameter(sid);
+		g_Script.PushParameter(blessType);
+		g_Script.PushParameter(blessCount);
+		execResult = g_Script.Execute();
+	}
+	if (execResult == FALSE)
+		rfalse("_BlessOver 祈福完毕回调失败 sid %d ", sid);
 }

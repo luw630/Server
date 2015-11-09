@@ -478,3 +478,8 @@ SSanguoCommodity* CMallManager::GetCommodityDatas()
 {
 	return m_pMallData->m_arrCommodity;
 }
+
+bool CMallManager::OpenMall(bool alwaysOpen)
+{
+	return true;
+}

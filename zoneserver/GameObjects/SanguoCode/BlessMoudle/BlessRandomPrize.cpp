@@ -164,13 +164,14 @@ bool CBlessRandomPrize::_InitDiamondBlessData()
 
 void CBlessRandomPrize::_GetIntArray(const string& strIn, vector<int32_t> &IntArrayOut)
 {
-	vector<string> tempVector;
+	vector<int> tempVector;
 	tempVector.clear();
 	int32_t element = 0;
-	CTabTableReader::StringSplit(strIn, "|", &tempVector);
-	for each (string var in tempVector) //循环赋值
+
+	CTabTableReader::StringSplit(strIn, "|", tempVector);
+	for each (int var in tempVector) //循环赋值
 	{
-		element = atoi(var.c_str());
+		element = var;
 		IntArrayOut.push_back(element);
 	}
 

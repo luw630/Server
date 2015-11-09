@@ -35,6 +35,7 @@ void CSSanGuoFunc::CreateShadow()
 	g_Script.RegisterFunction("CI_SendLoginGMRes", L_SendLoginGMRes);
 	g_Script.RegisterFunction("CI_SynNotificationDataSG", L_SynNotificationDataSG);
 	g_Script.RegisterFunction("CI_SynMissionData", L_SynMissionDataSG);
+	g_Script.RegisterFunction("CI_SynMissionActivenessData", L_SynMissionActivenessDataSG);
 	g_Script.RegisterFunction("CI_UpdateMissionState", L_UpdateMissionStateSG);
 	g_Script.RegisterFunction("CI_SendCheckinData", L_SendCheckinData);
 	g_Script.RegisterFunction("CI_TipMsg", L_TipMsg);
@@ -70,6 +71,7 @@ void CSSanGuoFunc::CreateShadow()
 	g_Script.RegisterFunction("CI_SynMembershipToClient", L_SynMembershipToClient);
 	g_Script.RegisterFunction("CI_exchangeActRes", L_exchangeActRes);
 	g_Script.RegisterFunction("CI_exchangeActSendData", L_exchangeActSendData);
+	g_Script.RegisterFunction("CI_expense_backMail", L_expense_backMail);
 	
 }
 
@@ -674,6 +676,40 @@ int CSSanGuoFunc::L_SynMissionDataSG(lua_State *L)
 	return 1;
 }
 
+
+int CSSanGuoFunc::L_SynMissionActivenessDataSG(lua_State *L)
+{
+	DWORD dwSID = static_cast<DWORD>(lua_tonumber(L, 1));
+	CPlayer* pPlayer;
+	if (dwSID == 0)
+	{
+		pPlayer = g_Script.m_pPlayer;
+	}
+	else
+	{
+		pPlayer = (CPlayer *)GetPlayerBySID(dwSID)->DynamicCast(IID_PLAYER);
+	}
+	if (!pPlayer) 
+		return 0;
+
+	if (!lua_istable(L, 3))
+		return 0;
+
+	SDATASYN_MISSIONACTIVENESS msg;
+	msg.length = lua_tointeger(L, 2);
+
+	for (int i = 0; i < msg.length; ++i)
+	{
+		lua_rawgeti(L, 3, i + 1);
+		msg.datas[i] = lua_tointeger(L, -1);
+		lua_pop(L, 1);
+	}
+
+	g_StoreMessage(pPlayer->m_ClientIndex, &msg, sizeof(SDATASYN_MISSIONACTIVENESS) - (MISSION_ACTIVENESS_REWARD_NUM - msg.length) * sizeof(int));
+
+	return 0;
+}
+
 int CSSanGuoFunc::L_SynHeroExtendsData(lua_State *L)
 {
 	if (g_Script.m_pPlayer == NULL)
@@ -1056,6 +1092,8 @@ int CSSanGuoFunc::L_ChangeName(lua_State *L)
 		lite::Variant ret;//从lua获取更名次数
 		LuaFunctor(g_Script, "GetChangeNameCount")[sid](&ret);
 		int count = (int)ret;
+		if (count > 99999 || count < 0) //如果改名次数过大或小于0，则代表lua获取改名次数失效，立即返回
+			return 0;
 
 		msg.ChangeNameCount = count;
 		msg.falg = false;
@@ -1615,4 +1653,39 @@ int CSSanGuoFunc::L_exchangeActSendData(lua_State *L)//兑换活动玩家数据同步
 		lua_pop(L, 1);
 	}
 	g_StoreMessage(g_Script.m_pPlayer->m_ClientIndex, &msg, sizeof(msg));
+}
+
+//消费返还邮件奖励
+int CSSanGuoFunc::L_expense_backMail(lua_State *L)
+{
+	int sid = static_cast<int32_t>(lua_tointeger(L, 1));
+	MailInfo _MailInfo;
+	memset(&_MailInfo, 0, sizeof(_MailInfo));
+
+	lite::Variant ret2;//
+	LuaFunctor(g_Script, "SI_GetStr")[14](&ret2);
+	LPCSTR Txt2 = (LPCSTR)ret2;
+	if (Txt2 == nullptr)
+		rfalse("L_WarMail error 2");
+	strcpy_s(_MailInfo.title, Txt2);
+
+	lite::Variant ret3;//
+	LuaFunctor(g_Script, "SI_GetStr")[15](&ret3);
+	LPCSTR Txt3 = (LPCSTR)ret3;
+	if (Txt3 == nullptr)
+		rfalse("L_WarMail error 3");
+	strcpy_s(_MailInfo.content, Txt3);
+
+	lite::Variant ret1;//
+	LuaFunctor(g_Script, "SI_GetStr")[16](&ret1);
+	LPCSTR Txt1 = (LPCSTR)ret1;
+	if (Txt1 == nullptr)
+		rfalse("L_WarMail error 1");
+	strcpy_s(_MailInfo.senderName, Txt1);
+
+	_MailInfo.szItemInfo[0].itype =GoodsType::diamond;
+	_MailInfo.szItemInfo[0].id = 0;
+	_MailInfo.szItemInfo[0].num = static_cast<int32_t>(lua_tointeger(L, 2));
+	MailMoudle::getSingleton()->SendMail_SanGuo(sid, 60 * 24 * 7, &_MailInfo);
+	return 1;
 }

@@ -81,6 +81,10 @@ public:
 	void SetRefreshInfo(bool autoRefresh = true);
 	/**@brief 获取商品数据*/
 	SSanguoCommodity* GetCommodityDatas();
+	/**@brief 设置商城开放
+	@param [in] alwaysOpen 是否为永久开放标志
+	*/
+	virtual bool OpenMall(bool alwaysOpen);
 protected:
 	/**@brief 判断初始化时是否需要刷新*/
 	bool JudgementRefresh(const STimeData& time);

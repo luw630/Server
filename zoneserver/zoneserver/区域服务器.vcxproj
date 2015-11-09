@@ -394,6 +394,7 @@ copy "$(OutDir)ZoneServer_d.pdb" "..\..\..\ServerBin\ZoneServer"
       <AdditionalOptions>/SAFESEH:NO  /LTCG %(AdditionalOptions)</AdditionalOptions>
       <LargeAddressAware>true</LargeAddressAware>
       <Profile>true</Profile>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
     <PostBuildEvent>
       <Command>copy "$(OutDir)zoneserver.exe"  "..\..\..\ServerBin\ZoneServer"

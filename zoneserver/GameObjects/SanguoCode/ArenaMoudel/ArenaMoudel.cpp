@@ -515,14 +515,14 @@ void CArenaMoudel::_OnSetDefensiveTeam(DNID dnidClient, SSGArenaMsg *pSArenaMsg,
 }
 
 //根据下列公式随机出3个对手
-//No.1:随机对手x*0.6 - x*（0.001-0.08）
-//No.2:随机对手 x*0.8 - x*（0.001-0.08）
+//No.1:随机对手x*0.8 - x*（0.001-0.08）
+//No.2:随机对手 x*0.9 - x*（0.001-0.08）
 //No.3:随机对手 x*0.98 - x*（0.001-0.08）
 void CArenaMoudel::_OnRandomReplacement(DNID dnidClient, SSGArenaMsg *pSArenaMsg, CPlayer *pPlayer) //随机替换对手
 {
 	int curRank;
 
-	static float posIndexList[] = { 0.6f, 0.8f, 0.98f };
+	static float posIndexList[] = { 0.8f, 0.9f, 0.98f };
 	static int topRank[] = { 1, 2, 3, 4 };
 	CBaseDataManager* baseDataMgr = pPlayer->GetBaseDataMgr();
 	try
@@ -558,7 +558,7 @@ void CArenaMoudel::_OnRandomReplacement(DNID dnidClient, SSGArenaMsg *pSArenaMsg
 		int tempRank = -1;
 		for (int i = 0; i < 3; i++)//3个对手
 		{
-			randomFactor = (CRandom::RandRange(10, 800) / 10000.0f);
+			randomFactor = (CRandom::RandRange(10, 300) / 10000.0f);
 			tempRank = floor((curRank * posIndexList[i] - curRank * randomFactor));
 			if (m_ArenaManagedData.find(tempRank) == m_ArenaManagedData.end())
 			{

@@ -1925,6 +1925,11 @@ public:
 	void OnModifyNotice(struct SQFModifyNotice *pMsg);//修改公告
 	void OnShowoperateLog(struct SQFactionOperateLog *pMsg);//查看军团日志
 	void OnSendFcEmailToAll(struct SQFcEmailToAll *pMsg);//发送军团邮件
+	void OnShowRequestEquipt(struct SQShowEquipt *pMsg);//查看可以请求到的装备
+	void OnRequestEquipt(struct SQRequestEquipt *pMsg);//申请某件装备
+	void OnRequestStatus(struct SQRequestStatus *pMsg);//军团申请装备状态
+	void OnCanceledQuest(struct SQCanceledQuest *pMsg);//军团取消申请装备
+
 
 	void OnGetGiftCode(struct SQGiftcodeActivity  *pMsg);//激活码
 	//////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -16,6 +16,7 @@
 #include "MissionMoudle\CMissionUpdate.h"
 #include "MissionMoudle\MissionDataManager.h"
 #include "MissionMoudle\MissionManager.h"
+#include "MissionMoudle\MissionActiveness.h"
 #include "MallMoudle\VarietyShopManager.h"
 #include "MallMoudle\ArenaShopManager.h"
 #include "MallMoudle\ExpeditionShopManager.h"
@@ -60,6 +61,7 @@ CSanguoPlayer::CSanguoPlayer()
 	m_ClientIndex(0),
 	m_GMFlag(false)
 {
+	m_dwExtendsDataIndex = 0;
 	m_DataMgrList.clear();
 	m_MallMgrList.clear();
 	m_duplicateMgrs.clear();
@@ -313,7 +315,8 @@ void CSanguoPlayer::ChangeGameName(SQChangePlayerName* pMsg)
 	lite::Variant ret;//从lua获取更名次数
 	LuaFunctor(g_Script, "GetChangeNameCount")[baseDataMgr->GetSID()](&ret);
 	int count = (int)ret;
-
+	if (count > 99999 || count < 0) //如果改名次数过大或小于0，则代表lua获取改名次数失效，立即返回
+		return;
 	//获取免费修改的次数
 	int num = CConfigManager::getSingleton()->globalConfig.ChangeNameConsumptionFreeTime;
 
@@ -351,7 +354,8 @@ void CSanguoPlayer::Db_Back_ChangeGameName(char* name, DWORD SID, CBaseDataManag
 	lite::Variant ret;//从lua获取更名次数
 	LuaFunctor(g_Script, "GetChangeNameCount")[SID](&ret);
 	int count = (int)ret;
-
+	if (count > 99999 || count < 0) //如果改名次数过大或小于0，则代表lua获取改名次数失效，立即返回
+		return;
 
 	//获取更名所需费用
 	int decmoney = CConfigManager::getSingleton()->globalConfig.ChangeNameConsumption;
@@ -425,6 +429,9 @@ void CSanguoPlayer::SetCplayerPtr(CPlayer*  _cPlayer)
 }
 void CSanguoPlayer::SetSanguoPlayerData(SFixData *fixData)
 {
+	///现将SFixData数据中的m_extendsBuffer扩展性数据的索引位置为初始位置
+	m_dwExtendsDataIndex = 0;
+
 	m_pPlayerData = fixData; //数据赋值
 	m_upBaseDataMgr.reset(new CBaseDataManager(m_ClientIndex, m_pPlayerData, cPlayer));
 	m_upBaseDataMgr->Init(m_GMFlag);
@@ -488,7 +495,14 @@ void CSanguoPlayer::SetSanguoPlayerData(SFixData *fixData)
 	///初始化任务的数据管理
 	m_MissionDataMgr.reset(new CMissionDataManager(*m_upBaseDataMgr));
 	m_MissionDataMgr->InitDataMgr(nullptr);
-	m_MissionMgr.reset(new CMissionManager(*((CExtendedDataManager*)m_MissionDataMgr.get())));
+	m_MissionActivenessMgr.reset(new CMissionActiveness(*m_upBaseDataMgr));
+	///@将SFixData数据中的m_extendsBuffer扩展性数据的任务活跃度的数据传进去
+	m_MissionActivenessMgr->InitDataMgr(&m_pPlayerData->m_extendsBuffer);
+	///NOTE : 此处将扩展性数据的索引往后移4个字节，跳过任务活跃度的玩家数据
+	m_dwExtendsDataIndex += sizeof(DWORD);
+	FunctionPtr callBack = std::bind(&CMissionActiveness::OnMissionAccomplished, m_MissionActivenessMgr.get(), std::placeholders::_1);
+	m_MissionDataMgr->SetMissionAccomplishedCallBack(callBack);
+	m_MissionMgr.reset(new CMissionManager(*((CExtendedDataManager*)m_MissionDataMgr.get()), *((CExtendedDataManager*)m_MissionActivenessMgr.get())));
 	///初始化成就的数据管理
 	m_AchievementDataMgr.reset(new CAchievementDataManager(*m_upBaseDataMgr));
 	m_AchievementDataMgr->InitDataMgr(&m_pPlayerData->m_AchievementData);
@@ -685,7 +699,13 @@ void CSanguoPlayer::FiveOclockRefreshEvent()
 	if (m_MissionDataMgr != nullptr)
 	{
 		m_MissionDataMgr->ResetMissionData(1);
+		///开启午餐体力礼包任务的显示
 		m_MissionDataMgr->LunchMissionVisible();
+	}
+
+	if (m_MissionActivenessMgr != nullptr)
+	{
+		m_MissionActivenessMgr->ResetMissionActivenessData(1);
 	}
 
 	if (m_RandomAchievementDataMgr != nullptr)
@@ -877,9 +897,10 @@ void CSanguoPlayer::UpdateDataForVIP(int vipLevel)
 	///更新VIP等级相关的任务
 	if (m_upBaseDataMgr != nullptr)
 	{
-		CMissionUpdate * missionUpdator = m_upBaseDataMgr->GetMissionUpdator();
-		if (missionUpdator != nullptr)
-			missionUpdator->UpdateVipMission(vipLevel);
+		//CMissionUpdate * missionUpdator = m_upBaseDataMgr->GetMissionUpdator();
+		//if (missionUpdator != nullptr)
+		//	missionUpdator->UpdateVipMission(vipLevel);
+		m_upBaseDataMgr->UpdateDateForVIP(vipLevel);
 	}
 }
 
@@ -894,6 +915,8 @@ void CSanguoPlayer::InitDataOfLogin()
 	///初始化任务的一些数据
 	if (m_MissionDataMgr != nullptr)
 		m_MissionDataMgr->OnLuaInitialed();
+	if (m_MissionActivenessMgr != nullptr)
+		m_MissionActivenessMgr->OnLuaInitialed();
 
 	/// 刷新距离下次刷新时间
 	for (auto& iter : m_MallMgrList)
@@ -915,7 +938,8 @@ void CSanguoPlayer::InitDataOfLogin()
 		iter->second->IsOpened();
 	}
 
-
+	if (nullptr != m_upBaseDataMgr)
+		m_upBaseDataMgr->InitDataOfLogin();
 }
 
 const CDuplicateBaseManager* CSanguoPlayer::GetDuplicatemanager(InstanceType type)

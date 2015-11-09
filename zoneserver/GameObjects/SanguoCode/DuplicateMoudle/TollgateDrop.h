@@ -25,6 +25,8 @@ public:
 	///@param singleDrop 是否每个物品只会掉落一次
 	///@param bMopUpOperation 是否为扫荡操作
 	void CalculateDropItem(BossItemMissedCounter* countData, bool singleDrop = false, bool bMopUpOperation = false);
+	///@brief 按比例增加掉落的将魂碎片
+	void IncreaseDropedSoulStone(int ratio);
 	///@brief 暂时专用于第一次关卡掉落中往链表添加东西
 	void AddBossDropedItem(int itemID, int itemNum);
 	///@brief 重置上一次的物品掉落信息
@@ -45,6 +47,9 @@ protected:
 	void RandomItem(int dropNum, int itemNum, const vector<int>* itemList, OUT int& stepIndex, OUT int& dropedItemNum, bool singleDrop = false);
 
 private:
+	///将掉落的将魂碎片加倍
+	bool _IdentifySoulStone(int itemID);
+
 	int m_iMinNumber;       ///最小掉落数
 	int m_iMaxNumber;       ///最大掉落数
 	int m_iWhiteItemWeight;     ///白色物品掉落权重

@@ -286,8 +286,9 @@ void CExpeditionManager::_RewardsReceived()
 	}
 
 	///开始结算，加钱、加经验等
+	m_ptrDataMgr->CacheCurProceedsRiseState();
 	baseDataManager.AddGoods_SG(GoodsType::money, 0, m_ptrDataMgr->GetCurExpectedMoneyProceeds(), GoodsWay::passCustoms);
-	baseDataManager.AddGoods_SG(GoodsType::exploit, 0, m_ptrCurLevelInstanceInfor->exploitProceeds, GoodsWay::passCustoms);
+	baseDataManager.AddGoods_SG(GoodsType::exploit, 0, m_ptrDataMgr->GetCurExpectedExploitProceeds(), GoodsWay::passCustoms);
 
 	DWORD obtainedItemID = 0;
 	if (!m_ptrDataMgr->GetCurItemObtained(obtainedItemID))

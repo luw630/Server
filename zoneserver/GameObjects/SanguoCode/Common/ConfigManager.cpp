@@ -25,11 +25,13 @@ CConfigManager::CConfigManager()
 	InitForgingConfig();
 	InitMonsterConfig();
 	InitChapterConfig();
+	//InitChapterBattleScoreRewardsConfig();
 	InitBattleLevelConfig();
 	InitBattleFristDropConfig();
 	InitBattleDropConfig();
 	InitMasterLevelInfor();
 	InitMissionConfig();
+	InitMissionActivenessRewardsConfig();
 	InitHeroExpConfig();
 	InitHeroRankConfig();
 	InitHeroTrainingCfg();
@@ -185,6 +187,7 @@ bool CConfigManager::InitGolalConfig()
 	globalConfig.PurpleEquipForRestore = fileReader.GetSecondRowFloatValue("PurpleEquipForRestore");
 	globalConfig.ForgeExpRestoreItem = fileReader.GetSecondRowIntValue("ForgeExpRestoreItem");
 	globalConfig.ForgeMoneyCostScale = fileReader.GetSecondRowIntValue("ForgeMoneyCostScale");
+	globalConfig.ForgeDiamondCostScale = fileReader.GetSecondRowIntValue("ForgeDiamondCostScale");
 	globalConfig.LuckyTimeGap = fileReader.GetSecondRowIntValue("LuckyTimeGap");
 	globalConfig.LuckyTimePersistentTime = fileReader.GetSecondRowIntValue("LuckyTimePersistentTime");
 	globalConfig.MaxRandomAchievementAccomplishTimes = fileReader.GetSecondRowIntValue("MaxRandomAchievementAccomplishTimes");
@@ -272,6 +275,9 @@ bool CConfigManager::InitGolalConfig()
 	globalConfig.FightingCapacityFaultTolerant = fileReader.GetSecondRowFloatValue("FightingCapacityFaultTolerant");
 	globalConfig.AttackingFaultTolerant = fileReader.GetSecondRowFloatValue("AttackFaultTolerant");
 	globalConfig.GethitFaultTolerant = fileReader.GetSecondRowFloatValue("GethitFaultTolerant");
+	globalConfig.BlessHeroLimit = fileReader.GetSecondRowIntValue("BlessHeroLimit");
+	globalConfig.TreasureStoreOpenCost = fileReader.GetSecondRowIntValue("TreasureStoreOpenCost");
+	globalConfig.GemStoreOpenCost = fileReader.GetSecondRowIntValue("GemStoreOpenCost");
 	return true;
 }
 
@@ -861,6 +867,7 @@ bool CConfigManager::InitMissionConfig()
 		config.rewardsItemID = filereader.GetIntValue("AwardItem");
 		config.rewardsItemAmount = filereader.GetIntValue("Number");
 		config.rewardsType = (MissionRewardsType)filereader.GetIntValue("RewardsType");
+		config.activenessGains = filereader.GetIntValue("Vitality");
 
 		auto findResult = m_MissionTypeList.find(config.missionType);
 		if (findResult != m_MissionTypeList.end())
@@ -883,6 +890,59 @@ bool CConfigManager::InitMissionConfig()
 	return true;
 }
 
+
+bool CConfigManager::InitMissionActivenessRewardsConfig()
+{
+	///其实是任务活跃度奖励
+	string fileName = "ServerConfig\\RenWuHuoYueDu.txt";
+	CTabTableReader filereader;
+	if (!filereader.OpenTabTable(fileName))
+	{
+		rfalse("can not find file %s！！！！", fileName.c_str());
+		return false;
+	}
+
+	///开始读取配置文件中的信息到内存
+	m_MissionActivenessRewardsConfig.clear();
+	while (filereader.ReadLine())
+	{
+		MissionActivenessReswardsConfig config;
+		vector<int> types;
+		vector<int> IDs;
+		vector<int> nums;
+		config.activenessTiggerCondition = filereader.GetIntValue("Condition");
+		string ItemStr = filereader.GetStrValue("RewardType");
+		CTabTableReader::StringSplit(ItemStr, "|", types);
+		ItemStr = filereader.GetStrValue("RewardID");
+		CTabTableReader::StringSplit(ItemStr, "|", IDs);
+		ItemStr = filereader.GetStrValue("RewardNum");
+		CTabTableReader::StringSplit(ItemStr, "|", nums);
+
+		if (types.size() != IDs.size() || types.size() != nums.size())
+		{
+			rfalse("读取RenWuHuoYueDu出错，配置的奖励个数出错");
+			continue;
+		}
+
+		for (int i = 0; i < types.size(); ++i)
+		{
+			GoodsInfoSG info;
+			info.itype = types[i];
+			info.id = IDs[i];
+			info.num = nums[i];
+			config.rewardsInfor.push_back(std::move(info));
+		}
+
+		if (m_MissionActivenessRewardsConfig.find(config.activenessTiggerCondition) == m_MissionActivenessRewardsConfig.end())
+			m_MissionActivenessRewardsConfig.insert(make_pair(config.activenessTiggerCondition, move(config)));
+		else
+			rfalse("文件%s 有重复ID", fileName.c_str());
+	}
+
+	return true;
+}
+
+
 const MissionConfig* CConfigManager::GetMissionConfig(int missionID) const
 {
 	auto findResult = m_MissionConfigList.find(missionID);
@@ -899,6 +959,24 @@ const set<int>* CConfigManager::GetMissionListByType(MissionType missionType) co
 		return &findResult->second;
 
 	return nullptr;
+}
+
+const MissionActivenessReswardsConfig* CConfigManager::GetMissionActivenessRewardsConfig(int activenessTrigger) const
+{
+	auto findResult = m_MissionActivenessRewardsConfig.find(activenessTrigger);
+	if (findResult != m_MissionActivenessRewardsConfig.end())
+		return &findResult->second;
+
+	return nullptr;
+}
+
+bool CConfigManager::IsMissionActivenessRestricted(int activeness)
+{
+	auto findResult = m_MissionActivenessRewardsConfig.lower_bound(activeness);
+	if (findResult == m_MissionActivenessRewardsConfig.end())
+		return true;
+
+	return false;
 }
 
 const ExchangeGoldConfig* CConfigManager::GetExchangeGoldConfig(int boughtCount) const
@@ -1311,10 +1389,92 @@ bool CConfigManager::InitChapterConfig()
 	return true;
 }
 
+bool CConfigManager::InitChapterBattleScoreRewardsConfig()
+{
+	string fileName = "ServerConfig\\ZhangJieJiangLi.txt";
+	CTabTableReader filereader;
+	if (!filereader.OpenTabTable(fileName))
+	{
+		rfalse("can not find file %s！！！！", fileName.c_str());
+		return false;
+	}
+
+	///开始读取配置文件
+	m_ChapterBattleScoreRewardsConfig.clear();
+	while (filereader.ReadLine())
+	{
+		ChapterBattleScoreRewardsConfig config;
+
+		config.chapterID = filereader.GetIntValue("chapterID");
+		_ReadChapterBattleScoreRewardsConfigModule(filereader, "StageOne", config.rewardsInfor);
+		_ReadChapterBattleScoreRewardsConfigModule(filereader, "StageTwo", config.rewardsInfor);
+		_ReadChapterBattleScoreRewardsConfigModule(filereader, "StageThree", config.rewardsInfor);
+
+		auto findReults = m_ChapterBattleScoreRewardsConfig.find(config.chapterID);
+		if (findReults == m_ChapterBattleScoreRewardsConfig.end())
+		{
+			m_ChapterBattleScoreRewardsConfig.insert(make_pair(config.chapterID, std::move(config)));
+		}
+		else
+			rfalse("文件%s 有重复ID", fileName.c_str());
+	}
+
+	return true;
+}
+
+void CConfigManager::_ReadChapterBattleScoreRewardsConfigModule(CTabTableReader& fileReader, string baseAttrTag, unordered_map<int, vector<GoodsInfoSG>>& rewardsInfor)
+{
+	vector<int> types;
+	vector<int> IDs;
+	vector<int> nums;
+	int iStage = fileReader.GetIntValue(baseAttrTag);
+	string RewardTypeAttrName = "RewardsType";
+	string RewardIDAttrName = "RewardsID";
+	string RewardNumAttrName = "RewardsNum";
+
+	string ItemStr = fileReader.GetStrValue(RewardTypeAttrName.insert(0, baseAttrTag.c_str()));
+	CTabTableReader::StringSplit(ItemStr, "|", types);
+	ItemStr = fileReader.GetStrValue(RewardIDAttrName.insert(0, baseAttrTag.c_str()));
+	CTabTableReader::StringSplit(ItemStr, "|", IDs);
+	ItemStr = fileReader.GetStrValue(RewardNumAttrName.insert(0, baseAttrTag.c_str()));
+	CTabTableReader::StringSplit(ItemStr, "|", nums);
+
+	if (types.size() != IDs.size() || types.size() != nums.size())
+	{
+		rfalse("读取ZhangJieJiangLi出错，配置的奖励个数出错");
+		return;
+	}
+
+	vector<GoodsInfoSG> goodsInfors;
+	for (int i = 0; i < types.size(); ++i)
+	{
+		GoodsInfoSG info;
+		info.itype = types[i];
+		info.id = IDs[i];
+		info.num = nums[i];
+		goodsInfors.push_back(std::move(info));
+	}
+
+	auto findResult = rewardsInfor.find(iStage);
+	if (findResult == rewardsInfor.end())
+		rewardsInfor.insert(make_pair(iStage, std::move(goodsInfors)));
+	else
+		rfalse("ZhangJieJiangLi表配置的星级个数有重复");
+}
+
 const ChapterConfig* CConfigManager::GetChapterConfig(DWORD chapterID)
 {
 	auto findResult = m_ChapterConfigList.find(chapterID);
 	if (findResult != m_ChapterConfigList.end())
+		return &findResult->second;
+
+	return nullptr;
+}
+
+const ChapterBattleScoreRewardsConfig* CConfigManager::GetChapterBattleScoreRewardsConfig(DWORD chapterID)
+{
+	auto findResult = m_ChapterBattleScoreRewardsConfig.find(chapterID);
+	if (findResult != m_ChapterBattleScoreRewardsConfig.end())
 		return &findResult->second;
 
 	return nullptr;

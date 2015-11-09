@@ -8,6 +8,7 @@
 #include "SanguoConfigTypeDef.h"
 #include "RobotNameConfig.h"
 
+class CTabTableReader;
 enum InstanceType;
 enum MissionType;
 
@@ -52,6 +53,8 @@ public:
 	int GetHeroNeededExp(DWORD level);
 	///@brief 获取普通副本、精英副本、将神传说副本、秘境寻宝副本的对应章节的配置信息
 	const ChapterConfig* GetChapterConfig(DWORD chapterID);
+	///@brief 获取普通副本、精英副本指定的章节的战斗评分相关的奖励配置
+	const ChapterBattleScoreRewardsConfig* GetChapterBattleScoreRewardsConfig(DWORD chapterID);
 	///@brief 获取指定副本类型的第一个副本的ID
 	///@return 成功返回对应的值，失败返回-1
 	int GetFirstDuplicateID(InstanceType type);
@@ -124,6 +127,10 @@ public:
 	const MissionConfig* GetMissionConfig(int missionID) const;
 	///@brief 获取指定任务类型的任务列表
 	const set<int>* GetMissionListByType(MissionType missionType) const;
+	///@brief 获取任务活跃度奖励的配置信息
+	const MissionActivenessReswardsConfig* GetMissionActivenessRewardsConfig(int activenessTrigger) const;
+	///@brief 判断任务的活跃度是否达到顶值
+	bool IsMissionActivenessRestricted(int activeness);
 	///@brief 获取购买金钱次数对应的配置文件
 	///@param boughtCount已经购买的次数
 	const ExchangeGoldConfig* GetExchangeGoldConfig(int boughtCount) const;
@@ -210,6 +217,8 @@ private:
 	bool InitMonsterConfig();
 	///@brief 读取普通副本、精英副本、将神传说副本、秘境寻宝副本的章节配置表
 	bool InitChapterConfig();
+	///@brief 初始化普通副本、精英副本的战斗评分对应的奖励信息
+	bool InitChapterBattleScoreRewardsConfig();
 	///@brief 读取普通副本、精英副本、将神传说副本、秘境寻宝副本的关卡配置表
 	bool InitBattleLevelConfig();
 	///@brief 读取普通副本、精英副本、将神传说副本、秘境寻宝副本的第一次关卡掉落配置表
@@ -222,7 +231,10 @@ private:
 	bool InitHeroExpConfig();
 	bool InitHeroRankConfig();
 	bool InitHeroStarConfig();
+	///@brief 初始化任务的配置信息
 	bool InitMissionConfig();
+	///@brief 初始化任务的活跃度奖励配置
+	bool InitMissionActivenessRewardsConfig();
 	bool InitAchievementConfig();
 	bool InitRandomAchievementConfig();
 	bool InitMasterLevelInfor();
@@ -254,6 +266,9 @@ private:
 	bool _InitBuffConfig();
 	///@brief 初始化法抗转换配置
 	bool _InitResistanceRateCalculateConfig();
+
+	///@breif 模块化地读取副本战斗评分奖励的配置
+	void _ReadChapterBattleScoreRewardsConfigModule(CTabTableReader& fileReader, string baseAttrTag, unordered_map<int, vector<GoodsInfoSG>>& rewardsInfor);
 private:
 
 	int m_iHeroTrainingCfgNums;
@@ -272,10 +287,12 @@ private:
 	map<int32_t, int32_t> m_HeroExpConfig;///<英雄的某一等级所需要的经验配置,NOTE:key值为经验值，value值为对应的等级
 	vector<int32_t> m_HeroLevelNeededExp;///<英雄某一等级对应的所需要的经验值
 	map<int32_t, ChapterConfig> m_ChapterConfigList;
+	unordered_map<int32_t, ChapterBattleScoreRewardsConfig> m_ChapterBattleScoreRewardsConfig; ///<章节副本的战斗评分对应的奖励
 	unordered_map<int32_t, ExchangeGoldConfig> m_ExchangeGoldConfigList;	///<宝石换金钱的配置表
 	unordered_multimap<int32_t, int32_t> m_ExchangeGoldDiamondCostList;		///<宝石换金钱的宝石消耗信息表，key值为宝石的消耗，value值为对应的兑换次数
 	unordered_map<int32_t, ForgingConfig> m_ForgingConfigList;
 	unordered_map<int32_t, MissionConfig> m_MissionConfigList;
+	map<int32_t, MissionActivenessReswardsConfig> m_MissionActivenessRewardsConfig; ///<任务活跃度对应的奖励配置信息，key值为任务活跃度到达可领取状态的条件值
 	unordered_map<MissionType, set<int>> m_MissionTypeList;
 	map<int32_t, AchievementConfig> m_AchievementConfigList;	///<玩家终生成就的配置信息
 	unordered_map<int32_t, RandomAchievementConfig> m_RandomAchievementConfigList;	///<随机生成的可达成成就的配置信息

@@ -32,6 +32,7 @@ CMissionDataManager::CMissionDataManager(CBaseDataManager& baseDataMgr)
 
 CMissionDataManager::~CMissionDataManager()
 {
+	m_operationOnMissionAccomplished = nullptr;
 }
 
 bool CMissionDataManager::InitDataMgr(void * pData)
@@ -96,6 +97,11 @@ void CMissionDataManager::OnLuaInitialed()
 	}
 
 	SetMissionCompleteTimes(MissionType::MT_VIP, retValue);
+}
+
+void CMissionDataManager::SetMissionAccomplishedCallBack(FunctionPtr& fun)
+{
+	m_operationOnMissionAccomplished = fun;
 }
 
 bool CMissionDataManager::ReleaseDataMgr()
@@ -271,7 +277,7 @@ void CMissionDataManager::SetMissionAccompulished(DWORD missionID)
 		}
 	}
 
-	///如果任务的完成次数没有达到要求也不予设置完成状态，并领取相应的奖励
+	///如果任务的完成次数没有达到要求也不予设置完成状态和领取相应的奖励
 	if (retValue == 0)
 	{
 		lite::Variant ret2;//从lua获取到的返回值
@@ -301,6 +307,10 @@ void CMissionDataManager::SetMissionAccompulished(DWORD missionID)
 		g_StoreMessage(m_pBaseDataMgr.GetDNID(), m_ptrMissionAccomplishedMsg.get(), sizeof(SAMissionAccomplished));
 		return;
 	}
+
+	///任务完成后的回调操作
+	if (m_operationOnMissionAccomplished._Empty() == false)
+		m_operationOnMissionAccomplished(missionID);
 
 	int itemNum = 0;
 	m_ptrMissionAccomplishedMsg->bAccomplished = true;

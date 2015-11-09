@@ -72,6 +72,7 @@ struct CGlobalConfig
 	int32_t GemMerchantMasterLevelLimit;
 	int32_t ForgeExpRestoreItem;	///<装备在升阶过程中锻造经验值会返还的物品ID
 	int32_t ForgeMoneyCostScale;	///<锻造物品的时候的金钱消耗的比例值
+	int32_t ForgeDiamondCostScale;	///<锻造的物品所需元宝的比例值
 	int32_t FirstTimeGetHeroForMoney;
 	int32_t FirstTimeGetHeroForCash;
 	int32_t OneStarHeroTransform;
@@ -112,7 +113,9 @@ struct CGlobalConfig
 	int HeroHuntingTime;//武将寻宝时间
 	int HeroHuntingGoldClearingUnitTime;//武将寻宝金币收益计算时间单位
 	int HeroHuntingSurpriseUnitTime;//武将寻宝掉宝间隔时间单位
-
+	int BlessHeroLimit; //元宝祈福获取武将上限
+	int TreasureStoreOpenCost;	///奇缘商人开启消耗
+	int GemStoreOpenCost;	///珍宝商人开启消耗
 	///<杂货铺刷新消耗
 	vector<int32_t> vecVarietyShopRefreshCost;
 	///<将魂兑换商店刷新消耗
@@ -296,6 +299,37 @@ struct MissionConfig
 	int rewardsItemAmount; //奖励物品数量
 	int needCompleteTime; //需要完成次数
 	int rewardsType;//奖励的类型
+	int activenessGains; ///<活跃度的奖励
+};
+
+///@brief 任务活跃度的奖励配置信息数据结构
+struct MissionActivenessReswardsConfig
+{
+	int activenessTiggerCondition;
+	vector<GoodsInfoSG> rewardsInfor;
+
+	MissionActivenessReswardsConfig()
+	{
+		activenessTiggerCondition = 0;
+		rewardsInfor.clear();
+	}
+
+	MissionActivenessReswardsConfig(MissionActivenessReswardsConfig&& other)
+		:rewardsInfor(std::move(other.rewardsInfor))
+	{
+		activenessTiggerCondition = other.activenessTiggerCondition;
+	}
+
+	MissionActivenessReswardsConfig& operator = (MissionActivenessReswardsConfig&& other)
+	{
+		if (this != &other)
+		{
+			activenessTiggerCondition = other.activenessTiggerCondition;
+			rewardsInfor = std::move(other.rewardsInfor);
+		}
+
+		return *this;
+	}
 };
 
 struct AchievementConfig
@@ -349,6 +383,31 @@ struct ChapterConfig
 		}
 
 		return *this;
+	}
+};
+
+///普通副本、精英副本的章节星级奖励
+struct ChapterBattleScoreRewardsConfig
+{
+	int chapterID;///<副本ID
+	unordered_map<int, vector<GoodsInfoSG>> rewardsInfor; ///<奖励的具体信息
+
+	ChapterBattleScoreRewardsConfig()
+	{
+		chapterID = 0;
+		rewardsInfor.clear();
+	}
+
+	ChapterBattleScoreRewardsConfig(ChapterBattleScoreRewardsConfig&& other)
+		:rewardsInfor(std::move(other.rewardsInfor))
+	{
+		chapterID = other.chapterID;
+	}
+
+	ChapterBattleScoreRewardsConfig& operator = (ChapterBattleScoreRewardsConfig&& other)
+	{
+		chapterID = other.chapterID;
+		rewardsInfor = std::move(other.rewardsInfor);
 	}
 };
 

@@ -200,6 +200,8 @@
     <ClCompile Include="SanguoCode\HeroMoudle\HeroTraining.cpp" />
     <ClCompile Include="SanguoCode\MallMoudle\SoulExchangeManager.cpp" />
     <ClCompile Include="SanguoCode\MallMoudle\WarOfLeagueShopManager.cpp" />
+    <ClCompile Include="SanguoCode\DuplicateMoudle\DuplicateExtraRewards.cpp" />
+    <ClCompile Include="SanguoCode\MissionMoudle\MissionActiveness.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SanguoCode\AchievementMoudle\AchievementDataManager.h" />
@@ -428,6 +430,8 @@
     <ClInclude Include="SanguoCode\HeroMoudle\HeroTraining.h" />
     <ClInclude Include="SanguoCode\MallMoudle\SoulExchangeManager.h" />
     <ClInclude Include="SanguoCode\MallMoudle\WarOfLeagueShopManager.h" />
+    <ClInclude Include="SanguoCode\DuplicateMoudle\DuplicateExtraRewards.h" />
+    <ClInclude Include="SanguoCode\MissionMoudle\MissionActiveness.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ActiveObject.h">

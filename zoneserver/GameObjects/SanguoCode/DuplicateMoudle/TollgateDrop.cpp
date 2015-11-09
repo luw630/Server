@@ -1,8 +1,11 @@
 #include "stdafx.h"
 #include "TollgateDrop.h"
+#include "..\StorageMoudle\StorageManager.h"
+#include "..\Common\ConfigManager.h"
 #include "..\Common\SanguoConfigTypeDef.h"
 #include "DuplicateDataManager.h"
 #include "..\..\Random.h"
+#include "Player.h"
 
 CTollgateDrop::CTollgateDrop()
 {
@@ -288,4 +291,35 @@ void CTollgateDrop::RandomItem(int dropNum, int itemNum, const vector<int>* item
 		dropedItemNum = dropNum;
 		m_commonDropItemIdList.insert(make_pair((*itemList)[stepIndex], dropNum));
 	}
+}
+
+void CTollgateDrop::IncreaseDropedSoulStone(int ratio)
+{
+	for (auto& itor : m_commonDropItemIdList)
+	{
+		if (_IdentifySoulStone(itor.first))
+			itor.second *= ratio;
+	}
+
+	for (auto& itor : m_bossDropItemIdList)
+	{
+		if (_IdentifySoulStone(itor.first))
+			itor.second *= ratio;
+	}
+}
+
+bool CTollgateDrop::_IdentifySoulStone(int itemID)
+{
+	auto config = CConfigManager::getSingleton()->GetItemConfig(itemID);
+	if (config == nullptr)
+		return false;
+
+	auto type = CStorageManager::ParseItemType(config);
+	///代表为魂石
+	if (type == Item_SoulStone)
+	{
+		return true;
+	}
+
+	return false;
 }

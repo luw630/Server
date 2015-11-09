@@ -45,6 +45,14 @@ void CMallsMoudle::DispatchMallMsg(CMallManager* pMallMgr, SMallMsgInfo* pMsg)
 			_ProcessRefreshCommodityMsg(pMallMgr, refreshMsg);
 		}
 		break;
+	case SMallBaseMsg::MALL_OPENMALL:
+		{
+			SQAOpenMallMsg* openMsg = static_cast<SQAOpenMallMsg*>(pMsg);
+			if (nullptr == openMsg)
+				return;
+			_ProcessAlwaysOpenMsg(pMallMgr, openMsg);
+		}
+		break;
 	default:
 		break;
 	}
@@ -161,20 +169,21 @@ void CMallsMoudle::_ProcessRefreshCommodityMsg(CMallManager* pMallMgr, SRefreshC
 		return;
 	if (!RandomCommoditys(pMallMgr))
 		return;
-	
+
+	GoodsWay GoodsWayType = pMallMgr->RechargeWay();
 	SRefreshCommodityResult resultMsg;
 	switch (pMallMgr->GetType())
 	{
 	case VarietyShop:
 	case MiracleMerchant:
 	case GemMerchant:
-		resultMsg.m_dwProperty = pBaseDataMgr.PlusDiamond(-refreshCost);
+		resultMsg.m_dwProperty = pBaseDataMgr.DecGoods_SG(GoodsType::diamond, 0, refreshCost, GoodsWayType);
 		break;
 	case ArenaShop:
-		resultMsg.m_dwProperty = pBaseDataMgr.PlusHonor(-refreshCost);
+		resultMsg.m_dwProperty = pBaseDataMgr.DecGoods_SG(GoodsType::honor, 0, refreshCost, GoodsWayType);
 		break;
 	case  ExpeditionShop:
-		resultMsg.m_dwProperty = pBaseDataMgr.PlusExploit(-refreshCost);
+		resultMsg.m_dwProperty = pBaseDataMgr.DecGoods_SG(GoodsType::exploit, 0, refreshCost, GoodsWayType);
 		break;
 	case LegionShop:
 		{
@@ -223,10 +232,10 @@ void CMallsMoudle::_ProcessRefreshCommodityMsg(CMallManager* pMallMgr, SRefreshC
 		}
 		break;
 	case SoulExchange:
-		resultMsg.m_dwProperty =  pBaseDataMgr.ModifySoulPoints(-refreshCost);
+		resultMsg.m_dwProperty = pBaseDataMgr.DecGoods_SG(GoodsType::soulPoints, 0, refreshCost, GoodsWayType);
 		break;
 	case WarOfLeagueShop:
-		resultMsg.m_dwProperty = pBaseDataMgr.PlusPrestige(-refreshCost);
+		resultMsg.m_dwProperty = pBaseDataMgr.DecGoods_SG(GoodsType::Prestige, 0, refreshCost, GoodsWayType);
 		break;
 	default:
 		break;
@@ -247,6 +256,37 @@ void CMallsMoudle::_ProcessRefreshCommodityMsg(CMallManager* pMallMgr, SRefreshC
 	}
 
 	g_StoreMessage(pBaseDataMgr.GetDNID(), &resultMsg, sizeof(SRefreshCommodityResult));
+}
+
+void CMallsMoudle::_ProcessAlwaysOpenMsg(CMallManager* pMallMgr, SQAOpenMallMsg* pMsg)
+{
+	CBaseDataManager& pBaseDataMgr = pMallMgr->GetBaseDataMgr();
+	int cost = 0;
+	MallType mType = pMallMgr->GetType();
+	GoodsWay way = pMallMgr->RechargeWay();
+	switch (mType)
+	{
+	case MallType::MiracleMerchant:
+		cost = m_GlobalConfig.TreasureStoreOpenCost;
+		break;
+	case MallType::GemMerchant:
+		cost = m_GlobalConfig.GemStoreOpenCost;
+		break;
+	default:
+		return;
+	}
+
+	if (pBaseDataMgr.GetDiamond() < cost)
+		return;
+
+	pBaseDataMgr.DecGoods_SG(GoodsType::diamond, 0, cost, way);
+	if (!pMallMgr->OpenMall(pMsg->alwaysOpen))
+		return;
+
+	SQAOpenMallMsg resultMsg;
+	resultMsg.m_MallType = mType;
+	resultMsg.alwaysOpen = pMsg->alwaysOpen;
+	g_StoreMessage(pBaseDataMgr.GetDNID(), &resultMsg, sizeof(SQAOpenMallMsg));
 }
 
 void CMallsMoudle::SendAutoRefreshMsgToClient(CMallManager* pMallMgr)

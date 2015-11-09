@@ -3,6 +3,7 @@
 #include "Networkmodule\SanguoPlayerMsg.h"
 #include "DuplicateBaseManager.h"
 #include "DuplicateDataManager.h"
+#include "DuplicateExtraRewards.h"
 #include "..\BaseDataManager.h"
 #include "..\Common\ConfigManager.h"
 #include "..\StorageMoudle\StorageManager.h"
@@ -19,6 +20,7 @@ CStoryDulicateManager::CStoryDulicateManager(CExtendedDataManager& dataMgr)
 	m_bDuplicateActivated = false;
 	m_bMopUpOperation = false;
 	m_iMopUpTicketID = 0;
+	m_ptrDuplicateExtraRewards.reset(nullptr);
 }
 
 
@@ -30,18 +32,25 @@ void CStoryDulicateManager::InitMgr()
 {
 	m_bInitFlag = false;
 	m_ptrDuplicateIDList = CConfigManager::getSingleton()->GetDuplicateListByType(m_DuplicateType);
-	
 	InitProgress();
+	m_bInitFlag = true;
 
+	m_ptrDuplicateExtraRewards.reset(new CDuplicateExtraRewards(m_ptrDuplicateIDList));
+	///差异化的初始化逻辑
+	SpecificInitialization();
+}
+
+void CStoryDulicateManager::SpecificInitialization()
+{
 	///普通副本默认激活第一个副本
 	if (m_duplicateContainer.size() > 0)
 	{
 		auto firstDuplicate = m_duplicateContainer.begin();
 		firstDuplicate->second->Activate();
 	}
+
 	///故事副本默认会激活
 	m_bDuplicateActivated = true;
-	m_bInitFlag = true;
 }
 
 void CStoryDulicateManager::DispatchMsg(const SDuplicateMsg* pMsg)
@@ -129,6 +138,7 @@ void CStoryDulicateManager::EarningClearingExtraProgress()
 		if (!func._Empty())
 			func();
 	}
+	ActivityClearingProgress();
 }
 
 void CStoryDulicateManager::CheckMopUpOperationPermission(const SDuplicateMsg *pMsg)
@@ -241,4 +251,15 @@ void CStoryDulicateManager::BindClearingEvent(EmptyFunction& func)
 void CStoryDulicateManager::OnAskToEnterTollgate()
 {
 	m_bMopUpOperation = false;
+}
+
+void CStoryDulicateManager::ActivityClearingProgress()
+{
+	////更新普通关卡通关的活动
+	if (g_Script.PrepareFunction("ActOnPassingLevel"))
+	{
+		g_Script.PushParameter(m_BaseDataManager.GetSID());
+		g_Script.PushParameter(m_iCurChallengeTimes);
+		g_Script.Execute();
+	}
 }

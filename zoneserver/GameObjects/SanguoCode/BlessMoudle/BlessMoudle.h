@@ -29,6 +29,8 @@ private:
 	int32_t _FirstDiamondBless();
 	const int32_t _GetHeroStarLevel(const int32_t heroID);
 	void _ProcessMutipleDiamondResult(DWORD *prizeArray); //专门处理多次元宝祈福的返回结果
+	//@breif blesstype 11是免费金钱祈福， 12是金钱祈福，21免费元宝祈福 22元宝祈福 
+	void _BlessOver(int sid,int blessType, int blessCount);
 	std::unique_ptr<CBlessRandomPrize > m_upRandomObject;
 	CGlobalConfig& globalConfig;
 };											

@@ -4,6 +4,8 @@
 #include "TimerEvent_SG\TimerEvent_SG.h"
 #include "Common\ConfigManager.h"
 #include "Common\PubTool.h"
+#include "ScriptManager.h"
+#include "extraScriptFunctions/lite_lualibrary.hpp"
 #include <time.h>
 
 CEnduranceManager::CEnduranceManager()
@@ -11,8 +13,9 @@ CEnduranceManager::CEnduranceManager()
 	, m_iRecoverSeconds(0)
 	, m_iRecoverPoint(0)
 	, m_iEnduranceLimit(0)
+	, m_iExEnduranceLimit(0)
 	, m_bGMMark(0)
-	, m_bInitFinished(false)
+	//, m_bInitFinished(false)
 {
 }
 
@@ -22,14 +25,45 @@ CEnduranceManager::~CEnduranceManager()
 	m_pEnduranceData == nullptr;
 }
 
-void CEnduranceManager::Init(SEnduranceData* pData, bool bGMMark, bool newPlayer, const int32_t playerLevel)
+void CEnduranceManager::Init(SEnduranceData* pData, bool bGMMark)
 {
-	if (nullptr == pData || m_bInitFinished)
+	if (nullptr == pData/* || m_bInitFinished*/)
 		return;
 	m_pEnduranceData = pData;
 	m_bGMMark = bGMMark;
-	m_iRecoverSeconds = CConfigManager::getSingleton()->globalConfig.PhysicalRecoverTime;
+	//m_bInitFinished = true;
+}
+
+void CEnduranceManager::InitEnduranceData(bool newPlayer, const int32_t playerLevel, const DWORD sid)
+{
+	if (nullptr == m_pEnduranceData)
+		return;
+
+	lite::Variant ret;
+	BOOL result = FALSE;
+	if (g_Script.PrepareFunction("SI_vip_getDetail"))
+	{
+		g_Script.PushParameter(sid);
+		g_Script.PushParameter(VipLevelFactor::VF_EnduranceLimit);
+		result = g_Script.Execute(&ret);
+	}
+
+	if (!result || ret.dataType == LUA_TNIL)
+	{
+		rfalse("SetEnduranceForVIP Failed");
+	}
+
+	try
+	{
+		m_iExEnduranceLimit = static_cast<int>(ret);
+	}
+	catch (lite::Xcpt &e)
+	{
+		rfalse(2, 1, e.GetErrInfo());
+	}
+
 	m_iEnduranceLimit = CConfigManager::getSingleton()->globalConfig.PhysicalLimit;
+	m_iRecoverSeconds = CConfigManager::getSingleton()->globalConfig.PhysicalRecoverTime;
 	if (newPlayer)
 	{
 		_time64(&m_tLastCheckRecoverTime);
@@ -41,7 +75,6 @@ void CEnduranceManager::Init(SEnduranceData* pData, bool bGMMark, bool newPlayer
 		m_tLastCheckRecoverTime = *((__time64_t*)m_pEnduranceData->m_latestCheckTime);
 		Check(playerLevel);
 	}
-	m_bInitFinished = true;
 }
 
 int CEnduranceManager::Recover()
@@ -96,10 +129,41 @@ DWORD CEnduranceManager::GetEndurance() const
 int32_t CEnduranceManager::GetEnduranceLimit(const int32_t playerLevel, bool globalLimit) const
 {
 	if (globalLimit)
-		return m_iEnduranceLimit;
+		return m_iEnduranceLimit + m_iExEnduranceLimit;
 
 	auto levelInfo = CConfigManager::getSingleton()->GetMasterLevelInfor(playerLevel);
 	if (nullptr == levelInfo)
 		return 0;
-	return levelInfo->CharactorEnduranceLimit;
+	return levelInfo->CharactorEnduranceLimit + m_iExEnduranceLimit;
+}
+
+void CEnduranceManager::UpdateEnduranceForVIP(const DWORD sid, const int32_t playerLevel)
+{
+	if (nullptr == m_pEnduranceData)
+		return;
+
+	Check(playerLevel);
+
+	lite::Variant ret;
+	BOOL result = FALSE;
+	if (g_Script.PrepareFunction("SI_vip_getDetail"))
+	{
+		g_Script.PushParameter(sid);
+		g_Script.PushParameter(VipLevelFactor::VF_EnduranceLimit);
+		result = g_Script.Execute(&ret);
+	}
+
+	if (!result || ret.dataType == LUA_TNIL)
+	{
+		rfalse("SetEnduranceForVIP Failed");
+	}
+
+	try
+	{
+		m_iExEnduranceLimit = static_cast<int>(ret);
+	}
+	catch (lite::Xcpt &e)
+	{
+		rfalse(2, 1, e.GetErrInfo());
+	}
 }

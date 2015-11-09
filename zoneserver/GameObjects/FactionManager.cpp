@@ -2109,39 +2109,39 @@ void CFactionManager::GetScriptData(SAGetScriptData *pMsg)
 
 void CFactionManager::GetScriptData(SAScriptData *pMsg)
 {
-	if (pMsg->wLenth > 0)
-	{
-		lua_State *ls = g_Script.ls;
-		if (lua_gettop(ls) == 0)
-		{
-			lua_settop(ls, 0);
-			lua_getglobal(ls, "OnGetScriptData");
-			if (lua_isnil(ls, -1))
-			{
-				//rfalse(2,1,FormatString("PrepareFunction %s not find \r\n",funcname));
-				lua_pop(ls, 1);
-				return;
-			}
-			BYTE  *pDataaddress = (BYTE*)&pMsg->wLenth + sizeof(WORD);
-			lua_createtable(g_Script.ls, 0, 0);
-			int ck = luaEx_unserialize(ls, pDataaddress, pMsg->wLenth);
-			if (ck <= 0)
-			{
-				lua_pushnil(ls);
-				return;
-			}
-			lua_rawseti(ls, -2, 1);
-
-			if (lua_pcall(ls, 1, 0, 0) != 0)
-			{
-				char err[1024];
-				sprintf(err, "%s\r\n", lua_tostring(ls, -1));
-				rfalse(2, 1, err);
-				lua_settop(ls, 0);
-				return;
-			}
-		}
-	}
+// 	if (pMsg->wLenth > 0)
+// 	{
+// 		lua_State *ls = g_Script.ls;
+// 		if (lua_gettop(ls) == 0)
+// 		{
+// 			lua_settop(ls, 0);
+// 			lua_getglobal(ls, "OnGetScriptData");
+// 			if (lua_isnil(ls, -1))
+// 			{
+// 				//rfalse(2,1,FormatString("PrepareFunction %s not find \r\n",funcname));
+// 				lua_pop(ls, 1);
+// 				return;
+// 			}
+// 			BYTE  *pDataaddress = (BYTE*)&pMsg->wLenth + sizeof(WORD);
+// 			lua_createtable(g_Script.ls, 0, 0);
+// 			int ck = luaEx_unserialize(ls, pDataaddress, pMsg->wLenth);
+// 			if (ck <= 0)
+// 			{
+// 				lua_pushnil(ls);
+// 				return;
+// 			}
+// 			lua_rawseti(ls, -2, 1);
+// 
+// 			if (lua_pcall(ls, 1, 0, 0) != 0)
+// 			{
+// 				char err[1024];
+// 				sprintf(err, "%s\r\n", lua_tostring(ls, -1));
+// 				rfalse(2, 1, err);
+// 				lua_settop(ls, 0);
+// 				return;
+// 			}
+// 		}
+// 	}
 }
 
 __int64 now;
@@ -2477,7 +2477,19 @@ BOOL CFactionManager::DispatchFactionMessage(DNID dnidClient, struct STongBaseMs
 		pPlayer->OnShowoperateLog((SQFactionOperateLog*)pMsg);
 		break;
 	case STongBaseMsg::EPRO_TONG_SENDEMAILTOALL:
-		pPlayer->OnShowoperateLog((SQFactionOperateLog*)pMsg);
+		pPlayer->OnSendFcEmailToAll((SQFcEmailToAll*)pMsg);
+		break;
+	case STongBaseMsg::EPRO_TONG_SHOWEQUIPT:
+		pPlayer->OnShowRequestEquipt((SQShowEquipt*)pMsg);
+		break;
+	case STongBaseMsg::EPRO_TONG_QUESTEQUIPT:
+		pPlayer->OnRequestEquipt((SQRequestEquipt*)pMsg);
+		break;
+	case STongBaseMsg::EPRO_TONG_SHOWQUESTSTATUS:
+		pPlayer->OnRequestStatus((SQRequestStatus*)pMsg);
+		break;
+	case STongBaseMsg::EPRO_TONG_CANCELEDQUEST:
+		pPlayer->OnCanceledQuest((SQCanceledQuest*)pMsg);
 		break;
 	default:
 		break;

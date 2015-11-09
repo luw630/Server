@@ -15,11 +15,12 @@ struct SMessage;
 struct SMissionMsg;
 class CExtendedDataManager;
 class CMissionDataManager;
+class CMissionActiveness;
 
 class CMissionManager : public CMissionUpdate
 {
 public:
-	CMissionManager(CExtendedDataManager& dataMgr);
+	CMissionManager(CExtendedDataManager& missionDataMgr, CExtendedDataManager& missionActivenessMgr);
 	~CMissionManager();
 
 	void RecvMsg(const SMessage *pMsg);
@@ -41,8 +42,12 @@ public:
 	virtual void UpdateVipMission(int vipLevel);
 
 private:
+	///@brief 客户端请求结束某一个任务
 	void AskToAccomplishMission(const SMissionMsg* msg);
+	///@breif 客户端请求任务活跃度的奖励
+	void AskToClaimMissionActivenessRewards(const SMissionMsg* msg);
 
-	CMissionDataManager * m_ptrDataMgr;
+	CMissionDataManager * m_ptrMissionDataMgr;
+	CMissionActiveness * m_ptrMissionActivenessMgr;
 };
 

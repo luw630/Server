@@ -129,9 +129,42 @@ void CSkillUpgradeMoudle::_BuySkillPointProcess(CSkillUpgradeManager* pSkillUpgr
 	}
 	else
 		rfalse("获取不到CPlayer的指针");
-	
+	/// 无法购买 则退出
 	if (buyTimes == 0)
 		return;
+
+	if (buyTimes > 0)
+	{
+		///从lua获取购买技能点限制
+		lite::Variant ret2;
+		BOOL result = FALSE;
+		if (g_Script.PrepareFunction("Get_MoudelLimitDetail"))
+		{
+			g_Script.PushParameter("skill_moudel");
+			g_Script.PushParameter("BuyPointLimit");
+			result = g_Script.Execute(&ret2);
+		}
+
+		if (!result || ret2.dataType == LUA_TNIL)
+		{
+			rfalse("Get_MoudelLimitDetail failed");
+		}
+
+		int limit = 0;
+		try
+		{
+			limit = static_cast<int>(ret2);
+		}
+		catch (lite::Xcpt &e)
+		{
+			rfalse(2, 1, e.GetErrInfo());
+		}
+
+		///如果购买技能点有次数限制并且次数已用完, 则不予购买
+		if (limit != 0 && pSkillUpgradeMgr->PurchasedSkillPointTimes() >= buyTimes)
+			return;
+	}
+	
 	///消耗的计算
 	int32_t cost(m_GlobalConfig.BuySkillPointCost);
 	if (baseDataMgr.GetDiamond() < cost)

@@ -75,7 +75,7 @@ void CBaseDataManager::Init(bool bGMFlag)
 	/// 初始化武将
 	__super::Init();
 	m_upStorageMgr->InitItemData(m_pPlayerData->m_ItemList);
-	m_upEnduranceMgr->Init(&m_pPlayerData->m_EnduranceData, bGMFlag, m_pPlayerData->m_bNewPlayer, GetPlayerLevel());
+	m_upEnduranceMgr->Init(&m_pPlayerData->m_EnduranceData, bGMFlag);
 	m_upGuideMgr->InitGuideData(&m_pPlayerData->m_NewbieGuideData);
 	if (!m_bTempGMFlag && !m_upGuideMgr->BeTriggered(GuideType::CollectEquipment))
 	{
@@ -83,6 +83,11 @@ void CBaseDataManager::Init(bool bGMFlag)
 		m_upStorageMgr->BindAddItemFunction(m_funcJudgeUpgradeRank);
 	}
 	m_bDataInitialed = true;
+}
+
+void CBaseDataManager::InitDataOfLogin()
+{
+	m_upEnduranceMgr->InitEnduranceData(m_pPlayerData->m_bNewPlayer, GetPlayerLevel(), GetSID());
 }
 
 void CBaseDataManager::SetAchievementUpdator(CAchieveUpdate* pAchievement)
@@ -319,7 +324,26 @@ DWORD CBaseDataManager::AddGoods_SG(const int32_t iType, const int32_t id/* =0 *
 	//日志
 	bool logMark = false;
 	if (iType == GoodsType::diamond || iType == GoodsType::honor || iType == GoodsType::Exp || iType == GoodsType::vipExp)
+	{
 		logMark = true;
+		if (iType == GoodsType::diamond && num >= 0)
+		{
+			INT result;
+			if (g_Script.PrepareFunction("updateTotalDiamond"))
+			{
+				g_Script.PushParameter(GetSID());
+				g_Script.PushParameter(num);
+				result = g_Script.Execute();
+
+			}
+			if (result == FALSE)
+			{
+				rfalse("累计获取元宝出错%d", num);
+				return 0;
+			}
+		}
+	}
+
 	else if (iType == GoodsType::money && num >  CConfigManager::getSingleton()->globalConfig.LogMoneyNum)
 		logMark = true;
 	else if (iType == GoodsType::item )
@@ -525,6 +549,7 @@ DWORD  CBaseDataManager::DecGoods_SG(const int32_t iType, const int32_t id /* = 
 		break;
 	}
 
+	lua_settop(g_Script.ls, 0);  //这里有可能是来自lua的调用，所以栈可能不为空，这里先清空
 	if (g_Script.PrepareFunction("OnPlayerDecGoods_SG"))
 	{
 		g_Script.PushParameter(GetSID());
@@ -1310,7 +1335,14 @@ bool CBaseDataManager::AddHero(const int32_t heroID)
 			{
 				g_Script.PushParameter(m_pPlayerData->m_dwStaticID);
 				g_Script.PushParameter(RankType_SG::HeroNum);
-				g_Script.PushParameter(GetHeroNum());
+				g_Script.PushParameter(m_HeroNum);
+				g_Script.Execute();
+			}
+			///更新英雄收集活动
+			if (g_Script.PrepareFunction("ActOnHeroNumInc"))
+			{
+				g_Script.PushParameter(m_pPlayerData->m_dwStaticID);
+				g_Script.PushParameter(m_HeroNum);
 				g_Script.Execute();
 			}
 			if (g_Script.PrepareFunction("rank_update"))
@@ -1479,7 +1511,16 @@ bool CBaseDataManager::PlusHeroExp(int heroID, OUT int& value, OUT int& level, O
 	value = targetExp;
 	level = tempLevel;
 
-	return __super::PlusHeroExp(heroID, value, level);
+	bool success = __super::PlusHeroExp(heroID, value, level);
+	///更新英雄等级提升的活动
+	if (success && g_Script.PrepareFunction("OnHeroLevelUp"))
+	{
+		g_Script.PushParameter(m_pPlayerData->m_dwStaticID);
+		g_Script.PushParameter(heroID);
+		g_Script.PushParameter(level);
+		g_Script.Execute();
+	}
+	return success;
 }
 
 CAchieveUpdate* CBaseDataManager::GetLifeTimeAchievementUpdator()
@@ -1622,5 +1663,25 @@ void CBaseDataManager::OnArenaDefenseTeamChanged()
 		g_Script.PushParameter(RankType_SG::BattleTeam);
 		g_Script.PushParameter(combatPowerSum);
 		g_Script.Execute();
+	}
+}
+
+void CBaseDataManager::UpdateDateForVIP(int vipLevel)
+{
+	if (nullptr != m_ptrMissionUpdate)
+		m_ptrMissionUpdate->UpdateVipMission(vipLevel);
+
+	if (nullptr != m_upEnduranceMgr)
+	{
+		m_upEnduranceMgr->UpdateEnduranceForVIP(GetSID(), GetPlayerLevel());
+		SAAddGoodsSYNMsg rMsg;
+		rMsg.iType = GoodsType::endurance;
+		rMsg.itemGroupNum = 1;
+		rMsg.bIDIndex = true;
+		int unusedNum = MAX_ITEM_NUM_SYN_TO_CLIENT - 2;
+		rMsg.itemList[0] = m_pPlayerData->m_EnduranceData.m_dwEndurance;
+		rMsg.itemList[1] = m_pPlayerData->m_EnduranceData.m_dwRemainingSeconds;
+		///将没用的数组空间去掉，不发送到服务器
+		g_StoreMessage(GetSID(), &rMsg, sizeof(SAAddGoodsSYNMsg) - unusedNum * sizeof(DWORD));
 	}
 }

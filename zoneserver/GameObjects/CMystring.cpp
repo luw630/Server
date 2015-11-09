@@ -121,7 +121,7 @@ const char* CMyString::GetFormatString( const char* key )
 		//rfalse(iter->second->s_strValue.c_str());
 		return iter->second->s_strValue.c_str();
 	}
-	return 0;
+	return "";
 }
 
 BYTE CMyString::parsestrparamcount( const char* strvalue,int nLenth )

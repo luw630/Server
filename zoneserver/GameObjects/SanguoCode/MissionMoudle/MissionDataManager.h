@@ -10,6 +10,7 @@
 #include <functional>
 #include <memory>
 #include <unordered_map>
+typedef std::function<void(int)> FunctionPtr;
 
 ///@brief 任务的数据管理类
 struct SAMissionAccomplished;
@@ -30,6 +31,8 @@ public:
 
 	///@brief 当lua环境已经运行，且玩家数据还未发送到客户端的时候的操作
 	void OnLuaInitialed();
+	///@brief 设置任务完成时候的回调
+	void SetMissionAccomplishedCallBack(FunctionPtr& fun);
 	///@brief 设置任务的完成次数
 	///@param MissionType 任务对应的类型
 	///@param times 次数
@@ -78,6 +81,7 @@ private:
 	void SetMissionCompleteTimes(int missionID, DWORD times, bool synMsg = true);
 
 	bool m_bInitResetMission;
+	FunctionPtr m_operationOnMissionAccomplished;///某一个任务完成后会做的事情
 	shared_ptr<SAUpdateMissionState> m_ptrUpdateMissionStateMsg;
 	shared_ptr<SAMissionAccomplished> m_ptrMissionAccomplishedMsg;
 };

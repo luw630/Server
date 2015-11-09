@@ -421,6 +421,10 @@ void CTollgate::CalculateDropOutItem(int challengeTime /* = 1 */, bool bMopUpOpe
 			m_ptrDropOut->CalculateDropItem(data, (m_curInstanceType == InstanceType::LeagueOfLegends || m_curInstanceType == InstanceType::TreasureHunting) ? true : false, bMopUpOperation);
 		}
 
+		int ratio = _GetSoulStoneIncRatio();
+		if (ratio > 1)
+			m_ptrDropOut->IncreaseDropedSoulStone(ratio);
+
 		const unordered_map<int, int>& commonDropOutList = m_ptrDropOut->GetCommonDropItemList();
 		for (auto iter : commonDropOutList)
 		{
@@ -445,4 +449,38 @@ void CTollgate::AddEarningItem(int itemID, int itemNum)
 		m_listItem.insert(make_pair(itemID, itemNum));
 	else
 		findResult->second += itemNum;
+}
+
+int CTollgate::_GetSoulStoneIncRatio()
+{
+	if (m_curInstanceType != InstanceType::StoryElite)
+		return 1;
+
+	int retValue = 0;
+	BOOL execResult = FALSE;
+	lite::Variant ret1;//从lua获取到的返回值
+
+	if (g_Script.PrepareFunction("GetDropActRate"))
+	{
+		execResult = g_Script.Execute(&ret1);
+	}
+
+	if (execResult && ret1.dataType != LUA_TNIL)
+	{
+		try
+		{
+			retValue = (int)ret1;
+		}
+		catch (lite::Xcpt& e)
+		{
+			retValue = 0;
+			rfalse(2, 1, e.GetErrInfo());
+		}
+	}
+
+	///如果活动关闭了则不予提升将魂的数量
+	if (retValue <= 0)
+		return 1;
+
+	return retValue;
 }

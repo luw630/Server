@@ -1310,6 +1310,29 @@ BOOL CGameWorld::DispatchSysMessage(DNID dnidClient, SSysBaseMsg *pMsg, CPlayer 
 	case SSysBaseMsg::EPRO_GET_SIGNINAWARD:
 		return pPlayer->OnHandleGetSignInAward((SQGetSignInAwardMsg*)pMsg);
 		break;
+
+	case SSysBaseMsg::EPRO_DATA_GETSID:
+	{
+		SQGetsid  *pQGetMsg = (SQGetsid*)pMsg;
+		{
+			if (pQGetMsg)
+			{
+				SAGetsid  pAGetMsg;
+				memset(pAGetMsg.strname, 0, CONST_USERNAME);
+				pAGetMsg.dsid = 0;
+
+				CPlayer *pPlayer = (CPlayer*)GetPlayerByName(pQGetMsg->strname)->DynamicCast(IID_PLAYER);
+				if (pPlayer)
+				{
+					strcpy(pAGetMsg.strname, pQGetMsg->strname);
+					pAGetMsg.dsid = pPlayer->GetSID();
+				}
+
+				g_StoreMessage(dnidClient, &pAGetMsg, sizeof(SAGetsid));
+			}
+		}
+	}
+		break;
     }
 
 	return FALSE;
@@ -2036,7 +2059,8 @@ BOOL CGameWorld::CreateNewPlayer(DNID dnidClient, LPCSTR acc16, DWORD GID, DWORD
                 {
                     //TalkToDnid(pPlayer->m_ClientIndex, FormatString("此账号正从别处登陆，IP为[%s]", ip2.c_str()));
                     //TalkToDnid(dnidClient, FormatString("此账号已从别处登陆，IP为[%s]", ip1.c_str()));
-					TalkToDnid(dnidClient, "连接成功");
+					const char* pSuccessTips = CMyString::GetInstance().GetFormatString("CONNECT_SUCCESS");
+					TalkToDnid(dnidClient, pSuccessTips);
                 }
             }
 

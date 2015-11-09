@@ -107,10 +107,10 @@ void MiracleMerchantManager::OpenProcess()
 	m_pSpecialMallData->dwElapsedTime = 0;
 	if (nullptr == m_pOpenMsg)
 	{
-		m_pOpenMsg = make_shared<SOpenMallMsg>();
+		m_pOpenMsg = make_shared<SQAOpenMallMsg>();
 		m_pOpenMsg->m_MallType = GetType();
 	}
-	g_StoreMessage(m_pBaseDataMgr.GetDNID(), m_pOpenMsg.get(), sizeof(SOpenMallMsg));
+	g_StoreMessage(m_pBaseDataMgr.GetDNID(), m_pOpenMsg.get(), sizeof(SQAOpenMallMsg));
 
 	if (!CMallsMoudle::getSingleton()->RandomCommoditys(this))
 		return;
@@ -137,8 +137,37 @@ void MiracleMerchantManager::VipLevelChange(int vipLevel)
 	if (m_pSpecialMallData->bAlwaysOpened)
 		return;
 
+	/// 获取玩家VIP等级 如果大于VIP等级限定则开放商店
 	if (vipLevel > m_dwOpenVIPLevel)
-		m_pSpecialMallData->bAlwaysOpened = true;
+	{
+		///从lua获取奇缘商人开启限制
+		lite::Variant ret2;
+		BOOL result = FALSE;
+		if (g_Script.PrepareFunction("Get_MoudelLimitDetail"))
+		{
+			g_Script.PushParameter("mall_moudel");
+			g_Script.PushParameter("Miracle_OpenLimit");
+			result = g_Script.Execute(&ret2);
+		}
+
+		if (!result || ret2.dataType == LUA_TNIL)
+		{
+			rfalse("Get_MoudelLimitDetail failed");
+		}
+
+		int limit = 0;
+		try
+		{
+			limit = static_cast<int>(ret2);
+		}
+		catch (lite::Xcpt &e)
+		{
+			rfalse(2, 1, e.GetErrInfo());
+		}
+
+		if (0 == limit)
+			m_pSpecialMallData->bAlwaysOpened = true;
+	}
 }
 
 void MiracleMerchantManager::LoginProcess()
@@ -154,15 +183,73 @@ void MiracleMerchantManager::LoginProcess()
 		LuaFunctor(g_Script, "SI_vip_getlv")[g_Script.m_pPlayer->GetSID()](&ret1);
 		int vipLevel = static_cast<int>(ret1);
 		g_Script.CleanCondition();
-		/// 获取玩家VIP等级 如果大于VIP等级限定则开放商店
-		if (vipLevel > m_dwOpenVIPLevel)
-		{
-			m_pSpecialMallData->bAlwaysOpened = true;
-		}
+		VipLevelChange(vipLevel);
 	}
 }
 
 void MiracleMerchantManager::GetCommodityConfigs(vector<CommodityConfig*>& vecConfigs)
 {
 	CConfigManager::getSingleton()->GetMiracleMerchantCommodityConfigs(m_pBaseDataMgr.GetPlayerLevel(), vecConfigs);
+}
+
+bool MiracleMerchantManager::OpenMall(bool alwaysOpen)
+{
+	if (alwaysOpen)
+	{
+		lite::Variant ret;
+		BOOL result = FALSE;
+		if (g_Script.PrepareFunction("SI_vip_getlv"))
+		{
+			g_Script.PushParameter(m_pBaseDataMgr.GetSID());
+			result = g_Script.Execute(&ret);
+		}
+
+		if (!result || ret.dataType == LUA_TNIL)
+		{
+			rfalse("SI_vip_getlv failed");
+		}
+
+		int vipLevel = 0;
+		try
+		{
+			vipLevel = static_cast<int>(ret);
+		}
+		catch (lite::Xcpt &e)
+		{
+			rfalse(2, 1, e.GetErrInfo());
+		}
+
+		if (vipLevel <= m_dwOpenVIPLevel)
+			return false;
+
+		m_pSpecialMallData->bAlwaysOpened = true;
+	}
+	else
+	{
+		_time64(&m_tEffectiveTime);
+		ConverTool::ConvertInt64ToBytes(m_tEffectiveTime, m_pSpecialMallData->activateTime);
+		m_pSpecialMallData->bTemporaryOpened = true;
+		m_pSpecialMallData->dwElapsedTime = 0;
+		if (!CMallsMoudle::getSingleton()->RandomCommoditys(this))
+			return false;
+
+		if (nullptr == m_pRefreshCommodityMsg)
+		{
+			m_pRefreshCommodityMsg = make_shared<SRefreshCommodityResult>();
+			m_pRefreshCommodityMsg->m_MallType = GetType();
+		}
+		m_pRefreshCommodityMsg->m_dwProperty = m_pBaseDataMgr.GetDiamond();
+		m_pRefreshCommodityMsg->m_dwNextRefreshTime = GetNextRefreshTime();
+		m_pRefreshCommodityMsg->m_dwRefreshedCount = GetRefreshedCount();
+
+		const SSanguoCommodity* tempCommodity = nullptr;
+		for (int i = 0; i < MALL_COMMODITY_NUM; ++i)
+		{
+			tempCommodity = &m_pMallData->m_arrCommodity[i];
+			m_pRefreshCommodityMsg->m_arrCommodity[i].SetData(tempCommodity->m_dwID, tempCommodity->m_dwCount, tempCommodity->m_bSoldOut);
+		}
+		g_StoreMessage(m_pBaseDataMgr.GetDNID(), m_pRefreshCommodityMsg.get(), sizeof(SRefreshCommodityResult));
+	}
+
+	return true;
 }

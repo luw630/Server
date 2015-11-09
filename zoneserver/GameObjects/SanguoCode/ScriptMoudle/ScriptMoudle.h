@@ -34,6 +34,7 @@ public:
 	static int L_SynHeroExtendsData(lua_State *L); ///玩家武将的扩展性玩法的数据同步
 	static int L_SynNotificationDataSG(lua_State *L); ///<玩家登陆同步系统推送数据给玩家
 	static int L_SynMissionDataSG(lua_State *L);///<同步玩家的任务数据给玩家
+	static int L_SynMissionActivenessDataSG(lua_State *L);///<同步玩家的任务活跃度相关数据给玩家
 	static int L_UpdateMissionStateSG(lua_State* L);///<同步玩家的某一个任务的数据到客户端
 	static int L_SendMsg_SG(lua_State *L);	//脚本发送消息给客户端
 	static int L_ActiveLeagueOfLegend(lua_State *L);///激活将神传说的某些副本
@@ -65,6 +66,8 @@ public:
 
 	static int L_exchangeActRes(lua_State *L);//兑换活动结果
 	static int L_exchangeActSendData(lua_State *L);//兑换活动玩家数据同步
+
+	static int L_expense_backMail(lua_State *L);//消费返还邮件奖励
 
 public:
 	static void CreateShadow(void);

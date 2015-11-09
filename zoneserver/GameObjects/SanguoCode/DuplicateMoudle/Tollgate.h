@@ -78,6 +78,9 @@ protected:
 	void AddEarningItem(int itemID, int itemNum);
 
 private:
+	///@brief 获取将魂的加成比例
+	int _GetSoulStoneIncRatio();
+
 	bool m_bCompleted;
 	bool m_bActivated;
 	bool m_bFirstChallenge;

@@ -4100,26 +4100,14 @@ int CScriptManager::L_SendBoardCastMsg( lua_State *L )
 
 BOOL CScriptManager::Restore( int flag,const char* name )
 {  
-	DWORD64  ntime = GetTickCount64();
 	if ( flag )
 	{
 		CallFunc( "OnScriptClosing" );
-		rfalse(2, 1, "CallFunc OnScriptClosing time = %d", GetTickCount64() - ntime);
-
-		ntime = GetTickCount64();
 		Reset();
-		rfalse(2, 1, "CallFunc Reset  time = %d", GetTickCount64() - ntime);
-
-		ntime = GetTickCount64();
 		RegisterFunc();
-		rfalse(2, 1, "CallFunc RegisterFunc  time = %d", GetTickCount64() - ntime);
-
-		ntime = GetTickCount64();
 		CallFunc( "OnScriptReseted" );
-		rfalse(2, 1, "CallFunc OnScriptReseted  time = %d", GetTickCount64() - ntime);
 	}
 
-	ntime = GetTickCount64();
 	load_errs = 0;
 	if (name)
 	{
@@ -4127,7 +4115,6 @@ BOOL CScriptManager::Restore( int flag,const char* name )
 		return load_errs;
 	}
 	DoFile("Init.lua");
-	rfalse(2, 1, "DoFile Init.lua  time = %d", GetTickCount64() - ntime);
 	return load_errs;
 }
 
@@ -8359,6 +8346,10 @@ void CScriptManager::LuaRegisterFunc()
 	LuaRegisterFunction(SendModifyNoticeResult);
 	LuaRegisterFunction(SendFactionLog);
 	LuaRegisterFunction(SendFcEmailResult);
+	LuaRegisterFunction(SendEquiptList);
+	LuaRegisterFunction(SendRqEquiptResult);
+	LuaRegisterFunction(SendRequestStatus);
+	LuaRegisterFunction(SendCanceledResult);
 
 	//LuaRegisterFunction(SendCreateFactionResult);
 #undef  LuaRegisterFunction
@@ -14110,6 +14101,7 @@ int CScriptManager::L_SendFactioninfo(lua_State *L)
 						GetTableNumber(L, -1, "wHeadIcon", sfinfo.m_factionmember[i].wPlayerIcon);
 						GetTableNumber(L, -1, "isonline", sfinfo.m_factionmember[i].bisonline);
 						GetTableNumber(L, -1, "Title", sfinfo.m_factionmember[i].Title);
+						GetTableNumber(L, -1, "PlayerActiveValue", sfinfo.m_factionmember[i].wWeekActiveValue);
 					}
 					lua_pop(L, 1);
 					i ++ ;
@@ -14690,7 +14682,7 @@ int CScriptManager::L_SaveAllFactionData(lua_State *L)
 			sSaveFactionMsg.nFactions = nFactions;
 			long sendsize = sizeof(SQSaveFactionDataMsg);
 			SendToLoginServer(&sSaveFactionMsg, sendsize);
-
+			//SectionMessageManager::getInstance().sendSectionMessageTologin(&sSaveFactionMsg, sendsize);
 			if (toplenth > isend)
 			{
 				istart = isend;
@@ -14778,13 +14770,11 @@ int CScriptManager::L_SendFactionLog(lua_State *L)
 		for (int i = 0; i < nlenth; i++)
 		{
 			lua_rawgeti(L, 2, i + 1);
+			if (lua_istable(L, -1))
 			{
-				if (lua_istable(L, -1))
-				{
-					GetTableArrayNumber(L, -1, 1, sOperateLog.factionlog[i].btype);
-					GetTableArrayString(L, -1, 2, sOperateLog.factionlog[i].strName);
-					GetTableArrayNumber(L, -1, 3, sOperateLog.factionlog[i].dParamID);
-				}
+				GetTableArrayNumber(L, -1, 1, sOperateLog.factionlog[i].btype);
+				GetTableArrayString(L, -1, 2, sOperateLog.factionlog[i].strName);
+				GetTableArrayNumber(L, -1, 3, sOperateLog.factionlog[i].dParamID);
 			}
 			lua_pop(L, 1);
 		}
@@ -14811,6 +14801,141 @@ int CScriptManager::L_SendFcEmailResult(lua_State *L)
 	{
 		sfemailall.bresult = static_cast<BYTE>(lua_tonumber(L, 2));
 		g_StoreMessage(pPlayer->m_ClientIndex, &sfemailall, sizeof(SAFcEmailToAll));
+		return 1;
+	}
+	return 0;
+}
+
+int CScriptManager::L_SendEquiptList(lua_State *L)
+{
+	CPlayer *pPlayer = NULL;
+	if (lua_isnumber(L, 1))
+	{
+		DWORD sid = static_cast<DWORD>(lua_tonumber(L, 1));
+		pPlayer = (CPlayer*)GetPlayerBySID(sid)->DynamicCast(IID_PLAYER);
+	}
+	if (!pPlayer)
+	{
+		return 0;
+	}
+	SAShowEquipt   sshowequipt;
+	memset(sshowequipt.Buffer, 0, MAX_QUESTEQUIPTBUFFER);
+	BYTE   *pBuffer = sshowequipt.Buffer;
+	if (lua_isnumber(L, 2) && lua_istable(L,3))
+	{
+		sshowequipt.dSelectedEquipt = static_cast<DWORD>(lua_tonumber(L, 2));
+		sshowequipt.blevelnum = luaL_getn(L, 3);
+		for (int i = 0; i < sshowequipt.blevelnum; i++)
+		{
+			lua_rawgeti(L, 3, i + 1);
+			if (lua_istable(L, -1))
+			{
+				DWORD  dequiptid = 0;
+				size_t nlenth = luaL_getn(L, -1);
+				if (pBuffer - sshowequipt.Buffer  >= MAX_QUESTEQUIPTBUFFER)
+				{
+					rfalse(2, 1, "too long for equiptbuffer");
+					break;
+				}		
+				memcpy(pBuffer, &nlenth, sizeof(size_t));
+				pBuffer += sizeof(DWORD);
+
+				for (int j = 0; j < nlenth; j++)
+				{
+					GetTableArrayNumber(L, -1, j + 1, dequiptid);
+					memcpy(pBuffer, &dequiptid, sizeof(DWORD));
+					pBuffer += sizeof(DWORD);
+				}
+			}
+			lua_pop(L, 1);
+		}
+		g_StoreMessage(pPlayer->m_ClientIndex, &sshowequipt, sizeof(SAShowEquipt));
+		return 1;
+	}
+	return 0;
+}
+
+int CScriptManager::L_SendRqEquiptResult(lua_State *L)
+{
+	CPlayer *pPlayer = NULL;
+	if (lua_isnumber(L, 1))
+	{
+		DWORD sid = static_cast<DWORD>(lua_tonumber(L, 1));
+		pPlayer = (CPlayer*)GetPlayerBySID(sid)->DynamicCast(IID_PLAYER);
+	}
+	if (!pPlayer)
+	{
+		return 0;
+	}
+	size_t nlenth = luaL_getn(L, 1);
+	SARequestEquipt  sRequestEquipt;
+	sRequestEquipt.dParam = 0;
+	if (lua_isnumber(L, 2))
+	{
+		sRequestEquipt.bresult = static_cast<BYTE>(lua_tonumber(L, 2));
+		if (nlenth > 2 && lua_isnumber(L,3))
+		{
+			sRequestEquipt.dParam = static_cast<DWORD>(lua_tonumber(L, 3));
+		}
+		g_StoreMessage(pPlayer->m_ClientIndex, &sRequestEquipt, sizeof(SARequestEquipt));
+		return 1;
+	}
+	return 0;
+}
+
+int CScriptManager::L_SendRequestStatus(lua_State *L)
+{
+	CPlayer *pPlayer = NULL;
+	if (lua_isnumber(L, 1))
+	{
+		DWORD sid = static_cast<DWORD>(lua_tonumber(L, 1));
+		pPlayer = (CPlayer*)GetPlayerBySID(sid)->DynamicCast(IID_PLAYER);
+	}
+	if (!pPlayer)
+	{
+		return 0;
+	}
+	SARequestStatus   sRequestStatus;
+	memset(sRequestStatus.mquestlist, 0, sizeof(requestlist)*MAX_EQUIPTLISTNUM);
+	if (lua_isnumber(L, 2) && lua_istable(L, 3))
+	{
+		sRequestStatus.wEquiptNum = static_cast<WORD>(lua_tonumber(L, 2));
+		size_t nlenth = luaL_getn(L, 3);
+		for (int i = 0; i < nlenth; i++)
+		{
+			lua_rawgeti(L, 3, i + 1);
+			if (lua_istable(L, -1))
+			{
+				GetTableArrayNumber(L, -1, 1, sRequestStatus.mquestlist[i].wRank);
+				GetTableArrayNumber(L, -1, 2, sRequestStatus.mquestlist[i].wIconIndex);
+				GetTableArrayNumber(L, -1, 3, sRequestStatus.mquestlist[i].wLevle);
+				GetTableArrayString(L, -1, 4, sRequestStatus.mquestlist[i].strname);
+			}
+			lua_pop(L, 1);
+		}
+		g_StoreMessage(pPlayer->m_ClientIndex, &sRequestStatus, sizeof(SARequestStatus));
+		return 1;
+	}
+	return 0;
+}
+
+int CScriptManager::L_SendCanceledResult(lua_State *L)
+{
+	CPlayer *pPlayer = NULL;
+	if (lua_isnumber(L, 1))
+	{
+		DWORD sid = static_cast<DWORD>(lua_tonumber(L, 1));
+		pPlayer = (CPlayer*)GetPlayerBySID(sid)->DynamicCast(IID_PLAYER);
+	}
+	if (!pPlayer)
+	{
+		return 0;
+	}
+	if (lua_isnumber(L, 2))
+	{
+		SACanceledQuest  scanceledquest;
+		scanceledquest.bresult = static_cast<BYTE>(lua_tonumber(L, 2));
+		g_StoreMessage(pPlayer->m_ClientIndex, &scanceledquest, sizeof(SACanceledQuest));
 		return 1;
 	}
 	return 0;
@@ -15041,9 +15166,9 @@ int CScriptManager::L_SendScriptData(lua_State *L)
 	
 	if (lua_istable(L,1))
 	{
-		BYTE *luabuffer = new BYTE[20480];
-		memset(luabuffer, 0, 20480);
-		int cur1 = luaEx_serialize(L, 1, luabuffer, 20480);
+		BYTE *luabuffer = new BYTE[102400];
+		memset(luabuffer, 0, 102400);
+		int cur1 = luaEx_serialize(L, 1, luabuffer, 102400);
 		if (cur1 < 0)return 0;
 
 		WORD  datalenth = sizeof(SQScriptData) + cur1;
@@ -15056,6 +15181,7 @@ int CScriptManager::L_SendScriptData(lua_State *L)
 		pscriptdata->pBuffer = (BYTE*)&pscriptdata->wLenth + sizeof(WORD);
 		memcpy(pscriptdata->pBuffer, luabuffer, cur1);
 		SendToLoginServer(pscriptdata, sizeof(SQScriptData)*wcount);
+		//SectionMessageManager::getInstance().sendSectionMessageTologin(pscriptdata, sizeof(SQScriptData)*wcount);
 
 		SAFE_DELETE_ARRAY(pscriptdata);
 		pscriptdata = nullptr;

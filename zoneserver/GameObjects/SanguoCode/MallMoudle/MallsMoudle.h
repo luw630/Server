@@ -23,6 +23,8 @@ private:
 	void _ProcessBuyCommodityMsg(CMallManager* pMallMgr, SBuyCommodityRequest* pMsg);
 	/**@brief 手动刷新商品消息处理*/
 	void _ProcessRefreshCommodityMsg(CMallManager* pMallMgr, SRefreshCommodityRequest* pMsg);
+	/**@brief 商店永久开启消息*/
+	void _ProcessAlwaysOpenMsg(CMallManager* pMallMgr, SQAOpenMallMsg* pMsg);
 	/**@brief 对应商城刷新商品消耗*/
 	int _GetRefreshCost(MallType type, DWORD dwRefreshedCount) const;
 	/**@brief 对应商城是否能够刷新商品*/

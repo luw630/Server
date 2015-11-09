@@ -15,6 +15,7 @@ class CMallManager;
 class CDessertSystem;
 class CDuplicateBaseManager;
 class CMissionManager;
+class CMissionActiveness;
 class CDiamondExchangeProcess;
 class CExpeditionDataManager;
 class CDuplicateDataManager;
@@ -122,6 +123,7 @@ private:
 	std::unique_ptr<CExpeditionDataManager> m_ExpeditionDataMgr;
 	std::unique_ptr<CMissionManager> m_MissionMgr;
 	std::unique_ptr<CMissionDataManager> m_MissionDataMgr;
+	std::unique_ptr<CMissionActiveness> m_MissionActivenessMgr;
 	std::unique_ptr<CAchievementDataManager> m_AchievementDataMgr;
 	std::unique_ptr<CDuplicateDataManager> m_DuplicateDataMgr;
 	std::unique_ptr<CAchievementManager> m_AchievementMgr;
@@ -138,6 +140,7 @@ private:
 	std::map<MallType, std::unique_ptr<CMallManager>> m_MallMgrList;
 	std::unordered_map<InstanceType, shared_ptr<CDuplicateBaseManager>> m_duplicateMgrs;
 	bool m_GMFlag;
+	DWORD m_dwExtendsDataIndex;///<现在仅仅用来移位读取玩家的SFixData数据中的m_extendsBuffer扩展性数据
 	CPlayer*  cPlayer;
 };
 enum TipMessage

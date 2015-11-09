@@ -830,6 +830,10 @@ public:
 	static int L_SendModifyNoticeResult(lua_State *L);//发送修改军团公告结果
 	static int L_SendFactionLog(lua_State *L);//发送军团日志
 	static int L_SendFcEmailResult(lua_State *L);//发送军团邮件结果
+	static int L_SendEquiptList(lua_State *L);//发送军团查看可以请求到的装备
+	static int L_SendRqEquiptResult(lua_State *L);//发送军团请求到的装备结果
+	static int L_SendRequestStatus(lua_State *L);//发送查看申请装备的状态
+	static int L_SendCanceledResult(lua_State *L);//发送取消申请结果
 	//- 军团相关--
 
 

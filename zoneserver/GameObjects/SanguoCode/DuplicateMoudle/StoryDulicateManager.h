@@ -10,8 +10,10 @@
 #include <functional>
 #include "DuplicateBaseManager.h"
 #include <vector>
+#include <memory>
 
 typedef std::function<void()> EmptyFunction;
+class CDuplicateExtraRewards;
 
 class CStoryDulicateManager : public CDuplicateBaseManager
 {
@@ -26,6 +28,8 @@ public:
 	virtual void BindClearingEvent(EmptyFunction& func) final;
 
 protected:
+	///@brief 特异化的初始化逻辑
+	virtual void SpecificInitialization();
 	///@brief 处理客户端发来的消息
 	virtual void DispatchMsg(const SDuplicateMsg* pMsg);
 	///@brief 当客户端申请挑战某一个关卡的时候，子类会做的一些操作
@@ -34,11 +38,15 @@ protected:
 	virtual void OnStartToChallenge();
 	///@brief 检测是否能进行扫荡操作
 	virtual void CheckMopUpOperationPermission(const SDuplicateMsg *pMsg) final;
-	virtual void EarningClearingExtraProgress();
+	///@brief 副本结算的一些额外操作
+	virtual void EarningClearingExtraProgress() final;
+	///@brief 副本相关的活动在副本结算时要做的操作
+	virtual void ActivityClearingProgress();
 
 	bool m_bMopUpOperation;		///<是否为扫荡操作
 	bool m_bDuplicateActivated;	///<副本是否已经激活了
 	int  m_iMopUpTicketID;
 	std::vector<EmptyFunction> m_funcClearing;	///<结算回调事件
+	unique_ptr<CDuplicateExtraRewards> m_ptrDuplicateExtraRewards; ///<关卡额外的奖励管理
 };
 

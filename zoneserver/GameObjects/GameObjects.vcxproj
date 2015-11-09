@@ -171,6 +171,10 @@
     <Lib>
       <OutputFile>$(OutDir)GameObjects.lib</OutputFile>
     </Lib>
+    <PostBuildEvent>
+      <Command>copy "$(OutDir)GameObjects.lib"  "..\区域服务器\Release with debug info\GameObjects.lib"
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release with debug(Visual Studio 2010)|Win32'">
     <ClCompile>
@@ -236,6 +240,7 @@
     <ClCompile Include="SanguoCode\AchievementMoudle\AchievementManager.cpp" />
     <ClCompile Include="SanguoCode\ArenaMoudel\ArenaDataMgr.cpp" />
     <ClCompile Include="SanguoCode\ArenaMoudel\ArenaMoudel.cpp" />
+    <ClCompile Include="SanguoCode\DuplicateMoudle\DuplicateExtraRewards.cpp" />
     <ClCompile Include="SanguoCode\DuplicateMoudle\EliteDuplicateManager.cpp" />
     <ClCompile Include="SanguoCode\DuplicateMoudle\LeagueOfLegendDuplicateMananger.cpp" />
     <ClCompile Include="SanguoCode\DuplicateMoudle\StoryDulicateManager.cpp" />
@@ -323,6 +328,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release with debug info|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="SanguoCode\MallMoudle\WarOfLeagueShopManager.cpp" />
+    <ClCompile Include="SanguoCode\MissionMoudle\MissionActiveness.cpp" />
     <ClCompile Include="SanguoCode\MissionMoudle\MissionDataManager.cpp" />
     <ClCompile Include="SanguoCode\MissionMoudle\MissionManager.cpp" />
     <ClCompile Include="SanguoCode\SanguoPlayerBase.cpp">
@@ -485,6 +491,7 @@
     <ClInclude Include="SanguoCode\DuplicateMoudle\DuplicateAstrict.h" />
     <ClInclude Include="SanguoCode\DuplicateMoudle\DuplicateBaseManager.h" />
     <ClInclude Include="SanguoCode\DuplicateMoudle\DuplicateDataManager.h" />
+    <ClInclude Include="SanguoCode\DuplicateMoudle\DuplicateExtraRewards.h" />
     <ClInclude Include="SanguoCode\DuplicateMoudle\EliteDuplicateManager.h" />
     <ClInclude Include="SanguoCode\DuplicateMoudle\LeagueOfLegendDuplicateMananger.h" />
     <ClInclude Include="SanguoCode\DuplicateMoudle\StoryDulicateManager.h" />
@@ -558,6 +565,7 @@
     <ClInclude Include="SanguoCode\MallMoudle\SoulExchangeManager.h" />
     <ClInclude Include="SanguoCode\MallMoudle\WarOfLeagueShopManager.h" />
     <ClInclude Include="SanguoCode\MissionMoudle\CMissionUpdate.h" />
+    <ClInclude Include="SanguoCode\MissionMoudle\MissionActiveness.h" />
     <ClInclude Include="SanguoCode\MissionMoudle\MissionDataManager.h" />
     <ClInclude Include="SanguoCode\MissionMoudle\MissionManager.h" />
     <ClInclude Include="SanguoCode\MallMoudle\MallsMoudle.h" />

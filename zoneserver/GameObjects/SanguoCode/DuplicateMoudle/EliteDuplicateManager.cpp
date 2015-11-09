@@ -41,16 +41,6 @@ void CEliteDuplicateManager::DispatchMsg(const SDuplicateMsg* pMsg)
 	}
 }
 
-void CEliteDuplicateManager::InitMgr()
-{
-	m_bInitFlag = false;
-	m_ptrDuplicateIDList = CConfigManager::getSingleton()->GetDuplicateListByType(m_DuplicateType);
-
-	InitProgress();
-
-	m_bInitFlag = true;
-}
-
 void CEliteDuplicateManager::Activate()
 {
 	m_bDuplicateActivated = true;
@@ -91,4 +81,14 @@ void CEliteDuplicateManager::OnAskToEnterTollgate()
 	m_bMopUpOperation = false;
 	if (!m_bDuplicateActivated && m_BaseDataManager.GetMasterLevel() >= CConfigManager::getSingleton()->GetGameFeatureActivationConfig().eliteDungeonLevelLimit)
 		Activate();
+}
+
+void CEliteDuplicateManager::SpecificInitialization()
+{
+	///本类暂时没有任何差异化的初始化逻辑
+}
+
+void CEliteDuplicateManager::ActivityClearingProgress()
+{
+
 }
