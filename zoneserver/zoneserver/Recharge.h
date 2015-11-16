@@ -2,7 +2,7 @@
 //
 //   --  Author: wk
 //   --  Date:   15/05/22
-//   --  Desc:   萌将三国 充值模块,另外开线程发http请求到企鹅取余额,涉及到加锁等多线程操作
+//   --  Desc:   萌将三国 充值模块,另外开线程qq发http请求到企鹅取余额,其他的做web服务器接收充值消息涉及到加锁等多线程操作,
 // --------------------------------------------------------------------
 //  
 //---
@@ -12,6 +12,7 @@
 #include"../PUB/Singleton.h"
 #include "networkmodule/SanguoPlayerMsg.h"
 #include "json/json.h"
+#include"../PUB/md5.h"
 
 #define MAX_BUF_HTTPBACK      1024  //http请求后返回数据 最大长度
 //充值类型

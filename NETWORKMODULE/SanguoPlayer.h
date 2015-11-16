@@ -19,6 +19,7 @@
 #define  SWEEPTICKET_ID 20010	///<扫荡券ID
 #define  MALL_COMMODITY_NUM 8	///<商城商品数量
 #define  MISSION_NUM 15 ///<当前的任务数量
+#define  MISSION_ACTIVENESS_REWARD_NUM 4 ///<任务活跃度的奖励的个数
 #define  NEWBIEGUIDE_NUM 20	///<当前指引个数
 #define  ACHIEVEMENT_NUM 168 ///<当前的成就的数量
 #define  ACHIEVEMENT_GROUP_NUM 8///<当前成就类型的数量
@@ -709,6 +710,7 @@ enum VipLevelFactor
 	VF_KillPass_Num,			//过关斩将次数
 	VF_GemMan_Num,			//珍宝商人
 	VF_KillPassAdd_Num,			//过关斩将奖励增加
+	VF_EnduranceLimit,		//体力值上限
 };
 
 

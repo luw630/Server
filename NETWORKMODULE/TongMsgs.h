@@ -16,6 +16,8 @@
 #define MAX_SENDFACTIONDATA 1   //发送的最大数量
 #define CONSTMAILTITLE  256
 #define CONSTMAILCONTENT  512
+#define MAX_EQUIPTLISTNUM  20	//查看装备请求队列的最大数量
+#define MAX_QUESTEQUIPTBUFFER  1024   //请求查看装备的Buff最大大小
 //CGlobalConfig globalConfig; globalConfig = CGlobalConfig globalConfig;
 struct SimFactionData
 {
@@ -199,6 +201,11 @@ EPRO_TONG_NOTICE,									//军团公告
 EPRO_TONG_MODIFYNOTICE,									//军团修改公告
 EPRO_TONG_OPERATELOG,									//军团操作日志
 EPRO_TONG_SENDEMAILTOALL,							//军团群发邮件
+EPRO_TONG_SHOWEQUIPT,							//军团查看可以申请到的装备列表
+EPRO_TONG_QUESTEQUIPT,							//军团申请装备
+EPRO_TONG_SHOWQUESTSTATUS,							//查看申请状态
+EPRO_TONG_CANCELEDQUEST,							//取消申请装备
+
 //}}AFX
 END_MSG_MAP()
 //---------------------------------------------------------------------------------------------
@@ -436,6 +443,7 @@ struct FactionMember   //用于网络发送的成员数据
 	WORD wLevel;						//等级
 	WORD wFightPower;			//战斗力
 	WORD wPlayerIcon;//玩家头像
+	WORD  wWeekActiveValue;//7日活跃度贡献
 	BYTE  bisonline;				//是否在线
 	BYTE  Title;	//自己在帮派中的职位
 };
@@ -486,7 +494,7 @@ struct SAFactioninfo : public SFactioninfo
 	BYTE  Title;	//自己在帮派中的职位
 	FactionMember  m_factionmember[MAX_FACTION_NUMBER];
 };
-
+//军团所使用的数据结构
 typedef struct ITEMDATA   //道具结构体
 {
 	BYTE  bitemtype;				//道具类型
@@ -494,14 +502,14 @@ typedef struct ITEMDATA   //道具结构体
 	DWORD  ditemnum;     //道具数量
 }itemdata;
 
-typedef struct FACTIONSCENE
+typedef struct FACTIONSCENE   //军团关卡
 {
 	BYTE   bscenestatus;		//副本状态  0 副本关闭未通关 1 副本关闭已通关  2 副本开启未通关 3 副本开启已通关 
 	WORD   wTurnOnNum;  //副本关卡进度
 	DWORD dsceneID;     //副本ID
 }factionscene;
 
-typedef struct FACTIONSCENEMAP
+typedef struct FACTIONSCENEMAP   //军团关卡怪物
 {
 	BYTE  bscenemapIndex;//关卡索引
 	BYTE   bscenestatus;		//副本状态  0 副本关闭未通关 1 副本关闭已通关  2 副本开启未通关 3 副本开启已通关 
@@ -509,13 +517,12 @@ typedef struct FACTIONSCENEMAP
 	double   dmonstercurrentHP;	//关卡怪物当前血量 
 }factionscenemap;
 
-typedef struct FACTIONSCENERANK
+typedef struct FACTIONSCENERANK  //军团伤害排名
 {
 	char playername[CONST_USERNAME];  //玩家名字
 	double  dHurt;		//玩家伤害
 	DWORD  drewardnum; //可得到的军需令数量
 }factionscenerank;
-
 
 typedef struct FACTIONSALARYDATA   //军团俸禄配置
 {
@@ -525,6 +532,22 @@ typedef struct FACTIONSALARYDATA   //军团俸禄配置
 	DWORD  dExp; //增加的经验
 	WORD  wcostgold;	//需要花费的元宝数量
 }factionsalarydata;
+
+typedef struct OPERATELOG    //操作日志
+{
+	BYTE   btype;			//类型
+	char  strName[CONST_USERNAME];  //操作玩家名
+	DWORD  dParamID;			//在军团副本中表示军团副本ID
+}operatelog;
+
+
+typedef struct REQUESTELIST     //申请装备
+{
+	WORD  wRank;
+	WORD wIconIndex; //头像
+	WORD  wLevle;// 等级
+	char   strname[CONST_USERNAME]; //玩家名字
+}requestlist;
 
 //请求军团列表
 DECLARE_MSG(SFactionList, STongBaseMsg, STongBaseMsg::EPRO_TONG_FACTION_LIST)
@@ -712,13 +735,6 @@ struct SAFModifyNotice : public SFModifyNotice
 	BYTE  bresult;		// 0修改失败 1 成功 
 };
 
-typedef struct OPERATELOG
-{
-	BYTE   btype;			//类型
-	char  strName[CONST_USERNAME];  //操作玩家名
-	DWORD  dParamID;			//在军团副本中表示军团副本ID
-}operatelog;
-
 //军团操作日志
 DECLARE_MSG(SFactionOperateLog, STongBaseMsg, STongBaseMsg::EPRO_TONG_OPERATELOG)
 struct SQFactionOperateLog : public SFactionOperateLog
@@ -742,6 +758,55 @@ struct SAFcEmailToAll : public SFcEmailToAll
 {
 	BYTE			bresult; //0  发送失败  1成功
 };
+
+//军团查看可以申请到的装备列表
+DECLARE_MSG(SShowEquipt, STongBaseMsg, STongBaseMsg::EPRO_TONG_SHOWEQUIPT)
+struct SQShowEquipt : public SShowEquipt
+{
+};
+struct SAShowEquipt : public SShowEquipt
+{
+	BYTE  blevelnum;   //装备等级数量
+	DWORD  dSelectedEquipt;    //玩家已选的装备
+	BYTE  Buffer[MAX_QUESTEQUIPTBUFFER];
+};
+
+//军团申请到的装备
+DECLARE_MSG(SRequestEquipt, STongBaseMsg, STongBaseMsg::EPRO_TONG_QUESTEQUIPT)
+struct SQRequestEquipt : public SRequestEquipt
+{
+	BYTE  blevle;    //等级
+	BYTE   bIndex;  //索引
+};
+struct SARequestEquipt : public SRequestEquipt
+{
+	BYTE  bresult;   //申请结果  1成功 2 申请等级或者索引出错  3 申请人数超出限制 4 玩家没有加入军团 5 在申请冷却时间内  6 已经申请过装备 
+	DWORD dParam;//扩展参数 
+
+};
+
+//军团申请装备状态
+DECLARE_MSG(SRequestStatus, STongBaseMsg, STongBaseMsg::EPRO_TONG_SHOWQUESTSTATUS)
+struct SQRequestStatus : public SRequestStatus
+{
+	BYTE    bCanceled;	//是否取消申请        1 取消申请      0 查看当前申请状态
+};
+struct SARequestStatus : public SRequestStatus
+{
+	WORD   wEquiptNum;	//当前数量
+	requestlist mquestlist[MAX_EQUIPTLISTNUM];
+};
+
+//取消当前的申请
+DECLARE_MSG(SCanceledQuest, STongBaseMsg, STongBaseMsg::EPRO_TONG_CANCELEDQUEST)
+struct SQCanceledQuest : public SCanceledQuest
+{
+};
+struct SACanceledQuest : public SCanceledQuest
+{
+	BYTE  bresult;   //1 成功  2 取消申请的装备没有找到 3 没有加入军团
+};
+
 
 struct SaveFactionData_New
 {

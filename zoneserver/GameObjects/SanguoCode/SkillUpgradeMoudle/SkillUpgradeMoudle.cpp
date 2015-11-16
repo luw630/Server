@@ -91,9 +91,9 @@ void CSkillUpgradeMoudle::_SkillUpgradeProcess(SQUpgradeHeroSkill* pMsg, CSkillU
 	auto heroData = baseDataMgr.GetHero(heroID);
 	if (nullptr == heroData)
 	{
-		CHAR text[128];
-		sprintf_s(text, "武将ID(%d)有误!", heroID);
-		TalkToDnid(baseDataMgr.GetDNID(), text);
+		//CHAR text[128];
+		//sprintf_s(text, "武将ID(%d)有误!", heroID);
+		//TalkToDnid(baseDataMgr.GetDNID(), text);
 		return;
 	}
 	for (int i = 0; i < MAX_SKILLNUM; ++i)

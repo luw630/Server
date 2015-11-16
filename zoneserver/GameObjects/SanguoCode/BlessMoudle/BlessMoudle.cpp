@@ -94,14 +94,16 @@ void BlessMoudle::_ProcessFreeMoneyBless(CBlessDataMgr *pBlessDataMgr)
 				baseDataMgr.AddGoods_SG(GoodsType::hero, prizeID, 1, GoodsWay::bless, false);
 			else
 				baseDataMgr.AddGoods_SG(GoodsType::item, prizeID, 1, GoodsWay::bless, false);
-			CRandomAchieveUpdate* m_ptrRandomAchievementUpdator = baseDataMgr.GetRandomAchievementUpdator();
-			CMissionUpdate* m_ptrMissionUpdator = baseDataMgr.GetMissionUpdator();
-			///更新相关的成就完成状态
-			if (m_ptrRandomAchievementUpdator != nullptr)
-				m_ptrRandomAchievementUpdator->UpdateBlessAchieve();
-			if (m_ptrMissionUpdator != nullptr)
-				m_ptrMissionUpdator->UpdateBlessingMission(1);
 		}
+
+		///更新相关的成就完成状态
+		CRandomAchieveUpdate* m_ptrRandomAchievementUpdator = baseDataMgr.GetRandomAchievementUpdator();
+		CMissionUpdate* m_ptrMissionUpdator = baseDataMgr.GetMissionUpdator();
+		if (m_ptrRandomAchievementUpdator != nullptr)
+			m_ptrRandomAchievementUpdator->UpdateBlessAchieve();
+		if (m_ptrMissionUpdator != nullptr)
+			m_ptrMissionUpdator->UpdateBlessingMission(1);
+
 		pBlessDataMgr->SetMoneyFreeBlessCount(pBlessDataMgr->GetMoneyFreeBlessCount() - 1);
 		pBlessDataMgr->SetLastFreeMoneyDate(time(nullptr));
 		SASingleRequstBless singleMsg(SASingleRequstBless::MONEY_FREE_BLESS);
@@ -218,14 +220,15 @@ void BlessMoudle::_ProcessFreeDiamondBless(CBlessDataMgr *pBlessDataMgr)
 				baseDataMgr.AddGoods_SG(GoodsType::hero, prizeID, 1, GoodsWay::bless, false);
 			else
 				baseDataMgr.AddGoods_SG(GoodsType::item, prizeID, 1, GoodsWay::bless, false);
-			CRandomAchieveUpdate* m_ptrRandomAchievementUpdator = baseDataMgr.GetRandomAchievementUpdator();
-			CMissionUpdate* m_ptrMissionUpdator = baseDataMgr.GetMissionUpdator();
-			///更新相关的成就完成状态
-			if (m_ptrRandomAchievementUpdator != nullptr)
-				m_ptrRandomAchievementUpdator->UpdateBlessAchieve();
-			if (m_ptrMissionUpdator != nullptr)
-				m_ptrMissionUpdator->UpdateBlessingMission(1);
 		}
+
+		///更新相关的成就完成状态
+		CRandomAchieveUpdate* m_ptrRandomAchievementUpdator = baseDataMgr.GetRandomAchievementUpdator();
+		CMissionUpdate* m_ptrMissionUpdator = baseDataMgr.GetMissionUpdator();
+		if (m_ptrRandomAchievementUpdator != nullptr)
+			m_ptrRandomAchievementUpdator->UpdateBlessAchieve();
+		if (m_ptrMissionUpdator != nullptr)
+			m_ptrMissionUpdator->UpdateBlessingMission(1);
 
 		pBlessDataMgr->SetLastFreeDiamondDate(time(nullptr));
 		SASingleRequstBless singleMsg(SASingleRequstBless::DIAMOND_FREE_BLESS);

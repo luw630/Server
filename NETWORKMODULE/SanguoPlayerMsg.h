@@ -257,9 +257,12 @@ struct SAForgingPermission : public SForgingMsg
 
 DECLARE_MSG_MAP(SMissionMsg, SSGPlayerMsg, SSGPlayerMsg::EPRO_MISSION_MESSAGE)
 REQUEST_ACCOMPLISH_MISSION,
+REQUEST_ACTIVENESS_REWARDS,
 ANSWER_REFRESH_MISSION_DATA,
 ANSWER_MISSION_ACCOMPLISHED,
 ANSWER_UPDATE_MISSION_STATE,
+ANSWER_ACTIVENESS_REWARDS,
+ANSWER_UPDATE_MISSION_ACTIVENESS,
 END_MSG_MAP()
 
 struct SQMissionAccomplished : public SMissionMsg
@@ -270,6 +273,42 @@ struct SQMissionAccomplished : public SMissionMsg
 	{
 		missionID = 0;
 		_protocol = SMissionMsg::REQUEST_ACCOMPLISH_MISSION;
+	}
+};
+
+///@brief 申请领取任务活跃度奖励
+struct SQActivenessRewards : public SMissionMsg
+{
+	int activenessReswardsLevel;
+
+	SQActivenessRewards()
+	{
+		activenessReswardsLevel = 0;
+		_protocol = SMissionMsg::REQUEST_ACTIVENESS_REWARDS;
+	}
+};
+
+///@brief 领取任务活跃度奖励是否成功的回复
+struct SAActivenessRewards :public SMissionMsg
+{
+	bool bSuccess;
+
+	SAActivenessRewards()
+	{
+		bSuccess = false;
+		_protocol = SMissionMsg::ANSWER_ACTIVENESS_REWARDS;
+	}
+};
+
+///@brief 更新任务的活跃度的值
+struct SAUpdateMissionActiveness : public SMissionMsg
+{
+	int activenessData;///<如果为0，代表任务活跃度重置了，客户端要依据其为0来重置客户端的表现
+
+	SAUpdateMissionActiveness()
+	{
+		activenessData = 0;
+		_protocol = SMissionMsg::ANSWER_UPDATE_MISSION_ACTIVENESS;
 	}
 };
 
@@ -1154,11 +1193,14 @@ struct SAutoRefreshCommodityMsg : SMallMsgInfo
 };
 
 ///开启商城消息
-struct SOpenMallMsg : SMallMsgInfo
+struct SQAOpenMallMsg : SMallMsgInfo
 {
-	SOpenMallMsg()
+	/// 是否为永久开通,否则为临时
+	bool alwaysOpen;
+	SQAOpenMallMsg()
 	{
 		SMallBaseMsg::_protocol = SMallBaseMsg::MALL_OPENMALL;
+		alwaysOpen = false;
 	}
 };
 
@@ -1362,7 +1404,8 @@ struct SACHECKIN_DATASYN : SCHECKINBaseMsg
 DECLARE_MSG_MAP(SSCRIPTMsg, SSGPlayerMsg, SSGPlayerMsg::EPRO_SANGUO_SCRIPT)
 DATASYN_FIRST,//首次登陆数据同步
 DATASYN_NOTIFICATION,//登陆的时候同步系统推送通知的数据
-DATASYN_MISSION,///等路段额时候同步每日任务的数据到客户端
+DATASYN_MISSION,///登陆的时候同步每日任务的数据到客户端
+DATASYN_MISSIONACTIVENESS,///登陆的时候同步任务活跃度相关的数据到客户端
 DATASYN_HERO_EXTENDS_DATAS,///<英雄额外的数据，比如武将挂机寻宝的数据，武将训练的数据
 END_MSG_MAP()
 struct SADATASYN_FIRST : SSCRIPTMsg
@@ -1443,6 +1486,21 @@ struct SDATASYN_HEROEXTENDSGAMEPLAY : SSCRIPTMsg
 		length = 0;
 		memset(datas, 0, sizeof(datas));
 		SSCRIPTMsg::_protocol = SSCRIPTMsg::DATASYN_HERO_EXTENDS_DATAS;
+	}
+};
+
+///同步任务活跃度的相关数据到客户端
+struct SDATASYN_MISSIONACTIVENESS : SSCRIPTMsg
+{
+	///如果为0的话，发给客户端的数据代表玩家没有领取一个奖励
+	int length;
+	///存了已经领取的奖励的activenessLevel
+	int datas[MISSION_ACTIVENESS_REWARD_NUM];
+
+	SDATASYN_MISSIONACTIVENESS()
+	{
+		length = 0;
+		SSCRIPTMsg::_protocol = SSCRIPTMsg::DATASYN_MISSIONACTIVENESS;
 	}
 };
 

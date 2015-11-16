@@ -5,6 +5,7 @@
 #include <map>
 //DECLARE_MSG_MAP(SSectionMsg, SMessage, SMessage::ERPO_DEVIDE_MESSAGE)
 //END_MSG_MAP()
+extern int SendToLoginServer(SMessage *, long size);
 struct SSectionMsg : public SMessage
 {
 	SSectionMsg()
@@ -110,6 +111,20 @@ public:
 			sendSectionMessage(dnidClient,&sMsg);
 		}		
 	}
+
+	WORD  sendSectionMessageTologin(SMessage* msg, DWORD size)
+	{
+		int num = this->evaluateDevidedAmount(size);
+		int id = 0;
+		for (int i = 0; i < num; i++)
+		{
+			SSectionMsg sMsg;
+			id = this->devideMessage(i, num, &sMsg, msg, size, id);
+			SendToLoginServer(&sMsg, sizeof(SSectionMsg));
+		}
+		return 1;
+	}
+
 	WORD devideMessage(int index,int total,SSectionMsg* smsg,SMessage* msg,DWORD size,WORD id = 0)
 	{
 		if(!id)

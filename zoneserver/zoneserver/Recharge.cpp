@@ -20,6 +20,30 @@ int recharge_timeout_sec = 3; //取充值超时时间/秒
 char wr_buf[MAX_BUF_HTTPBACK + 1];//http请求后返回数据
 int  wr_index; //http请求相关
 char headers_buf[128] = { 0 }; //http请求cookie相关
+#define BUFFER_SIZE 1024
+#define HOST "127.0.0.1"
+//#define PORT 8999
+#define HEADER "\
+							   HTTP/1.1 200 OK\r\n\
+							   Content-Type: text/html; charset=gb2312\r\n\
+							   Server: ZYhttp_v1.0.1\r\n\
+							   Content-Length: %d\r\n\r\n%s\
+							   "
+char * Md5Key = "ef7f0bd5bc7d093c90ffcf954fd351b4bd7a8e4f"; //日韩md5签名验证key
+
+//#define HTML "\
+//							   <html>\
+//							       <head>\
+//							           <title>擦擦擦</title>\
+//							       <head>\
+//							       <body>\
+//							           <h1>1</h1>\
+//							       </body>\
+//							   </html>\
+//							   "
+
+
+
 #if MSDKTEST
 char * qq_httpUrl = "http://msdktest.qq.com/mpay/get_balance_m?%s";//沙箱
 #else
@@ -399,26 +423,6 @@ int CRecharge::RecvRechargeMsg(CPlayer* pPlayer,SSGPlayerMsg* pMsg)
 }
 
 
-#define BUFFER_SIZE 1024
-#define HOST "127.0.0.1"
-#define PORT 8999
-#define HEADER "\
-HTTP/1.1 200 OK\r\n\
-Content-Type: text/html; charset=gb2312\r\n\
-Server: ZYhttp_v1.0.1\r\n\
-Content-Length: %d\r\n\r\n%s\
-"
-#define HTML "\
-<html>\
-    <head>\
-        <title>擦擦擦</title>\
-    <head>\
-    <body>\
-        <h1>1</h1>\
-    </body>\
-</html>\
-"
-
 //易接sdk充值,http服务器
 int  CRecharge::LoopRecharge_yijie(LPVOID threadNum)
 {
@@ -548,23 +552,19 @@ int  CRecharge::LoopRecharge_yijie(LPVOID threadNum)
 					99 Failure     Payment for the given transaction failed.
 			paymentStatusDate 充值日期  2015-10-26 15:46:02
 			version           版本      ex: 1.0
-			signature       sha1(applicationCode+referenceId+paymentId+amount+totalAmount+paymentStatusCode+paymentStatusDate+version+appkey) 
+			signature       md5(applicationCode+referenceId+paymentId+amount+totalAmount+paymentStatusCode+paymentStatusDate+version+appkey) 
 			applicationCode= 200101001   applicationKey=cb45cf1bc59924759b8eeb77f26aca0a
 			*/
-			char* gethuffer_test = "http://service.cp.host.domain/path/?applicationCode=1234567890ABCDEF&referenceId=1000100008-1&paymentId         =1000100008-1&amount=100&totalAmount=1376577801&paymentStatusCode=123456&paymentStatusDate =1&version=137657AVDEDFS&signature= xxxxxxxxxxx";
+			//char* gethuffer_test = "http://52.68.175.21:11001?applicationCode=100101002&referenceId=GPA.1301-3847-3339-18581&paymentId=1001100023-1&amount=8500&totalAmount=1500&paymentStatusCode=00&paymentStatusDate=2015-11-10 06:56:32&version=1.0.0&signature=3643fad59dab7abba3fb9980e3380323";
 			string rechargeBuff = buffer;
 
-			size_t iPos1 = rechargeBuff.find("paymentId");
+			size_t iPos1 = rechargeBuff.find("paymentId");//自定义参数
 			size_t iPos2 = rechargeBuff.find("&", iPos1);
 			string paymentId = rechargeBuff.substr(iPos1 + 10, iPos2 - iPos1 - 10);
 
 			iPos1 = paymentId.find("-");
 			string psidStr = paymentId.substr(0, iPos1);//玩家sid
 			string feeTypeStr = paymentId.substr(iPos1 + 1, paymentId.length());//充值
-
-			//iPos1 = rechargeBuff.find("ct");
-			//iPos2 = rechargeBuff.find("&", iPos1);
-			//string ct = rechargeBuff.substr(iPos1 + 3, iPos2 - iPos1 - 3);//支付完成时间
 
 			iPos1 = rechargeBuff.find("amount");
 			iPos2 = rechargeBuff.find("&", iPos1);
@@ -578,6 +578,43 @@ int  CRecharge::LoopRecharge_yijie(LPVOID threadNum)
 			iPos2 = rechargeBuff.find("&", iPos1);
 			string stStr = rechargeBuff.substr(iPos1 + 18, iPos2 - iPos1 - 18);//是否成功标志，0 标示成功，其余都表示失败
 
+			iPos1 = rechargeBuff.find("applicationCode");
+			iPos2 = rechargeBuff.find("&", iPos1);
+			string applicationCode = rechargeBuff.substr(iPos1 + 16, iPos2 - iPos1 - 16);//applicationCode
+
+			iPos1 = rechargeBuff.find("totalAmount");
+			iPos2 = rechargeBuff.find("&", iPos1);
+			string totalAmount = rechargeBuff.substr(iPos1 + 12, iPos2 - iPos1 - 12);//totalAmount 总额
+
+			iPos1 = rechargeBuff.find("paymentStatusCode");
+			iPos2 = rechargeBuff.find("&", iPos1);
+			string paymentStatusCode = rechargeBuff.substr(iPos1 + 18, iPos2 - iPos1 - 18);//paymentStatusCode
+
+			iPos1 = rechargeBuff.find("paymentStatusDate");
+			iPos2 = rechargeBuff.find("&", iPos1);
+			string paymentStatusDate = rechargeBuff.substr(iPos1 + 18, iPos2 - iPos1 - 18);//paymentStatusDate
+
+			iPos1 = rechargeBuff.find("version");
+			iPos2 = rechargeBuff.find("&", iPos1);
+			string version = rechargeBuff.substr(iPos1 + 8, iPos2 - iPos1 - 8);//version
+
+			iPos1 = rechargeBuff.find("signature");
+			iPos2 = rechargeBuff.find("&", iPos1);
+			string signature = rechargeBuff.substr(iPos1 + 10, rechargeBuff.length());//version
+
+
+			
+			//md5签名验证
+			string lastStr = applicationCode + ssid + paymentId + feeStr + totalAmount + paymentStatusCode + paymentStatusDate + version + Md5Key;
+			string md5Str = MD5(lastStr).toString();
+			if (signature != md5Str)
+			{
+				rfalse(" md5 check error !!!  signature != md5Str");
+				break;
+			}
+
+
+			//验证通过
 			int  psid = atoi(psidStr.c_str());
 			int  feeType = atoi(feeTypeStr.c_str());
 			int  fee = atoi(feeStr.c_str());

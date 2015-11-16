@@ -25,6 +25,7 @@ EPRO_SAVEPLAYER_CONFIG_INFO,          // 保存玩家电脑配置
 EPRO_BLESSOpenClose_INFO,	// 祈福系统开关
 EPRO_EVERYDAYSIGNIN_AWARD,	//每日签到奖励消息
 EPRO_GET_SIGNINAWARD,	//领取每日签到奖励
+EPRO_DATA_GETSID,			// 获取指定玩家SID
 //}}AFX
 END_MSG_MAP()
 
@@ -237,4 +238,15 @@ struct SQGetSignInAwardMsg : SGetSignInAwardMsg
 struct SAGetSignInAwardMsg : SGetSignInAwardMsg
 {
 	BYTE m_OptResult;  //领取结果。0失败，1成功
+};
+
+DECLARE_MSG(SGetsid, SSysBaseMsg, SSysBaseMsg::EPRO_DATA_GETSID)
+struct SQGetsid : public SGetsid
+{
+	char  strname[CONST_USERNAME];  //请求查看的玩家名
+};
+struct SAGetsid : public SGetsid
+{
+	char  strname[CONST_USERNAME];//请求查看的玩家名
+	DWORD  dsid;					//对应的SID
 };
